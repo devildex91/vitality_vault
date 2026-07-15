@@ -26,7 +26,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
             res = Response()
 
-            res.data = {'success':True}
+            res.data = {'success': True}
            #creates cookies if returns true
             res.set_cookie(
                 key="access_token",

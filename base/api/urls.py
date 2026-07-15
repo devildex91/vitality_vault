@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import get_notes, CustomTokenObtainPairView, CustomRefreshTokenView,logout, is_authenticated,register
+from .views import get_notes, CustomTokenObtainPairView, CustomRefreshTokenView, logout, is_authenticated, register
 
 urlpatterns = [
     path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
