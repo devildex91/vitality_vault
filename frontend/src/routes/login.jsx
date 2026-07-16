@@ -1,4 +1,5 @@
 import { Field, Input,Stack,Button } from "@chakra-ui/react"
+import {useNavigate} from 'react-router-dom'
 
 import {useState} from "react";
 import React from "react"
@@ -7,9 +8,10 @@ import login from "../endpoints/api.js"
 export default function Login(){
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
+const navigate = useNavigate();
 
 const handleLogin = () => {
-      login(username, password)
+      login(username, password, navigate)
 
 }
 
