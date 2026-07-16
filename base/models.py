@@ -5,4 +5,4 @@ from django.contrib.auth.models import User
 
 class Note(models.Model):
     welcome_message = models.CharField(max_length=300)
-    owner = models.ForeignKey(User, on_delete= models.CASCADE, related_name='message')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='message')
