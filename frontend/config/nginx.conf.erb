@@ -12,7 +12,9 @@ http {
   server {
     listen <%= ENV["PORT"] %>;
     root /app/dist;
-
+    location = /favicon.ico {
+  try_files $uri =404;
+}
    
     location / {
       try_files $uri $uri/ /index.html;
