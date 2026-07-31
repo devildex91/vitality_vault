@@ -1,1 +1,0 @@
- web: cd backend && gunicorn vitality_vault.wsgi

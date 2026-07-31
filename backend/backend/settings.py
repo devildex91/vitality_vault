@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from decouple import config
 from datetime import timedelta
+import dj_database_url
 from corsheaders.defaults import default_headers
 
 
@@ -23,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('DJANGO_SECRET_KEY')
-MY_PASSWORD = config('MY_PASSWORD')
+MY_PASSWORD = config('MY_PASSWORD', default=None)
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [host.strip() for host in os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')]
 
 
 # Application definition
@@ -119,14 +120,11 @@ AUTHENTICATION_BACKENDS = (
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'vitality_vault',
-        'USER': 'django_user',
-        'PASSWORD': MY_PASSWORD,
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=bool(os.environ.get('DATABASE_URL')),
+    )
 }
 
 
