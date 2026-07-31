@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react'
 import './App.css'
 import {  Routes, Route } from "react-router";
-import SignIn from './pages/SignIn'
-import HomePage from './/pages/HomePage'
-import WorkoutPlan from './pages/WorkoutPlan'
-import CalorieLog from './pages/CalorieLog'
-import BodyTracker from './pages/BodyTracker'
+import SignIn from './pages/SignIn.jsx'
+import HomePage from './/pages/HomePage.jsx'
+import WorkoutPlan from './pages/WorkoutPlan.jsx'
+import CalorieLog from './pages/CalorieLog.jsx'
+import BodyTracker from './pages/BodyTracker.jsx'
 
 export default function App() {
   return (
