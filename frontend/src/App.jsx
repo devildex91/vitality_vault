@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import './App.css'
 import {  Routes, Route } from "react-router";
-import SignIn from './pages/SignIn.jsx'
+import SignIn from './pages/Signin.jsx'
 import HomePage from './pages/HomePage.jsx'
 import WorkoutPlan from './pages/WorkoutPlan.jsx'
 import CalorieLog from './pages/CalorieLog.jsx'
