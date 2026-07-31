@@ -3,13 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview",
-    "start": "vite preview --host 0.0.0.0 --port $PORT",
-    "heroku-postbuild": "npm run build"
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "start": "echo 'NGINX will serve the built files'",
+  "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@mui/icons-material": "^9.2.0",
