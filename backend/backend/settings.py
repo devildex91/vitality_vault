@@ -23,7 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('DJANGO_SECRET_KEY')
+SECRET_KEY = config('DJANGO_SECRET_KEY', default='django-insecure-fallback-key-for-heroku-building')
+
 MY_PASSWORD = config('MY_PASSWORD', default=None)
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -120,13 +121,12 @@ AUTHENTICATION_BACKENDS = (
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
+    "default": dj_database_url.config(
+        default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}",
         conn_max_age=600,
-        ssl_require=bool(os.environ.get('DATABASE_URL')),
+        ssl_require=bool(os.environ.get("DATABASE_URL")),
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -177,6 +177,15 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 LOGIN_REDIRECT_URL = '/callback/'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
