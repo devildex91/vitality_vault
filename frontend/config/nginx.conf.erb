@@ -10,6 +10,7 @@ http {
   keepalive_timeout  65;
 
   server {
+    listen <%= ENV["PORT"] %>;
     root /app/dist;
     location = /favicon.ico {
   try_files $uri =404;
