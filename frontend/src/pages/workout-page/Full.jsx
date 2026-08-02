@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function TodaysPlan(){
+export default function FullPlan(){
     return(
      <>
-     <div className="card lg:card-side bg-accent text-primary-content shadow-sm">
+     <div className="card lg:card-side bg-accent text-secondary-content shadow-sm">
           <figure>
             <img
               src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
@@ -11,7 +11,7 @@ export default function TodaysPlan(){
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Edit Plan</h2>
+            <h2 className="card-title">Full Plan</h2>
             <p>Click the button to listen on Spotiwhy app.</p>
             <div className="card-actions justify-end">
               <button className="btn btn-primary">Listen</button>
