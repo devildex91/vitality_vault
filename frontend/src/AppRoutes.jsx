@@ -69,7 +69,7 @@ const AppRoutes = createBrowserRouter([
   },
   {
     path:"/bodytracker",
-    COmponent:BodyTracker,
+    Component:BodyTracker,
   },
 
 ]);    
