@@ -9,8 +9,7 @@ export default function SignIn(){
         <Navbar />
         <h1>Sign in page</h1>
 
-        <button className="btn btn-accent">Login</button>
-        <button className="btn btn-accent">Sign In </button>
+        
         <Footer />
         </>
         
