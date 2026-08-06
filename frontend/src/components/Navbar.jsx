@@ -1,17 +1,21 @@
 import React from "react";
-import {Link} from "react-router"
+import {Link, useLocation} from "react-router"
 import { useEffect } from "react";
 import { useTheme } from "../ThemeContext";
-
+import useAuthentication from "../Auth"
 export default function Navbar(){
   //useTheme set in navbar component as it is a child in all pages of app so always avaliable to change theme
     const { theme, setTheme } = useTheme();
+    const {isAuthorized, logout} = useAuthentication();
 const toggleTheme = () => {
   setTheme(theme === "nord" ? "synthwave" : "nord");
 };
-
+const handleLogout = () => {
+  logout();
+  const location = useLocation();
+}
  return (
-   <div className="navbar bg-base-100 shadow-sm border-solid-accent">
+   <div className="navbar bg-accent shadow-sm border-solid-accent">
              <div className="navbar-start">
                <div className="dropdown">
                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -21,10 +25,16 @@ const toggleTheme = () => {
                    tabIndex="-1"
                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                      <nav>
-                   <li><Link to="/home">Home</Link></li>
-                   <li><Link to="/workoutplan">Workout page</Link></li>
-                   <li><Link to="/calorielog">Calorie log</Link></li>
-                   <li><Link to="/bodytracker">Body Tracker</Link></li>
+                   <li><Link to="/">Home</Link></li>
+                   <li className="bg-accent text-base-100"><Link to="/workoutplan">Workout page</Link></li>
+                   <li className="bg-accent text-base-100"><Link to="/calorielog">Calorie log</Link></li>
+                   <li className="bg-accent text-base-100"><Link to="/bodytracker">Body Tracker</Link></li>
+                   {isAuthorized ? (
+                    <li className="bg-accent text-base-100"><Link onClick={handleLogout} to = "/logout">Logout</Link></li>
+                   ):(location.pathname === "/login" ? 
+                    <li className="bg-accent text-base-100"><Link to ="/register">Register</Link></li>: <li className="bg-accent text-base-100"><Link to ="/login">Login</Link></li>
+                   ) }
+                   
                    <li> {/*Checkbox to control state on click to change themes between light and */ }
       <label className="swap swap-rotate">
         {/* this hidden checkbox controls the state */}

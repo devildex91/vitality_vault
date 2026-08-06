@@ -7,7 +7,7 @@ import FullPlan from "./Full";
 export default function tabletView(){
 
     return (
-        <main className="grid grid-cols-2 gap-4">
+        <main className="grid grid-cols-2 gap-4 grow">
         
         
 <div className="tabs tabs-box">

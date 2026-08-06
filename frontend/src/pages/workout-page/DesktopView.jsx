@@ -7,7 +7,7 @@ import FullPlan from "./Full";
 
 export default function DesktopView(){
   return(
- <main className=" grid grid-cols-4 gap-4">
+ <main className=" grid grid-cols-4 gap-4 grow">
   <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 col-span-1" >
   <table className="table">
     {/* head */}

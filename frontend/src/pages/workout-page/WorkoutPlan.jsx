@@ -38,14 +38,14 @@ useEffect(() => {
   },[]);
 
     return (
-          <>
+          <div className = "flex min-h-screen flex-col">
            <Navbar />
            <header>
             <h1>Workout plan</h1>
            </header>
            {viewType}
            <Footer />
-           </>
+           </div>
            
        
        )

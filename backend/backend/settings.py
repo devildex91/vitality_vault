@@ -31,7 +31,7 @@ FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 DEBUG = False
 
 ALLOWED_HOSTS = [host.strip() for host in os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')]
-
+print(f"--- ACTIVE ALLOWED HOSTS: {ALLOWED_HOSTS} ---") 
 
 # Application definition
 

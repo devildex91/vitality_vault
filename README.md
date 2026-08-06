@@ -11,7 +11,7 @@
 [To view site]()
 
 
-
+registration not working properly on test so ran through all seperate Auth files and backend and found a missing trailing / on my register api call which was causing it to fail
 
 ## Table of Contents
 
