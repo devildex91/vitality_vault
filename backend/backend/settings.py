@@ -17,12 +17,18 @@ from datetime import timedelta
 import dj_database_url
 from corsheaders.defaults import default_headers
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api	
+cloudinary.config( 
+  	cloud_name=config('CLOUD_NAME'),
+  	api_key=config('CLOUDINARY_KEY'),
+  	api_secret=config('API_SECRET'))
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='django-insecure-fallback-key-for-heroku-building')
 
 MY_PASSWORD = config('MY_PASSWORD', default=None)
@@ -53,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'workouts'
 ]
 
 MIDDLEWARE = [

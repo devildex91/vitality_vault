@@ -71,7 +71,7 @@ export default function AuthForm({route, method}){
                <div className = "fieldset">
                 <label htmlFor="username" className="label">Username:</label>
                 <input 
-                className = "input"
+                className = "input text-accent"
                 type = "text"
                 id="username"
                 name="username"
@@ -81,7 +81,7 @@ export default function AuthForm({route, method}){
 
                  <label htmlFor="password" className = "label">Password:</label>
                 <input 
-                className="input"
+                className="input text-accent"
                 type = "password"
                 id="password"
                 name="password"
@@ -90,14 +90,14 @@ export default function AuthForm({route, method}){
                 required />
               
                </div>
-               <button type = "submit" className = "btn btn-soft">
+               <button type = "submit" className = "btn btn-soft text-accent">
                 {method === 'register'? 'Register' : 'Login'}
                </button>
                <button type ="button" onClick={handleGoogleLogin}>{method === 'register'? 'Register with Google': 'Login with Google'}</button>
                {method === 'login' && (
                 <>
                 <p>Dont have an account?</p>
-                <button onClick={()=> navigate("/register")} className = "btn btn-soft">Register</button>
+                <button onClick={()=> navigate("/register")} className = "btn btn-soft text-accent">Register</button>
                 </>
                )}
                {method === 'register' && (
