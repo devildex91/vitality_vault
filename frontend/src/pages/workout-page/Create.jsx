@@ -1,10 +1,40 @@
 import React from "react";
 import {useState, useEffect} from "react"
+import axios from "axios"
+import api from "../../api";
+
 
 export default function CreatePlan(){
-
+  
+  const[loading, setLoading] = useState(false);
+  const [error, setError] = useState()
+  /*state to store ingredients from api call*/
+  const [workoutData, setWorkoutData] = useState([])
+  /*state to store selected days from form */
   const [days, setDays] = useState(0);
+  /* state to store selected exercise to be pushed into array */ 
+  const [selectedExercise, setSelectedExtercise]=useState("")
+  /*state to store the selected workout before being pushed to database */
   const [weekWorkout, setWeekWorkout] = useState([])
+const apiUrl = api
+ 
+
+useEffect(()=> {
+  const fetchexerciseData = async() => {
+    try {
+      setLoading(true);
+
+      const response = await api.get("/api/exercises");
+      setWorkoutData(response.data)
+      setError(null);
+       } catch(err) {
+        console.error("Error fetching data:" ,err);
+        setError("Failed to load exercises Please try again");
+       } finally {
+        setLoading(false)
+  }}
+  fetchexerciseData();
+},[])
 
  useEffect(() => {
   /*(_,i)-ignores content and just used index  useEffect waits for days to cahnge and then dynamically updates the weekworkout array to suit*/ 
@@ -17,22 +47,33 @@ export default function CreatePlan(){
   setWeekWorkout(createdWorkout)
  },[days]) 
 
-
-const createWorkout = (e) => {
+const handleSubmit = (e) => {
   e.preventDefault();
 }
 
+
+
 const workoutRender = weekWorkout.map((dayObj,dayIndex)=>{
   return(
-  <fieldset key={dayObj.id} className = "card-body items-center text-center">
+  <div key={dayObj.id} className = "card-body items-center text-center">
     <h3>{dayObj.day}</h3>
-    <select defaultValue="Color scheme" className="select select-accent">
-  <option disabled={true}>Add Exercise</option>
-  <option>Light mode</option>
-  <option>Dark mode</option>
-  <option>System</option>
-</select>
-<button className = "btn btn-soft text-accent bg-base-100">Add Exercise to Day {dayIndex + 1}</button>
+    
+       <select
+       className="select select-accent"
+       value={selectedExercise}
+       onChange={(e)=> {
+        setSelectedExtercise(e.target.value)
+
+       }}>
+       <option value = "">--Select an exercise--</option>
+       {workoutData.map((workoutObj, index) => {
+        return (
+        <option key={workoutObj.id} value={workoutObj.name}>
+          {workoutObj.name}
+          </option>)
+       })}
+       </select>
+<button  type = "button" className = "btn btn-soft text-accent bg-base-100" onClick={()=>(setWorkoutData(dayObj.exercises.map((exercise)=>([...exercise, selectedExercise]))))}>Add Exercise to Day {dayIndex + 1}</button>
 <div id="display-box"className="card-body items-center text-center bg-base-100">
 {dayObj.exercises.length === 0 ? 
 <p>No exercises have been added yet.</p>:
@@ -41,28 +82,23 @@ dayObj.exercises.map((exercise, exerciseIndex)=>(
 <ul>
   <li key = {exerciseIndex}>{exercise}</li>
 </ul>
-
-
 ))
-  
 }
 </div>
-  </fieldset>)
+  </div>)
 } )
-
-
     return(
      <>
      <div className="card lg:card-side bg-accent text-primary-content shadow-sm ">
          
           <div className="card-body">
             <h2 className="card-title">Create Plan</h2>
-            <form onClick={createWorkout}>
+            <form onClick={handleSubmit}>
               <label htmlFor="title">Workout Title</label>
               <input type="text" id="workout_title" placeholder="Workout Title" className="input input-accent" required/>
               <label htmlFor="workout_length">Workout Length(days)</label>
                <select defaultValue="No of days" onChange={(event) => setDays(event.target.value)} name = "numDays" id="workout_length" className="select select-accent" required>
-  <option disabled={true}>Color scheme</option>
+  <option value = "">Workout length(days)</option>
   <option value = "1">1</option>
   <option value = "2">2</option>
   <option value ="3">3</option>
