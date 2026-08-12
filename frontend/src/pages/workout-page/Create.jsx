@@ -8,12 +8,16 @@ export default function CreatePlan(){
   
   const[loading, setLoading] = useState(false);
   const [error, setError] = useState()
+
   /*state to store ingredients from api call*/
   const [workoutData, setWorkoutData] = useState([])
+  
   /*state to store selected days from form */
   const [days, setDays] = useState(0);
+  
   /* state to store selected exercise to be pushed into array */ 
-  const [selectedExercise, setSelectedExtercise]=useState("")
+  const [selectedExercises, setSelectedExercises]=useState({})
+  
   /*state to store the selected workout before being pushed to database */
   const [weekWorkout, setWeekWorkout] = useState([])
 const apiUrl = api
@@ -42,11 +46,26 @@ useEffect(()=> {
     id: i + 1,
     day:`Day:${i+1}`,
     exercises: [],
-  })
-  )
-  setWeekWorkout(createdWorkout)
+  }));
+  setWeekWorkout(createdWorkout);
+  setSelectedExercises({})
  },[days]) 
 
+ const handleAddExercise = (dayIndex) => {
+    const chosenExercise = selectedExercises[dayIndex];
+    if (!chosenExercise) return;
+ 
+setWeekWorkout((prevWeek) =>
+      prevWeek.map((dayObj, index) => {
+        if (index === dayIndex) {
+          return {
+            ...dayObj,
+            exercises: [...dayObj.exercises, chosenExercise],
+          };
+        }
+        return dayObj;
+      })
+    );}
 const handleSubmit = (e) => {
   e.preventDefault();
 }
@@ -54,50 +73,65 @@ const handleSubmit = (e) => {
 
 
 const workoutRender = weekWorkout.map((dayObj,dayIndex)=>{
+  const currentSelection = selectedExercises[dayIndex] || "";
   return(
   <div key={dayObj.id} className = "card-body items-center text-center">
     <h3>{dayObj.day}</h3>
     
        <select
        className="select select-accent"
-       value={selectedExercise}
+       value={currentSelection}
        onChange={(e)=> {
-        setSelectedExtercise(e.target.value)
+        setSelectedExercises((prev) =>({
+          ...prev,
+          [dayIndex]: e.target.value,
+        }));
 
-       }}>
+       }}
+       >
        <option value = "">--Select an exercise--</option>
-       {workoutData.map((workoutObj, index) => {
+       {workoutData.map((workoutObj) => {
         return (
         <option key={workoutObj.id} value={workoutObj.name}>
           {workoutObj.name}
           </option>)
        })}
        </select>
-<button  type = "button" className = "btn btn-soft text-accent bg-base-100" onClick={()=>(setWorkoutData(dayObj.exercises.map((exercise)=>([...exercise, selectedExercise]))))}>Add Exercise to Day {dayIndex + 1}</button>
+<button  type = "button" className = "btn btn-soft text-accent bg-base-100" onClick={()=> handleAddExercise(dayIndex)}>Add Exercise to Day {dayIndex + 1}</button>
 <div id="display-box"className="card-body items-center text-center bg-base-100">
-{dayObj.exercises.length === 0 ? 
-<p>No exercises have been added yet.</p>:
-dayObj.exercises.map((exercise, exerciseIndex)=>(
+{dayObj.exercises.length === 0 ?( 
+<p>No exercises have been added yet.</p>):(
+  <ul>
+{dayObj.exercises.map((exercise, exerciseIndex) => (
+<li key = {exerciseIndex}>{exercise}</li>
 
-<ul>
-  <li key = {exerciseIndex}>{exercise}</li>
+))}
 </ul>
-))
-}
+)}
 </div>
-  </div>)
-} )
+  </div>
+  );
+});
     return(
      <>
      <div className="card lg:card-side bg-accent text-primary-content shadow-sm ">
          
           <div className="card-body">
             <h2 className="card-title">Create Plan</h2>
-            <form onClick={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <label htmlFor="title">Workout Title</label>
-              <input type="text" id="workout_title" placeholder="Workout Title" className="input input-accent" required/>
+              <input type="text" 
+                    id="workout_title" 
+                    placeholder="Workout Title" 
+                    className="input input-accent" 
+                    required/>
               <label htmlFor="workout_length">Workout Length(days)</label>
-               <select defaultValue="No of days" onChange={(event) => setDays(event.target.value)} name = "numDays" id="workout_length" className="select select-accent" required>
+               <select defaultValue="No of days" onChange={(event) => setDays(event.target.value)} 
+                       name = "numDays" 
+                       id="workout_length" 
+                       className="select select-accent" 
+                       required>
+
   <option value = "">Workout length(days)</option>
   <option value = "1">1</option>
   <option value = "2">2</option>
@@ -107,11 +141,10 @@ dayObj.exercises.map((exercise, exerciseIndex)=>(
   <option value ="6">6</option>
   <option value ="7">7</option>
 </select> 
+
 {workoutRender}
-<button type="submit">Submit</button>
+<button type="submit">Submit Plan</button>
             </form>
-            <div className="card-actions justify-end">
-            </div>
           </div>
         </div>
         
