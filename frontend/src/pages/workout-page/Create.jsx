@@ -12,18 +12,53 @@ export default function CreatePlan(){
   /*state to store ingredients from api call*/
   const [workoutData, setWorkoutData] = useState([])
   
-  /*state to store selected days from form */
-  const [days, setDays] = useState(0);
-  
   /* state to store selected exercise to be pushed into array */ 
-  const [selectedExercises, setSelectedExercises]=useState({})
+  const [selectedExercises, setSelectedExercises]=useState([])
   
   /*state to store the selected workout before being pushed to database */
-  const [weekWorkout, setWeekWorkout] = useState([])
-const apiUrl = api
- 
+  const [weeksWorkout, setWeeksWorkout] = useState({
+    title: "",
+    day: [
+    {day:"Monday", exercises:[]},
+    {day:"Tuesday", exercises:[]},
+    {day:"Wednesday", exercises:[]},
+    {day:"Thursday", exercises:[]},
+    {day:"Friday", exercises:[]},
+    {day:"Saturday", exercises:[]},
+    {day:"Sunday", exercises:[]},
+  ]
+  })
 
-useEffect(()=> {
+  const [restDay, setRestDay] = useState([
+    {day:"Monday",
+      isRestDay: false,
+    },
+     {day:"Tuesday",
+      isRestDay: false,
+    },
+     {day:"Wednesday",
+      isRestDay: false,
+    },
+     {day:"Thursday",
+      isRestDay: false,
+    },
+     {day:"Friday",
+      isRestDay: false,
+    },
+     {day:"Saturday",
+      isRestDay: false,
+    },
+     {day:"Sunday",
+      isRestDay: false,
+    },
+
+  ])
+
+  /*URL to fetch api  */
+const apiUrl = api
+
+/*useEffect to fetch data from api  */
+ useEffect(()=> {
   const fetchexerciseData = async() => {
     try {
       setLoading(true);
@@ -40,78 +75,80 @@ useEffect(()=> {
   fetchexerciseData();
 },[])
 
- useEffect(() => {
-  /*(_,i)-ignores content and just used index  useEffect waits for days to cahnge and then dynamically updates the weekworkout array to suit*/ 
-  const createdWorkout = Array.from({length: days},(_,i) => ({
-    id: i + 1,
-    day:`Day:${i+1}`,
-    exercises: [],
-  }));
-  setWeekWorkout(createdWorkout);
-  setSelectedExercises({})
- },[days]) 
 
- const handleAddExercise = (dayIndex) => {
+ const handleAddExercise = (dayIndex, dayObj) => {
     const chosenExercise = selectedExercises[dayIndex];
     if (!chosenExercise) return;
- 
-setWeekWorkout((prevWeek) =>
-      prevWeek.map((dayObj, index) => {
-        if (index === dayIndex) {
-          return {
-            ...dayObj,
-            exercises: [...dayObj.exercises, chosenExercise],
-          };
-        }
-        return dayObj;
-      })
+    /*Checks for duplicates and prevents */
+    if (dayObj.exercises.includes(chosenExercise)) {
+    alert(`${chosenExercise} has already been added to ${dayObj.day}`);
+    return; 
+  }
+setWeeksWorkout((prevWeek) =>({
+  ...prevWeek,
+   day:
+   prevWeek.day.map((dayObj,index)=> 
+  {if(index === dayIndex){
+    return {
+      ...dayObj,
+      exercises: [...dayObj.exercises, chosenExercise],
+    }
+  } return dayObj})
+})
     );}
-const handleSubmit = (e) => {
-  e.preventDefault();
-}
+/*Handles checkbox to add rest day  */
+const handleChange = (dayIndex) => 
+           {
+            const isNowRestDay = !restDay[dayIndex].isRestDay;
 
-
-
-const workoutRender = weekWorkout.map((dayObj,dayIndex)=>{
-  const currentSelection = selectedExercises[dayIndex] || "";
-  return(
-  <div key={dayObj.id} className = "card-body items-center text-center">
-    <h3>{dayObj.day}</h3>
+            setRestDay((prev) => 
+            prev.map((day, index) =>
+              index === dayIndex ? 
+            {...day, isRestDay: isNowRestDay}
+            : day
+));      
+ setSelectedExercises((prev) => ({
+    ...prev,
+    [dayIndex]: isNowRestDay ? "Rest day" : ""
+  }));
+{
+          setWeeksWorkout((prevWeek) =>({
+  ...prevWeek,
+   day:
+   prevWeek.day.map((dayObj,index)=> 
+  {if(index === dayIndex){
+    return {
+      ...dayObj,
+      exercises: isNowRestDay ? ["Rest Day"] : [],
+    }
+  } return dayObj})
+})
+    );
+    }
+  
+  }
+  
     
-       <select
-       className="select select-accent"
-       value={currentSelection}
-       onChange={(e)=> {
-        setSelectedExercises((prev) =>({
-          ...prev,
-          [dayIndex]: e.target.value,
-        }));
+const handleSubmit = async (e) => {
+  e.preventDefault();
+   
+   console.log(weeksWorkout)
+  try{
+    setLoading(true);
 
-       }}
-       >
-       <option value = "">--Select an exercise--</option>
-       {workoutData.map((workoutObj) => {
-        return (
-        <option key={workoutObj.id} value={workoutObj.name}>
-          {workoutObj.name}
-          </option>)
-       })}
-       </select>
-<button  type = "button" className = "btn btn-soft text-accent bg-base-100" onClick={()=> handleAddExercise(dayIndex)}>Add Exercise to Day {dayIndex + 1}</button>
-<div id="display-box"className="card-body items-center text-center bg-base-100">
-{dayObj.exercises.length === 0 ?( 
-<p>No exercises have been added yet.</p>):(
-  <ul>
-{dayObj.exercises.map((exercise, exerciseIndex) => (
-<li key = {exerciseIndex}>{exercise}</li>
+    const response = await api.post("api/weekworkout" , weeksWorkout)
+    
 
-))}
-</ul>
-)}
-</div>
-  </div>
-  );
-});
+
+    setError(null);
+  } catch(error) {
+    console.error("Create error:", error);
+    setError("failed to send data");
+  } finally {
+    setLoading(false);
+  }
+   
+}
     return(
      <>
      <div className="card lg:card-side bg-accent text-primary-content shadow-sm ">
@@ -122,28 +159,55 @@ const workoutRender = weekWorkout.map((dayObj,dayIndex)=>{
               <label htmlFor="title">Workout Title</label>
               <input type="text" 
                     id="workout_title" 
+                    name="title"
+                    value={weeksWorkout.title}
+                    onChange={(e) => 
+                      setWeeksWorkout((prev)=>({
+                        ...prev, title: e.target.value,
+                      }))
+                    }
                     placeholder="Workout Title" 
                     className="input input-accent" 
                     required/>
-              <label htmlFor="workout_length">Workout Length(days)</label>
-               <select defaultValue="No of days" onChange={(event) => setDays(event.target.value)} 
-                       name = "numDays" 
-                       id="workout_length" 
-                       className="select select-accent" 
-                       required>
+            { weeksWorkout.day.map((dayObj,dayIndex) => (
+              <fieldset key={dayIndex}>
+              <h3>{dayObj.day}</h3><span><input type="checkbox" onChange={() => handleChange(dayIndex)} name="restDay" className="checkbox checkbox-accent" /><label htmlFor="restDay">Select for rest day</label></span>
+              <select
+       className="select select-accent"
+       value={selectedExercises[dayIndex]}
+       disabled = {restDay[dayIndex].isRestDay}
+       onChange={(e)=> {
+        setSelectedExercises((prev) =>({
+          ...prev,
+          [dayIndex]: e.target.value,
+        }));
+       }}
+       
+      >
+       <option value = "">--Select an exercise--</option>
+       {workoutData.map((workoutObj) => {
+        return (
+        <option key={workoutObj.id} value={workoutObj.name}>
+          {workoutObj.name}
+          </option>)
+       } )}
+       </select>
+        <button  type = "button" className = "btn btn-soft text-accent bg-base-100" disabled = {restDay[dayIndex].isRestDay} onClick={()=> handleAddExercise(dayIndex, dayObj)}>Add Exercise to Day {dayIndex + 1}</button>
+       <div id="display-box"className="card-body items-center text-center bg-base-100">
+{dayObj.exercises.length === 0 ?( 
+<p>No exercises have been added yet.</p>):(
+  <ul>
+{dayObj.exercises.map((exercise, exerciseIndex) => (
+<li key = {exerciseIndex}>{exercise}</li>
 
-  <option value = "">Workout length(days)</option>
-  <option value = "1">1</option>
-  <option value = "2">2</option>
-  <option value ="3">3</option>
-  <option value ="4">4</option>
-  <option value ="5">5</option>
-  <option value ="6">6</option>
-  <option value ="7">7</option>
-</select> 
-
-{workoutRender}
-<button type="submit">Submit Plan</button>
+))}
+</ul>
+)}
+</div>
+              </fieldset>
+            ))} 
+              
+<button type="submit" className="btn btn-soft text-accent bg-base-100">Submit Plan</button>
             </form>
           </div>
         </div>
