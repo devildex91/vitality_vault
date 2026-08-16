@@ -12,9 +12,11 @@ export default function CreatePlan(){
   /*state to store ingredients from api call*/
   const [workoutData, setWorkoutData] = useState([])
   
-  /* state to store selected exercise to be pushed into array */ 
+  /* state to store selected exercise/sets/reps to be pushed into array */ 
   const [selectedExercises, setSelectedExercises]=useState([])
-  
+  const [selectedSets, setSelectedSets]=useState([])
+  const [selectedReps, setSelectedReps]=useState([])
+
   /*state to store the selected workout before being pushed to database */
   const [weeksWorkout, setWeeksWorkout] = useState({
     title: "",
@@ -28,7 +30,7 @@ export default function CreatePlan(){
     {day:"Sunday", exercises:[]},
   ]
   })
-
+/* State to control toggles true/false individually to control rest day*/
   const [restDay, setRestDay] = useState([
     {day:"Monday",
       isRestDay: false,
@@ -80,7 +82,7 @@ const apiUrl = api
     const chosenExercise = selectedExercises[dayIndex];
     if (!chosenExercise) return;
     /*Checks for duplicates and prevents */
-    if (dayObj.exercises.includes(chosenExercise)) {
+    if (dayObj.exercises.some((exercise) => exercise.name === chosenExercise)) {
     alert(`${chosenExercise} has already been added to ${dayObj.day}`);
     return; 
   }
@@ -91,7 +93,14 @@ setWeeksWorkout((prevWeek) =>({
   {if(index === dayIndex){
     return {
       ...dayObj,
-      exercises: [...dayObj.exercises, chosenExercise],
+      exercises: [
+        ...dayObj.exercises,
+        {
+          name: chosenExercise,
+          sets: Number(selectedSets[dayIndex] || 0),
+          reps: Number(selectedReps[dayIndex] || 0),
+        }
+      ]
     }
   } return dayObj})
 })
@@ -182,7 +191,6 @@ const handleSubmit = async (e) => {
           [dayIndex]: e.target.value,
         }));
        }}
-       
       >
        <option value = "">--Select an exercise--</option>
        {workoutData.map((workoutObj) => {
@@ -192,16 +200,60 @@ const handleSubmit = async (e) => {
           </option>)
        } )}
        </select>
+       <select
+       className="select select-accent"
+       disabled = {restDay[dayIndex].isRestDay}
+       value = {selectedSets[dayIndex]}
+       onChange={(e) =>{
+        setSelectedSets((prev) => ({
+          ...prev, 
+          [dayIndex]: e.target.value
+        }));
+       }} 
+       >
+<option value = "">How many sets?</option>
+{new Array(8).fill(0).map((_, i) => <option key ={i+1} value = {i+1}>{i+1}</option>)}
+       </select>
+        <select
+       className="select select-accent"
+       disabled = {restDay[dayIndex].isRestDay}
+       value = {selectedReps[dayIndex]}
+       onChange={(e) =>{
+        setSelectedReps((prev) => ({
+          ...prev, 
+          [dayIndex]: e.target.value
+        }));
+       }} 
+       >
+<option value = "">How many Reps?</option>
+{new Array(20).fill(0).map((_, i) => <option key ={i+1} value = {i+1}>{i+1}</option>)}
+       </select>
         <button  type = "button" className = "btn btn-soft text-accent bg-base-100" disabled = {restDay[dayIndex].isRestDay} onClick={()=> handleAddExercise(dayIndex, dayObj)}>Add Exercise to Day {dayIndex + 1}</button>
        <div id="display-box"className="card-body items-center text-center bg-base-100">
 {dayObj.exercises.length === 0 ?( 
 <p>No exercises have been added yet.</p>):(
-  <ul>
-{dayObj.exercises.map((exercise, exerciseIndex) => (
-<li key = {exerciseIndex}>{exercise}</li>
-
-))}
-</ul>
+  restDay[dayIndex].isRestDay ? (<p>Rest Day</p>):(
+  
+  <table className="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Exercise</th>
+        <th>Sets</th>
+        <th>Reps</th>
+      </tr>
+    </thead>
+    <tbody>
+      {dayObj.exercises.map((exercise, exerciseIndex) => (
+      <tr key = {exerciseIndex}>
+        <th></th>
+        <td>{exercise.name}</td>
+        <td>{exercise.sets}</td>
+        <td>{exercise.reps}</td>
+      </tr>
+      ))}
+    </tbody>
+  </table>)
 )}
 </div>
               </fieldset>
