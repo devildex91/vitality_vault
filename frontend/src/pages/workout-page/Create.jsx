@@ -9,7 +9,7 @@ export default function CreatePlan(){
   const[loading, setLoading] = useState(false);
   const [error, setError] = useState()
 
-  /*state to store ingredients from api call*/
+  /*state to store workouts from api call*/
   const [workoutData, setWorkoutData] = useState([])
   
   /* state to store selected exercise/sets/reps to be pushed into array */ 
@@ -79,11 +79,17 @@ const apiUrl = api
 
 
  const handleAddExercise = (dayIndex, dayObj) => {
-    const chosenExercise = selectedExercises[dayIndex];
-    if (!chosenExercise) return;
+    const chosenExerciseId = selectedExercises[dayIndex];
+    if (!chosenExerciseId) return;
+
+    const exerciseDetails = workoutData.find((exercise) => 
+    String(exercise.id) === String(chosenExerciseId));
+    if(!exerciseDetails) return;
+
+
     /*Checks for duplicates and prevents */
-    if (dayObj.exercises.some((exercise) => exercise.name === chosenExercise)) {
-    alert(`${chosenExercise} has already been added to ${dayObj.day}`);
+    if (dayObj.exercises.some((exercise) => exercise.id === exerciseDetails.id)) {
+    alert(`${exerciseDetails.name} has already been added to ${dayObj.day}`);
     return; 
   }
 setWeeksWorkout((prevWeek) =>({
@@ -96,7 +102,8 @@ setWeeksWorkout((prevWeek) =>({
       exercises: [
         ...dayObj.exercises,
         {
-          name: chosenExercise,
+          id: exerciseDetails.id,
+          name: exerciseDetails.name,
           sets: Number(selectedSets[dayIndex] || 0),
           reps: Number(selectedReps[dayIndex] || 0),
         }
@@ -145,7 +152,7 @@ const handleSubmit = async (e) => {
   try{
     setLoading(true);
 
-    const response = await api.post("api/weekworkout" , weeksWorkout)
+    const response = await api.post("api/createworkout" , weeksWorkout)
     
 
 
@@ -183,7 +190,7 @@ const handleSubmit = async (e) => {
               <h3>{dayObj.day}</h3><span><input type="checkbox" onChange={() => handleChange(dayIndex)} name="restDay" className="checkbox checkbox-accent" /><label htmlFor="restDay">Select for rest day</label></span>
               <select
        className="select select-accent"
-       value={selectedExercises[dayIndex]}
+       value={selectedExercises[dayIndex] || ""}
        disabled = {restDay[dayIndex].isRestDay}
        onChange={(e)=> {
         setSelectedExercises((prev) =>({
