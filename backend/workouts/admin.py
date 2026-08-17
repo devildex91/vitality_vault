@@ -7,6 +7,9 @@ from .models import (
     ExerciseImage,
     Instruction,
     Muscle,
+    WorkoutPlan,
+    WorkoutExercise,
+    WorkoutDay,
 )
 
 
@@ -74,3 +77,15 @@ class InstructionAdmin(admin.ModelAdmin):
 class ExerciseImageAdmin(admin.ModelAdmin):
     list_display = ("exercise", "order")
     search_fields = ("exercise__name",)
+
+@admin.register(WorkoutDay)
+class WorkoutDayAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(WorkoutExercise)
+class WorkoutExerciseAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(WorkoutPlan)
+class WorkoutPlanAdmin(admin.ModelAdmin):
+    pass

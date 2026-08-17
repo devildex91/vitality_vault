@@ -147,3 +147,65 @@ class ExerciseImage(models.Model):
 
     def __str__(self):
         return f"{self.exercise.name} ({self.order})"
+
+
+class WorkoutPlan(models.Model):
+    title = models.CharField(max_length=255)
+
+
+class WorkoutDay(models.Model):
+    DAYS = [
+        ("monday", "Monday"),
+        ("tuesday", "Tuesday"),
+        ("wednesday", "Wednesday"),
+        ("thursday", "Thursday"),
+        ("friday", "Friday"),
+        ("saturday", "Saturday"),
+        ("sunday", "Sunday"),
+    ]
+
+    workout = models.ForeignKey(
+        WorkoutPlan,
+        on_delete=models.CASCADE,
+        related_name="days"
+    )
+    day = models.CharField(max_length=20, choices=DAYS)
+    # makes sure that can be no duplicate days in database 
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["workout", "day"],
+                name="unique_workout_day"
+            )
+        ]
+
+
+class WorkoutExercise(models.Model):
+    workout_day = models.ForeignKey(
+        WorkoutDay,
+        on_delete=models.CASCADE,
+        related_name="exercises"
+    )
+    exercise = models.ForeignKey(
+        Exercise,
+        on_delete=models.CASCADE,
+        related_name="workout_entries"
+    )
+    sets = models.IntegerField()
+
+    reps = models.IntegerField()
+
+    class Meta:
+        ordering = ["exercise"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["workout_day", "exercise"],
+                name="unique_day_exercise"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.exercise.name} ({self.sets}x{self.reps})"
+
+
