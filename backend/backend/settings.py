@@ -37,10 +37,11 @@ FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'https://vitality-vault-backend-c2878a5636af.herokuapp.com/',
+    'vitality-vault-backend-c2878a5636af.herokuapp.com',
     '127.0.0.1',
-    'localhost',
+    'localhost'
 ]
+
 print(f"--- ACTIVE ALLOWED HOSTS: {ALLOWED_HOSTS} ---") 
 
 # Application definition
@@ -118,7 +119,15 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://vitality-vault-omega.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
+
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
 
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
@@ -139,13 +148,21 @@ AUTHENTICATION_BACKENDS = (
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 
+# settings.py
+
 DATABASES = {
     "default": dj_database_url.config(
         default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}",
         conn_max_age=600,
-        ssl_require=bool(os.environ.get("DATABASE_URL")),
     )
 }
+
+
+if os.environ.get("DATABASE_URL"):
+    DATABASES["default"]["OPTIONS"] = {
+        "sslmode": "require", 
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

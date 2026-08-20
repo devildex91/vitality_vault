@@ -12,7 +12,7 @@
 
 
 registration not working properly on test so ran through all seperate Auth files and backend and found a missing trailing / on my register api call which was causing it to fail
-
+couldnt access deployed site got 400 errors followed by 500 errors and had to update my middlewar for cors headers and update both my Allowed hosts and run migrations to my heroku backend to fix the database link
 ## Table of Contents
 
 
