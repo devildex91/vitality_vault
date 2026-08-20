@@ -36,7 +36,7 @@ FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [host.strip() for host in os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')]
+ALLOWED_HOSTS = ['://herokuapp.com', '127.0.0.1', 'localhost']
 print(f"--- ACTIVE ALLOWED HOSTS: {ALLOWED_HOSTS} ---") 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'allauth',
     'allauth.account',
     'allauth.headless',
@@ -68,7 +69,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -105,7 +105,7 @@ HEADLESS_FRONTEND_URLS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    FRONTEND_URL,"https://vitality-vault-omega.vercel.app"
+    FRONTEND_URL, "https://vitality-vault-omega.vercel.app"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
