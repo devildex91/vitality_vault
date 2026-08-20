@@ -36,7 +36,11 @@ FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['://herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    'https://vitality-vault-backend-c2878a5636af.herokuapp.com/',
+    '127.0.0.1',
+    'localhost',
+]
 print(f"--- ACTIVE ALLOWED HOSTS: {ALLOWED_HOSTS} ---") 
 
 # Application definition
@@ -105,9 +109,16 @@ HEADLESS_FRONTEND_URLS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    FRONTEND_URL, "https://vitality-vault-omega.vercel.app"
+    "https://vitality-vault-omega.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
+
 CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://vitality-vault-omega.vercel.app",
+]
 
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
