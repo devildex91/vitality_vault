@@ -22,6 +22,8 @@ class WorkoutExerciseSerializer(serializers.ModelSerializer):
 
 class WorkoutDaySerializer(serializers.ModelSerializer):
     exercises = WorkoutExerciseSerializer(many=True,)
+
+
     class Meta:
         model = WorkoutDay
         fields = ["id", "day", "exercises"]

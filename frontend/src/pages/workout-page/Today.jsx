@@ -1,23 +1,49 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
-export default function TodaysPlan(){
+export default function TodaysPlan({workoutPlan}){
+  const selectedWorkout = workoutPlan
+  const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
+  const [weekDay, setWeekday]= useState(weekdays[new Date().getDay()])
+/*Optional chaining added tyo make sure data is their to stop undefined error  */
+  const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
+    
+  
+   
+   console.log(todaysPlan)
     return(
-     <>
-     <div className="card lg:card-side bg-accent text-primary-content shadow-sm">
-          <figure>
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-              alt="Album"
-            />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Todays Plan</h2>
-            <p>Click the button to listen on Spotiwhy app.</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Listen</button>
-            </div>
-          </div>
-        </div>
-     </>
-    )
+
+    
+     <div
+                  id="display-box"
+                  className="card-body items-center text-center bg-base-100"
+                >
+                  {todaysPlan?.exercises?.length === 0 ? (
+                    <p>Nothing to do today take a break and relax</p>
+                  ) : (
+                    
+  
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Todays Plan</th>
+                          <th>Exercise</th>
+                          <th>Sets</th>
+                          <th>Reps</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {todaysPlan?.exercises?.map((exercise, exerciseIndex) => (
+                          <tr key={exerciseIndex}>
+                            <th>{exerciseIndex + 1}st </th>
+                            <td>{exercise.exercise}</td>
+                            <td>{exercise.sets}</td>
+                            <td>{exercise.reps}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
+)
 }

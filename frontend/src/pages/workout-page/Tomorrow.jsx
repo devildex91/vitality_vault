@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TomorrowsPlan(){
+export default function TomorrowsPlan(props){
     return(
      <>
      <div className="card lg:card-side bg-accent text-primary-content shadow-sm">

@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Muscle(models.Model):
@@ -150,6 +151,13 @@ class ExerciseImage(models.Model):
 
 
 class WorkoutPlan(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="workout_plans",
+        null=True
+
+    )
     title = models.CharField(max_length=255)
 
 
