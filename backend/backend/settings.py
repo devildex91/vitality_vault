@@ -104,7 +104,7 @@ HEADLESS_FRONTEND_URLS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    FRONTEND_URL,"https://vitality-vault-neall2.vercel.app"
+    FRONTEND_URL,"https://vitality-vault-omega.vercel.app"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
