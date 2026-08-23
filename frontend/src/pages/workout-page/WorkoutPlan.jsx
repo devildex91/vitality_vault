@@ -1,52 +1,105 @@
-import Navbar from '../../components/Navbar.jsx'
-import Footer from '../../components/Footer.jsx'
-import MobileView from './MobileView.jsx';
-import DesktopView from './DesktopView.jsx'
-import TabletView from './TabletView.jsx'
-import {Link, Outlet} from "react-router";
-import { useState, useEffect } from 'react';
+import Navbar from "../../components/Navbar.jsx";
+import Footer from "../../components/Footer.jsx";
+import MobileView from "./MobileView.jsx";
+import DesktopView from "./DesktopView.jsx";
+import TabletView from "./TabletView.jsx";
+import api from "../../api.js";
+import { Link, Outlet } from "react-router";
+import { useState, useEffect, createContext } from "react";
 
-export default function WorkoutPlan(){
-// Dynamically changes which component depending on screen size as too complicted to change in one component
- const MOBILE_QUERY= "(max-width: 640px)";
- const TABLET_QUERY="(min-width: 641px) and (max-width: 1023px)";
+export const CurrentPlanContext = createContext(null);
 
- const getActiveView = () => {
-    if (window.matchMedia(MOBILE_QUERY).matches) return <MobileView />;
-    if (window.matchMedia(TABLET_QUERY).matches) return <TabletView />;
-    return <DesktopView />;
+export default function WorkoutPlan() {
+  // Dynamically changes which component depending on screen size as too complicted to change in one component
+  const MOBILE_QUERY = "(max-width: 640px)";
+  const TABLET_QUERY = "(min-width: 641px) and (max-width: 1023px)";
+
+  /*all loading and errors as well as workout plans stored in top level of workout section and passed to relevent components  */
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+  const [workoutPlans, setWorkoutPlans] = useState([]);
+
+    /*state to store workouts from api call*/
+    const [exerciseData, setExerciseData] = useState([]);
+
+  const getActiveView = () => {
+    if (typeof window === "undefined") return DesktopView;
+    if (window.matchMedia(MOBILE_QUERY).matches) return MobileView;
+    if (window.matchMedia(TABLET_QUERY).matches) return TabletView;
+    return DesktopView;
   };
 
-const [viewType, setViewType] = useState(getActiveView)
+  const [ViewType, setViewType] = useState(getActiveView);
 
-useEffect(() => {
+  useEffect(() => {
     const mobileWatcher = window.matchMedia(MOBILE_QUERY);
     const tabletWatcher = window.matchMedia(TABLET_QUERY);
-    
-    
+
     function updateWorkoutScreen(e) {
-      setViewType(getActiveView)
+      setViewType(getActiveView);
     }
 
-    mobileWatcher.addEventListener('change', updateWorkoutScreen);
-    tabletWatcher.addEventListener('change', updateWorkoutScreen);
-   
-   return function cleanup() {
-      mobileWatcher.removeEventListener('change', updateWorkoutScreen);
-      tabletWatcher.removeEventListener('change', updateWorkoutScreen);
-    };
-  },[]);
+    mobileWatcher.addEventListener("change", updateWorkoutScreen);
+    tabletWatcher.addEventListener("change", updateWorkoutScreen);
 
-    return (
-          <div className = "flex min-h-screen flex-col">
-           <Navbar />
-           <header>
-            <h1>Workout plan</h1>
-           </header>
-           {viewType}
-           <Footer />
-           </div>
-           
-       
-       )
+    return function cleanup() {
+      mobileWatcher.removeEventListener("change", updateWorkoutScreen);
+      tabletWatcher.removeEventListener("change", updateWorkoutScreen);
+    };
+  }, []);
+
+    /*useEffect to fetch data from api  */
+  useEffect(() => {
+    const fetchexerciseData = async () => {
+      try {
+        setLoading(true);
+
+        const response = await api.get("/api/exercises");
+        setExerciseData(response.data);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError("Failed to load exercises Please try again");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchexerciseData();
+  }, []);
+
+  useEffect(() => {
+    const fetchworkoutData = async () => {
+      try {
+        setLoading(true);
+        const accessToken = localStorage.getItem("access_token");
+
+        const response = await api.get("api/fetchuserworkout/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        setWorkoutPlans(response.data);
+        setError(null);
+      } catch (err) {
+        console.error("error fetching data:", err);
+        setError("Failed to load data. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchworkoutData();
+  }, []);
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <header>
+        <h1>Workout plan</h1>
+      </header>
+      <CurrentPlanContext.Provider value={{ workoutPlans, loading, error, exerciseData  }}>
+        <ViewType />
+      </CurrentPlanContext.Provider>
+      <Footer />
+    </div>
+  );
 }

@@ -1,14 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import api from "../../api";
+import { CurrentPlanContext } from "./WorkoutPlan";
 
 export default function CreatePlan() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
-
-  /*state to store workouts from api call*/
-  const [workoutData, setWorkoutData] = useState([]);
+  /*useContext imports  */
+  const { exerciseData, loading, error } = useContext(CurrentPlanContext);
 
   /* state to store selected exercise/sets/reps to be pushed into array */
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -29,33 +27,11 @@ export default function CreatePlan() {
     ],
   });
 
-  /*URL to fetch api  */
-  const apiUrl = api;
-
-  /*useEffect to fetch data from api  */
-  useEffect(() => {
-    const fetchexerciseData = async () => {
-      try {
-        setLoading(true);
-
-        const response = await api.get("/api/exercises");
-        setWorkoutData(response.data);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setError("Failed to load exercises Please try again");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchexerciseData();
-  }, []);
-
   const handleAddExercise = (dayIndex, dayObj) => {
     const chosenExerciseId = selectedExercises[dayIndex];
     if (!chosenExerciseId) return;
 
-    const exerciseDetails = workoutData.find(
+    const exerciseDetails = exerciseData.find(
       (exercise) => String(exercise.id) === String(chosenExerciseId),
     );
     if (!exerciseDetails) return;
@@ -93,14 +69,14 @@ export default function CreatePlan() {
     e.preventDefault();
     const payload = {
       title: weeksWorkout.title,
-       days: weeksWorkout.days.map((dayObj) => ({
-        day:dayObj.day,
+      days: weeksWorkout.days.map((dayObj) => ({
+        day: dayObj.day,
         exercises: dayObj.exercises.map((ex) => ({
-          exercise:ex.id,
+          exercise: ex.id,
           sets: Number(ex.sets || 0),
           reps: Number(ex.reps || 0),
         })),
-       })),
+      })),
     };
     console.log(weeksWorkout);
     try {
@@ -155,10 +131,10 @@ export default function CreatePlan() {
                   }}
                 >
                   <option value="">--Select an exercise--</option>
-                  {workoutData.map((workoutObj) => {
+                  {exerciseData.map((exerciseObj) => {
                     return (
-                      <option key={workoutObj.id} value={workoutObj.id}>
-                        {workoutObj.name}
+                      <option key={exerciseObj.id} value={exerciseObj.id}>
+                        {exerciseObj.name}
                       </option>
                     );
                   })}

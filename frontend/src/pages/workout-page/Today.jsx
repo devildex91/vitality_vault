@@ -9,21 +9,16 @@ export default function TodaysPlan({workoutPlan}){
   const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
     
   
-   
-   console.log(todaysPlan)
     return(
 
     
-     <div
-                  id="display-box"
-                  className="card-body items-center text-center bg-base-100"
-                >
+     <div className="card lg:card-side bg-accent text-secondary-content shadow-sm w-full overflow-x-auto">
                   {todaysPlan?.exercises?.length === 0 ? (
                     <p>Nothing to do today take a break and relax</p>
                   ) : (
                     
   
-                    <table className="table">
+                    <table className="table w-full">
                       <thead>
                         <tr>
                           <th>Todays Plan</th>

@@ -35,7 +35,7 @@ export default function AuthForm({route, method}){
     } catch(error){
       console.error(error);
       if (error.response) {
-        console.log("👉 REAL BACKEND VALIDATION ERROR:", error.response.data);
+        console.log( "VALIDATION ERROR:", error.response.data);
         if(error.response.status === 401){
           setError("Invalid credentials");
         } else if (error.response.status === 400) {
