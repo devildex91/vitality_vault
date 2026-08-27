@@ -1,34 +1,73 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { CurrentPlanContext } from "./WorkoutPlan";
+import api from "../../api";
 
 export default function EditPlan({}) {
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [newExercise, setNewExercise] = useState(null);
-  const { workoutPlans, exerciseData, loading, error } = useContext(CurrentPlanContext);
-  const targetExercises = selectedDay?.exercises;
-  const [editedExercises, setEditedExercises] = useState({});
+  const { workoutPlans, setWorkoutPlans, exerciseData, setExerciseData, loading, setLoading, error, setError, fetchWorkoutPlans  } = useContext(CurrentPlanContext);
   
- function saveWorkout(e) {
- e.preventDefault()
+
+  /*Form submit to send patch to update form */
+ async function saveWorkout(e) {
+ e.preventDefault();
+ 
  if(!selectedWorkout){
   alert("You have selected no options at all. Please try again")
- }
-}
-console.log(selectedDay?.exercises)
+  return;
+ };
 
-  function findWorkout(targetTitle) {
-    const foundTitle = workoutPlans.find(
-      (workouts) => workouts.title === targetTitle,
-    );
+ 
+  try{
+    setLoading(true);
 
-    if (foundTitle) {
-      setSelectedWorkout(foundTitle);
-    }
+    const payload = { 
+      id: selectedWorkout.id,
+      title: selectedWorkout.title,
+      days: selectedWorkout.days.map((dayObj) => ({
+        id: dayObj.id,
+        day: dayObj.day,
+          exercises: dayObj.exercises.map((ex) => ({
+            id: ex.id,
+            exercise: ex.exercise,
+            sets: Number(ex.sets || 0),
+            reps: Number(ex.reps || 0),
+        })),
+      })),
+    };
+
+    await api.put("/api/updateworkout/", payload);
+    await fetchWorkoutPlans();
+
+
+    setError(null)
+    alert("Workout plan updated succesfully!");
+  } catch(err) {
+    console.error("Update error:", err);
+    setError("Failed to save changes");
+  } finally {
+    setLoading(false);
   }
 
+}
+
+/*function to  select workout  */
+  function findWorkout(targetId) {
+    const foundWorkout = workoutPlans.find(
+      (workouts) => workouts.id === targetId,
+    );
+
+    if (foundWorkout) {
+      setSelectedWorkout(foundWorkout);
+       setSelectedDay(null);
+       setSelectedExercise(null);
+    }
+  }
+  
+/* function to find day to update */
   function findDay(targetDay) {
     const foundDay = selectedWorkout?.days?.find(
       (workout) => workout.day === targetDay,
@@ -57,7 +96,6 @@ console.log(selectedDay?.exercises)
          });
     } else setSelectedExercise(null)
   }
- 
 
   const todaysPlan = selectedWorkout?.days;
 
@@ -89,7 +127,7 @@ function updateWorkout() {
     ...prevWorkout,
     days: prevWorkout.days.map((dayObj) => {
       if (dayObj?.day === selectedDay?.day){
-        //updating existing 
+        /*updating existing*/
         if(selectedExercise) {return {
            ...dayObj,
            exercises: dayObj.exercises.map((ex) => {
@@ -105,10 +143,9 @@ function updateWorkout() {
             }), 
            };
           }
-          //Adding new exercise
+          /*Adding new exercise*/
           else {
             const brandNewExerciseItem = {
-              id: Date.now().toString(),
               exercise:newExercise.exercise,
               sets:Number(newExercise?.sets) || 0,
                 reps:Number(newExercise?.reps) || 0,
@@ -123,37 +160,74 @@ function updateWorkout() {
              }),
       };
     });
-    //resets fields after submitting
+
+   setSelectedDay((prevDay) => {
+    if (!prevDay) return prevDay;
+    if (selectedExercise) {
+      return {
+        ...prevDay,
+        exercises: prevDay.exercises.map((ex) =>
+          ex.exercise === selectedExercise.exercise
+            ? { ...ex, exercise: newExercise.exercise, sets: Number(newExercise.sets) || 0, reps: Number(newExercise.reps) || 0 }
+            : ex
+        ),
+      };
+    } else {
+      return {
+        ...prevDay,
+        exercises: [...prevDay.exercises, { exercise: newExercise.exercise, sets: Number(newExercise.sets) || 0, reps: Number(newExercise.reps) || 0 }],
+      };
+    }
+  });  
     setSelectedExercise(null);
     setNewExercise({ exercise: "", sets: "", reps: "" });
   }
 
 function deleteExercise() {
   if(!selectedExercise){
-    alert("Please select an exercise to continue")
-  } else {
+    alert("Please select an exercise to continue");
+  return;
+}
   setSelectedWorkout((prevWorkout) => {
     return{
       ...prevWorkout,
-      days: prevWorkout.days.map((days) => {
-        if(days.day === selectedDay.day) {
+      days: prevWorkout.days.map((day) => {
+        if(day.day === selectedDay.day) {
           return {
-            ...days,
-            exercises: days.exercises.filter(
-               (exercise) => exercise.exercise !== selectedExercise.exercise)
+            ...day,
+            exercises: day.exercises.filter(
+               (exercise) => exercise.id !== selectedExercise.id
+              ),
             };
           }
-          return days;
-          })
-      };
-    });
-  }}
+          
+          return day;
+          }),
+      }});
+ 
+setSelectedDay((prevDay) => {
+    if (!prevDay) return prevDay;
+    return {
+      ...prevDay,
+      exercises: prevDay.exercises.filter((exercise) => exercise.id !== selectedExercise.id)
+    };
+  });
+
+setSelectedExercise(null);
+  setNewExercise({
+    exercise: "",
+    sets: "",
+    reps: "",
+  });
+  }
 
      
 function deleteDay(){
   if (!selectedDay){
     alert("You have not selected a day to delete. Please select a day and try again.")
-  } else {
+   return; 
+  } 
+
  setSelectedWorkout((prevWorkout) => {
   return {
     ...prevWorkout, 
@@ -167,34 +241,47 @@ function deleteDay(){
       return days;
     })
   }
- })
-  }
+ });
+  setSelectedDay((prevDay) => prevDay ? { ...prevDay, exercises: [] } : null);
  } 
 
-function deleteWorkout(){
-  if (!selectedWorkout){
+const deleteWorkout = async() => {
+   if (!selectedWorkout){
     alert("Please Select a Workout to continue")
-  } else {
-setSelectedWorkout(null)
-}}
+    return;
+  }  
+try {
+  setLoading(true);
+  await api.delete(`/api/deleteworkout/${Number(selectedWorkout.id)}`);
+  await fetchWorkoutPlans();
+setSelectedWorkout(null);
+setSelectedExercise(null);
+setSelectedDay(null);
+setError(null);
+} catch(err) {
+  console.error("Delete Error:", err);
+  setError("Could not delete Workout.");
+} finally {
+  setLoading(false);
+}
+};
 
-console.log(selectedDay)
-console.log(sortedPlan)
+ 
   return (
     <div className="card lg:card-side bg-accent text-secondary-content shadow-sm w-full overflow-x-auto">
      <form onSubmit ={saveWorkout}>
       {/*Workout Select */}
       <select
         className="select select-accent"
-        value={selectedWorkout?.title || ""}
+        value={selectedWorkout?.id || ""}
         onChange={(e) => {
-          findWorkout(e.target.value);
+          findWorkout(Number(e.target.value));
         }}
       >
         <option value="">Select Workout to edit</option>
         {workoutPlans?.map((workout) => {
           return (
-            <option key={workout.id} value={workout.title}>
+            <option key={workout.id} value={workout.id}>
               {workout.title}
             </option>
           );
@@ -246,7 +333,7 @@ console.log(sortedPlan)
         <option value="">--Choose new exercise--</option>
         {exerciseData.map((exerciseObj) => {
                     return (
-                      <option key={exerciseObj.id} value={exerciseObj.exercise}>
+                      <option key={exerciseObj.id} value={exerciseObj.id}>
                         {exerciseObj.name}
                       </option>
                     );

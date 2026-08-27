@@ -78,14 +78,22 @@ class ExerciseImageAdmin(admin.ModelAdmin):
     list_display = ("exercise", "order")
     search_fields = ("exercise__name",)
 
-@admin.register(WorkoutDay)
-class WorkoutDayAdmin(admin.ModelAdmin):
-    pass
+class WorkoutExerciseInline(admin.TabularInline):
+    model = WorkoutExercise
+    extra = 3
 
-@admin.register(WorkoutExercise)
-class WorkoutExerciseAdmin(admin.ModelAdmin):
-    pass
+@admin.register(WorkoutDay)   
+class WorkoutDayAdmin(admin.ModelAdmin):
+    inlines = [WorkoutExerciseInline]
+
+
+class WorkoutDayInline(admin.TabularInline):
+    model = WorkoutDay
+    extra = 1
 
 @admin.register(WorkoutPlan)
 class WorkoutPlanAdmin(admin.ModelAdmin):
-    pass
+
+    inlines = [WorkoutDayInline]
+        
+    

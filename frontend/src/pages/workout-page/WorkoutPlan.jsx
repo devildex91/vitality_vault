@@ -19,8 +19,8 @@ export default function WorkoutPlan() {
   const [error, setError] = useState();
   const [workoutPlans, setWorkoutPlans] = useState([]);
 
-    /*state to store workouts from api call*/
-    const [exerciseData, setExerciseData] = useState([]);
+  /*state to store workouts from api call*/
+  const [exerciseData, setExerciseData] = useState([]);
 
   const getActiveView = () => {
     if (typeof window === "undefined") return DesktopView;
@@ -36,7 +36,7 @@ export default function WorkoutPlan() {
     const tabletWatcher = window.matchMedia(TABLET_QUERY);
 
     function updateWorkoutScreen(e) {
-      setViewType(getActiveView);
+      setViewType(() => getActiveView());
     }
 
     mobileWatcher.addEventListener("change", updateWorkoutScreen);
@@ -48,7 +48,7 @@ export default function WorkoutPlan() {
     };
   }, []);
 
-    /*useEffect to fetch data from api  */
+  /*useEffect to fetch EXERCISES from api  */
   useEffect(() => {
     const fetchexerciseData = async () => {
       try {
@@ -67,27 +67,32 @@ export default function WorkoutPlan() {
     fetchexerciseData();
   }, []);
 
-  useEffect(() => {
-    const fetchworkoutData = async () => {
-      try {
-        setLoading(true);
-        const accessToken = localStorage.getItem("access_token");
 
-        const response = await api.get("api/fetchuserworkout/", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        setWorkoutPlans(response.data);
-        setError(null);
-      } catch (err) {
-        console.error("error fetching data:", err);
-        setError("Failed to load data. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchworkoutData();
+  /*workout plan consolidated into one function for easier refreh of data  */
+const fetchWorkoutPlans = async () => {
+  try {
+    setLoading(true);
+    const accessToken = localStorage.getItem("access_token");
+
+    const response = await api.get("/api/fetchuserworkout/", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    setWorkoutPlans(response.data);
+    setError(null);
+  } catch (err) {
+    console.error("error fetching data:", err);
+    setError("Failed to load data. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+/*Initial load for workout plans  */
+  useEffect(() => {
+   fetchWorkoutPlans();
   }, []);
 
   return (
@@ -96,7 +101,19 @@ export default function WorkoutPlan() {
       <header>
         <h1>Workout plan</h1>
       </header>
-      <CurrentPlanContext.Provider value={{ workoutPlans, loading, error, exerciseData  }}>
+      <CurrentPlanContext.Provider
+        value={{
+          workoutPlans,
+          setWorkoutPlans,
+          fetchWorkoutPlans,
+          loading,
+          setLoading,
+          error,
+          setError,
+          exerciseData,
+          setExerciseData,
+        }}
+      >
         <ViewType />
       </CurrentPlanContext.Provider>
       <Footer />

@@ -10,9 +10,9 @@ import { CurrentPlanContext } from "./WorkoutPlan.jsx";
 
 export default function CurrentPlan(){
    
-   const {workoutPlans, loading, error} = useContext(CurrentPlanContext)
+   const {workoutPlans, } = useContext(CurrentPlanContext)
 
-     
+     console.log(workoutPlans)
     const [selectedWorkout, setSelectedWorkout]=useState([]) 
  
 
@@ -23,6 +23,7 @@ function findWorkout(targetTitle){
     setSelectedWorkout(foundTitle);
   };
 };
+
     return(
      <>
        <select

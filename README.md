@@ -13,6 +13,9 @@
 
 registration not working properly on test so ran through all seperate Auth files and backend and found a missing trailing / on my register api call which was causing it to fail
 couldnt access deployed site got 400 errors followed by 500 errors and had to update my middlewar for cors headers and update both my Allowed hosts and run migrations to my heroku backend to fix the database link
+changed workout plan section to useContext for picking  your workout sas originally was in my current workout section but as the layour changes dramatically on different screen sizes i could no longer access the state from the other screen layouts.
+
+Got GET POST PUT and DELETE working but state was not updating and the values were not showing in any select elements but were in backend to solve this added in a fetchworkoutPlan function and still had issue to discover was being saved to back end but was not registering to the user creating the workout so had to update the serializer to include user.
 ## Table of Contents
 
 

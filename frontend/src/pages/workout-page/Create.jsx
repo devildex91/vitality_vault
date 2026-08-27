@@ -6,7 +6,7 @@ import { CurrentPlanContext } from "./WorkoutPlan";
 
 export default function CreatePlan() {
   /*useContext imports  */
-  const { exerciseData, loading, error } = useContext(CurrentPlanContext);
+  const { exerciseData, loading, setLoading,  error, setError,fetchWorkoutPlans } = useContext(CurrentPlanContext);
 
   /* state to store selected exercise/sets/reps to be pushed into array */
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -78,12 +78,18 @@ export default function CreatePlan() {
         })),
       })),
     };
-    console.log(weeksWorkout);
+    
     try {
       setLoading(true);
 
-      const response = await api.post("api/createworkout", payload);
-
+      await api.post("api/createworkout/", payload);
+      await fetchWorkoutPlans(); 
+      alert("Successfully created workout ")
+      setWeeksWorkout({
+      title: "",
+      days: weeksWorkout.days.map(d => ({ ...d, exercises: [] }))
+    });
+       
       setError(null);
     } catch (error) {
       console.error("Create error:", error);
@@ -91,6 +97,8 @@ export default function CreatePlan() {
     } finally {
       setLoading(false);
     }
+    
+
   };
   return (
     <>
