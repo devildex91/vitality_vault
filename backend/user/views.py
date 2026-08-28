@@ -10,6 +10,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .models import UserProfile
+from .serializers import UserSerializer, UserProfileSerializer
 import json
 # Create your views here.
  
@@ -66,7 +68,7 @@ def google_login_callback(request):
 
 @csrf_exempt
 def validate_google_token(request):
-    if request.meethod == 'POST':
+    if request.method == 'POST':
         try:
             data = json.loads(request.body)
             google_access_token = data.get('access_token')
@@ -78,6 +80,20 @@ def validate_google_token(request):
         except json.JSONDecodeError:
             return JsonResponse({'details': 'Invalid JSON. '}, status=400)
     return JsonResponse({'detail': 'Method not allowed'}, status=405) 
+
+
+class UserProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+
+def get_object(self):
+    profile, created = UserProfile.objects.get_or_create(
+        user=self.request.user
+    )
+
+    return profile
+
 
 
 

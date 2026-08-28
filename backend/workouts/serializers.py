@@ -36,16 +36,15 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WorkoutPlan
-        fields = ["id", "title", "days"]
+        fields = ["id", "title", "days", "user"]
+        #ensures user is read only and adding in user means purely for backend not expecting from react
+        read_only_fields = ["user"]
 
     def create(self, validated_data):
+        user = validated_data.pop("user", None)
         days_data = validated_data.pop("days", [])
-       #added in to solve issue of users workouts not linking to the current user 
-        request = self.context.get("request")
-        user = request.user if request else None
 
-        # transaction.atomic() makes sure updates together or not at all
-        
+       # transaction.atomic() makes sure updates together or not at all
         with transaction.atomic():
             workout_plan = WorkoutPlan.objects.create(user=user, **validated_data)
             

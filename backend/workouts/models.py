@@ -156,7 +156,6 @@ class WorkoutPlan(models.Model):
         on_delete=models.CASCADE,
         related_name="workout_plans",
         null=True
-
     )
     title = models.CharField(max_length=255)
 
