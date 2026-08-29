@@ -87,12 +87,14 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
 
 
-def get_object(self):
-    profile, created = UserProfile.objects.get_or_create(
-        user=self.request.user
-    )
+    def get_object(self):
+        #get or create used as  It allows to create the settings needed and
+        # relates it to djangos auth model user without creating duplicates 
+        profile, created = UserProfile.objects.get_or_create(
+            user=self.request.user
+        )
 
-    return profile
+        return profile
 
 
 

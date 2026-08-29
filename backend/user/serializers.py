@@ -19,7 +19,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = [
             "id",
-            "prefered_theme",
+            "preferred_theme",
             "current_workout",
         ]
 

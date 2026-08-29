@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import UserCreate, UserDetailView, validate_google_token, google_login_callback
+from .views import UserCreate,UserDetailView, validate_google_token, google_login_callback, UserProfileView
 
 
 
@@ -10,7 +10,8 @@ urlpatterns = [
     path('google/validate_token/', validate_google_token, name='validate_token'),
     path('user-auth/', include('rest_framework.urls')),
     path('accounts/', include('allauth.urls')),
-    path('callback/', google_login_callback, name='callback')
+    path('callback/', google_login_callback, name='callback'),
+    path('profile/', UserProfileView.as_view(), name="user-profile"),
 
     
 ]
