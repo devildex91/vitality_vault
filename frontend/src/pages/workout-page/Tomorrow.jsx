@@ -1,12 +1,16 @@
 import React from "react";
-   import { useState, useContext } from "react";
+   import { useState, useEffect } from "react";
    import { CurrentPlanContext } from "./WorkoutPlan.jsx";
-   export default function TomorrowsPlan(){
-    const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
-    const tomorrow = (new Date().getDay() + 1) % 7
-    const [weekDay, setWeekday]= useState(weekdays[tomorrow])
-      const {selectedWorkout} = useContext(CurrentPlanContext);
-      const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
+   export default function TomorrowsPlan({workoutPlan}){
+    
+    const tomorrow = new Date().getDay() + 1
+     const selectedWorkout = workoutPlan
+     const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
+     const [weekDay, setWeekday]= useState(weekdays[tomorrow])
+   /*Optional chaining added tyo make sure data is their to stop undefined error  */
+     const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
+       
+     
       
       
        return(

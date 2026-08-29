@@ -8,11 +8,7 @@ export default function EditPlan({}) {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [newExercise, setNewExercise] = useState(null);
-  const { workoutPlans, 
-          exerciseData,
-           setLoading,
-           setError, 
-           fetchWorkoutPlans  } = useContext(CurrentPlanContext);
+  const { workoutPlans, setWorkoutPlans, exerciseData, setExerciseData, loading, setLoading, error, setError, fetchWorkoutPlans  } = useContext(CurrentPlanContext);
   
 
   /*Form submit to send patch to update form */
@@ -27,6 +23,7 @@ export default function EditPlan({}) {
  
   try{
     setLoading(true);
+
     const payload = { 
       id: selectedWorkout.id,
       title: selectedWorkout.title,

@@ -2,10 +2,8 @@ import React from "react";
 import { useContext } from "react";
 import { CurrentPlanContext } from "./WorkoutPlan";
 
-export default function FullPlan() {
-
-  const {selectedWorkout} = useContext(CurrentPlanContext);
-  const fullPlan = selectedWorkout?.days;
+export default function FullPlan({ workoutPlan }) {
+  const fullPlan = workoutPlan?.days;
 
   const week = [
     "monday",

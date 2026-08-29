@@ -2,7 +2,7 @@ import React from "react";
    import { useState, useEffect } from "react";
    
    export default function PreviousPlan({workoutPlan}){
-    const yesterday = (new Date().getDay() - 1 + 7) % 7;
+    const yesterday = new Date().getDay() - 1
      const selectedWorkout = workoutPlan
      const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
      const [weekDay, setWeekday]= useState(weekdays[yesterday])
