@@ -10,17 +10,12 @@ import { CurrentPlanContext } from "./WorkoutPlan.jsx";
 
 export default function CurrentPlan(){
    
-   const {workoutPlans, } = useContext(CurrentPlanContext)
-
-     console.log(workoutPlans)
-    const [selectedWorkout, setSelectedWorkout]=useState([]) 
- 
-
+   const {workoutPlans, selectedWorkout, updateCurrentWorkout } = useContext(CurrentPlanContext)
 
 function findWorkout(targetTitle){
   const foundTitle = workoutPlans.find(workouts => workouts.title === targetTitle)
   if (foundTitle) {
-    setSelectedWorkout(foundTitle);
+     updateCurrentWorkout(foundTitle)
   };
 };
 
@@ -28,11 +23,13 @@ function findWorkout(targetTitle){
      <>
        <select
                   className="select select-accent"
-                  value={selectedWorkout.title|| ""}
+                  value={selectedWorkout?.title|| ""}
                   onChange={(e) => {
                     findWorkout(e.target.value)
                   }}
+                
                 >
+
                   <option value="">Select your workout</option>
                   {workoutPlans?.map((workout) => {
                     return (
