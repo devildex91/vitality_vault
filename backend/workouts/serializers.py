@@ -1,6 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
-from .models import Exercise, WorkoutDay, WorkoutExercise, WorkoutPlan
+from .models import Exercise, WorkoutDay, WorkoutExercise, WorkoutPlan,ExerciseImage
 
 # Serializers in this order for inheritance so can use Workout plan as top level serializer
 
@@ -9,6 +9,12 @@ class ExerciseSerializer(serializers.ModelSerializer):
         model = Exercise
         fields = '__all__'
 
+
+class ExerciseImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExerciseImage
+        fields = ["id", "exercise", "public_id", "order"]
+        read_only_fields = ["id"]
 
 class WorkoutExerciseSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)

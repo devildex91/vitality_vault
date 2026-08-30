@@ -34,7 +34,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default='django-insecure-fallback-key-f
 MY_PASSWORD = config('MY_PASSWORD', default=None)
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'vitality-vault-backend-c2878a5636af.herokuapp.com',

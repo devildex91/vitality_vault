@@ -1,9 +1,10 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .models import Exercise, WorkoutDay, WorkoutExercise, WorkoutPlan
-from .serializers import ExerciseSerializer, WorkoutPlanSerializer
+from .models import Exercise, WorkoutDay, WorkoutExercise, WorkoutPlan, ExerciseImage
+from .serializers import ExerciseSerializer, WorkoutPlanSerializer, ExerciseImageSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q
 # Create your views here.
 
 
@@ -14,6 +15,23 @@ def getExercises(request):
     serializer = ExerciseSerializer(models, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getExerciseImages(request):
+    exercise_values = request.query_params.getlist("exercises")
+
+    if exercise_values:
+        queryset = ExerciseImage.objects.filter(
+        Q(exercise__name__in=exercise_values) |
+            Q(exercise_id__in=exercise_values)   
+        )
+    else:
+        queryset = ExerciseImage.objects.none()
+
+    serializer = ExerciseImageSerializer(queryset, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
