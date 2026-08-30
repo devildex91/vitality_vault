@@ -1,12 +1,12 @@
 import React from "react";
-   import { useState, useEffect } from "react";
+   import { useState, useContext } from "react";
+import { CurrentPlanContext } from "./WorkoutPlan";
    
    export default function PreviousPlan({workoutPlan}){
-    const yesterday = new Date().getDay() - 1
-     const selectedWorkout = workoutPlan
+    const yesterday = (new Date().getDay() - 1 + 7) % 7;
+     const {selectedWorkout} = useContext(CurrentPlanContext)
      const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
      const [weekDay, setWeekday]= useState(weekdays[yesterday])
-   /*Optional chaining added tyo make sure data is their to stop undefined error  */
      const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
        
      

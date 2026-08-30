@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
-
-export default function TodaysPlan({workoutPlan}){
-  const selectedWorkout = workoutPlan
+import { useState, useContext } from "react";
+import { CurrentPlanContext } from "./WorkoutPlan.jsx";
+export default function TodaysPlan(){
+  const {selectedWorkout} = useContext(CurrentPlanContext); 
   const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
   const [weekDay, setWeekday]= useState(weekdays[new Date().getDay()])
 /*Optional chaining added tyo make sure data is their to stop undefined error  */

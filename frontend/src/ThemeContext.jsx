@@ -15,7 +15,6 @@ export function ThemeProvider({ children }) {
         setLoading(true);
         
         const response = await api.get("/api/profile/");
-        console.log(response.data.preferred_theme)
         setTheme(response.data.preferred_theme);
         setError(null);
       } catch (err) {
