@@ -64,15 +64,15 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
 
 
   return (
- <div id={`slide${index + 1}`} className="carousel-item relative w-full justify-center items-center justify-self-center align-self-center bg-primary border-y-8 border-accent  mb-4 gap-4" key = {exercise.id}>
+ <div id={`slide${index + 1}`} className="carousel-item relative w-[95%] justify-center items-center rounded-xl justify-self-center align-self-center bg-neutral p-4 mb-4 gap-4 overflow-y-hidden" key = {exercise.id}>
    <img
       className = "scale-75 border-8 border-accent rounded-lg"
       src={`https://res.cloudinary.com/dxhclnrp/image/upload/${exercise.public_id}`}
       alt = {exercise.exercise}
        />
     <div className="absolute left-10 right-10 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href={`#slide${previous}`} className="btn btn-circle bg-accent">❮</a>
-      <a href={`#slide${next}`} className="btn btn-circle bg-accent">❯</a>
+      <a href={`#slide${previous}`} className="btn btn-circle bg-accent text-neutral">❮</a>
+      <a href={`#slide${next}`} className="btn btn-circle bg-accent text-neutral">❯</a>
 
       
     </div>

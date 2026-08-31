@@ -140,11 +140,37 @@ useEffect(() => {
    fetchWorkoutPlans();
   }, []);
 
+
+  function findWorkout(targetTitle){
+  const foundTitle = workoutPlans.find(workouts => workouts.title === targetTitle)
+  if (foundTitle) {
+     updateCurrentWorkout(foundTitle)
+  };
+};
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-base-300 text-base-300">
       <Navbar />
-      <header>
-        <h1>Workout plan</h1>
+      <header className = "flex flex-col items-center justify-center border-accent border-2 p-4 mt-5 rounded">
+        <h1 className = "text-primary font-bold mt-1 mb-3" >Workout Plan</h1>
+        <h3 className = "text-primary font-bold"> Set/change your workout below</h3>
+        <select
+                  className="input input-accent bg-neutral text-base-300 font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 m-3"
+                  value={selectedWorkout?.title|| ""}
+                  onChange={(e) => {
+                    findWorkout(e.target.value)
+                  }}
+                
+                >
+
+                  <option value="">Select your workout</option>
+                  {workoutPlans?.map((workout) => {
+                    return (
+                      <option key={workout.id} value={workout.title}>
+                        {workout.title}
+                      </option>
+                         );
+                  })}
+                </select>
       </header>
       <CurrentPlanContext.Provider
         value={{

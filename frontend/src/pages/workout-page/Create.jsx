@@ -6,7 +6,14 @@ import { CurrentPlanContext } from "./WorkoutPlan";
 
 export default function CreatePlan() {
   /*useContext imports  */
-  const { exerciseData, loading, setLoading,  error, setError,fetchWorkoutPlans } = useContext(CurrentPlanContext);
+  const {
+    exerciseData,
+    loading,
+    setLoading,
+    error,
+    setError,
+    fetchWorkoutPlans,
+  } = useContext(CurrentPlanContext);
 
   /* state to store selected exercise/sets/reps to be pushed into array */
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -78,18 +85,18 @@ export default function CreatePlan() {
         })),
       })),
     };
-    
+
     try {
       setLoading(true);
 
       await api.post("api/createworkout/", payload);
-      await fetchWorkoutPlans(); 
-      alert("Successfully created workout ")
+      await fetchWorkoutPlans();
+      alert("Successfully created workout ");
       setWeeksWorkout({
-      title: "",
-      days: weeksWorkout.days.map(d => ({ ...d, exercises: [] }))
-    });
-       
+        title: "",
+        days: weeksWorkout.days.map((d) => ({ ...d, exercises: [] })),
+      });
+
       setError(null);
     } catch (error) {
       console.error("Create error:", error);
@@ -97,18 +104,15 @@ export default function CreatePlan() {
     } finally {
       setLoading(false);
     }
-    
-
   };
   return (
     <>
       {loading && <p>loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
-      <div className="card lg:card-side bg-accent text-primary-content shadow-sm ">
-        <div className="card-body">
-          <h2 className="card-title">Create Plan</h2>
+      <div className="card lg:card-side bg-neutral text-primary  shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
+        <div className="card-body border-accent border-2 rounded-xl text-align-center">
+          <h2 className="card-title text-accent">Create Plan</h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Workout Title</label>
             <input
               type="text"
               id="workout_title"
@@ -121,15 +125,20 @@ export default function CreatePlan() {
                 }))
               }
               placeholder="Workout Title"
-              className="input input-accent"
+              className="input input-accent bg-base-300  font-bold  focus:border-3 focus:border-base-300 "
               required
             />
             {weeksWorkout.days.map((dayObj, dayIndex) => (
-              <fieldset key={dayIndex} className="border p-4 my-2 rounded">
-                <h3 className="capitalize font-bold">{dayObj.day}</h3>
+              <fieldset
+                key={dayIndex}
+                className="flex flex-col items-center justify-center border-accent border-2 p-4 my-2 rounded"
+              >
+                <h3 className="capitalize font-bold text-accent">
+                  {dayObj.day}
+                </h3>
                 {/*Exercise Selection */}
                 <select
-                  className="select select-accent"
+                  className="input input-accent bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
                   value={selectedExercises[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedExercises((prev) => ({
@@ -149,7 +158,7 @@ export default function CreatePlan() {
                 </select>
                 {/*Sets Selection */}
                 <select
-                  className="select select-accent text-neutral"
+                  className="input input-accent bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
                   value={selectedSets[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedSets((prev) => ({
@@ -167,7 +176,7 @@ export default function CreatePlan() {
                 </select>
                 {/*Reps Selection */}
                 <select
-                  className="select select-accent text-neutral"
+                  className="input input-accent bg-base-300 font-bold  focus:border-3 focus:border-base-300 mt-3"
                   value={selectedReps[dayIndex]}
                   onChange={(e) => {
                     setSelectedReps((prev) => ({
@@ -185,38 +194,27 @@ export default function CreatePlan() {
                 </select>
                 <button
                   type="button"
-                  className="btn btn-soft text-accent bg-base-100 ml-2"
+                  className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 my-3 "
                   onClick={() => handleAddExercise(dayIndex, dayObj)}
                 >
                   Add Exercise to Day {dayIndex + 1}
                 </button>
                 <div
                   id="display-box"
-                  className="card-body items-center text-center bg-base-100"
+                  className="card-body items-center bg-base-300 text-bold-neutral focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
                 >
                   {dayObj.exercises.length === 0 ? (
                     <p>No exercises have been added yet.</p>
                   ) : (
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th>Exercise</th>
-                          <th>Sets</th>
-                          <th>Reps</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {dayObj.exercises.map((exercise, exerciseIndex) => (
-                          <tr key={exerciseIndex}>
-                            <th></th>
-                            <td>{exercise.name}</td>
-                            <td>{exercise.sets}</td>
-                            <td>{exercise.reps}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                    dayObj.exercises.map((exercise, exerciseIndex) => (
+                      <ul key={exerciseIndex}>
+                      
+                          <li>Exercise:{exercise.name}</li>
+                          <li>Sets:{exercise.sets}</li>
+                          <li>Reps:{exercise.reps}</li>
+                        
+                      </ul>
+                    ))
                   )}
                 </div>
               </fieldset>
@@ -224,7 +222,7 @@ export default function CreatePlan() {
 
             <button
               type="submit"
-              className="btn btn-soft text-accent bg-base-100 block"
+               className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 my-3 "
             >
               Submit Plan
             </button>

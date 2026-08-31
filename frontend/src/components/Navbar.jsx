@@ -8,7 +8,7 @@ export default function Navbar(){
     const { theme, setTheme } = useTheme();
     const {isAuthorized, logout} = useAuthentication();
 const toggleTheme = () => {
-  setTheme(theme === "nord" ? "synthwave" : "nord");
+  setTheme(theme === "nord" ? "halloween" : "nord");
 };
 const handleLogout = () => {
   logout();
@@ -41,8 +41,8 @@ const handleLogout = () => {
         <input
           type="checkbox"
           className="theme-controller"
-          value="synthwave"
-          checked={theme === "synthwave"}
+          value="halloween"
+          checked={theme === "halloween"}
                   onChange={toggleTheme}
         />
 
