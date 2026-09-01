@@ -9,7 +9,10 @@ class ExerciseSerializer(serializers.ModelSerializer):
         model = Exercise
         fields = '__all__'
 
-
+class ExerciseListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exercise
+        fields = ["id", "name"]
 class ExerciseImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExerciseImage

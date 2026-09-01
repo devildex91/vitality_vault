@@ -14,17 +14,17 @@ export default function CurrentPlan(){
 
     return(
      <>
-<div className="tabs tabs-box bg-accent text-primary-content">
-  <input type="radio" name="my_tabs_4" className="tab" aria-label="Todays " />
+<div className="tabs tabs-box col-span-2 mt-2 bg-neutral text-accent">
+  <input type="radio" name="my_tabs_4" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Todays " />
   <div className="tab-content bg-base-100 border-base-300 p-6"><TodaysPlan workoutPlan={selectedWorkout} /></div>
 
-  <input type="radio" name="my_tabs_4" className="tab" aria-label="Previous " defaultChecked />
+  <input type="radio" name="my_tabs_4" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Previous " defaultChecked />
   <div className="tab-content bg-base-100 border-base-300 p-6"><PreviousPlan workoutPlan={selectedWorkout} /></div>
 
-  <input type="radio" name="my_tabs_4" className="tab" aria-label="Tomorrows" />
+  <input type="radio" name="my_tabs_4" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Tomorrows" />
   <div className="tab-content bg-base-100 border-base-300 p-6"><TomorrowsPlan workoutPlan={selectedWorkout} /></div>
 
-  <input type="radio" name="my_tabs_4" className="tab" aria-label="Full plan" />
+  <input type="radio" name="my_tabs_4" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Full plan" />
   <div className="tab-content bg-base-100 border-base-300 p-6"><FullPlan workoutPlan={selectedWorkout} /></div>
 </div>
      </>

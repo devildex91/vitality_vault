@@ -9,21 +9,21 @@ import ExerciseCarousel from "./ExerciseCarousel";
 
 export default function DesktopView(){
   return(
- <main className=" grid grid-cols-4 grid-flow-rows gap-4 grow ">
+ <main className=" grid grid-cols-4 grid-flow-rows gap-4 grow">
  
 <div className="tabs tabs-box col-span-2 mt-2 bg-neutral text-accent">
   <input type="radio" name="my_tabs_2" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Create" defaultChecked />
-  <div className="tab-content self-start bg-base-100 border-base-300"><CreatePlan /></div>
+  <div className="tab-content self-start bg-base-300 border-base-300"><CreatePlan /></div>
     <input type="radio" name="my_tabs_2" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Edit" />
-  <div className="tab-content bg-base-100 border-base-300 p-6"><EditPlan /></div>
+  <div className="tab-content bg-base-300 border-base-300 p-6"><EditPlan /></div>
 </div>
 <div className = "col-span-2 row-span-2 mb-2 rounded-xl">
-  <div className="tabs tabs-box">
-    <input type="radio" name="my_tabs_1" className="tab" aria-label="Todays " />
-    <div className="tab-content bg-base-100 border-base-300 p-6"><TodaysPlan /></div>
+  <div className="tabs tabs-box col-span-2 mt-2 bg-neutral text-accent">
+    <input type="radio" name="my_tabs_1" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Todays " />
+    <div className="tab-content bg-base-300 border-base-300 p-6"><TodaysPlan /></div>
   
-    <input type="radio" name="my_tabs_1" className="tab" aria-label="Full" defaultChecked />
-    <div className="tab-content bg-base-100 border-base-300 p-6"><FullPlan /></div>
+    <input type="radio" name="my_tabs_1" className="tab bg-neutral text-accent  focus:bg-accent focus:text-neutral" aria-label="Full" defaultChecked />
+    <div className="tab-content bg-base-300 border-base-300 p-6"><FullPlan /></div>
   </div>
 </div>
 <div className="carousel col-span-2">

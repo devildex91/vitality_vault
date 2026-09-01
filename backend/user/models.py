@@ -14,7 +14,7 @@ class UserProfile(models.Model):
 
     THEME_CHOICES = [
         ('nord', 'Nord'),
-        ('synthwave', 'Synthwave'),
+        ('halloween', 'Halloween'),
     ]
 
     preferred_theme = models.CharField(

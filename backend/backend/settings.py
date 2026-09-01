@@ -34,7 +34,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default='django-insecure-fallback-key-f
 MY_PASSWORD = config('MY_PASSWORD', default=None)
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'vitality-vault-backend-c2878a5636af.herokuapp.com',
@@ -42,7 +42,6 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
-print(f"--- ACTIVE ALLOWED HOSTS: {ALLOWED_HOSTS} ---") 
 
 # Application definition
 
@@ -151,18 +150,17 @@ AUTHENTICATION_BACKENDS = (
 # settings.py
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}",
-        conn_max_age=600,
-    )
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    }
 }
 
-
 if os.environ.get("DATABASE_URL"):
-    DATABASES["default"]["OPTIONS"] = {
-        "sslmode": "require", 
-    }
-
+    DATABASES["default"] = dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True  
+    )
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

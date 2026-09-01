@@ -110,7 +110,7 @@ export default function CreatePlan() {
       {loading && <p>loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
       <div className="card lg:card-side bg-neutral text-primary  shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
-        <div className="card-body border-accent border-2 rounded-xl text-align-center">
+        <div className="card-body  rounded-xl text-align-center">
           <h2 className="card-title text-accent">Create Plan</h2>
           <form onSubmit={handleSubmit}>
             <input
@@ -208,11 +208,10 @@ export default function CreatePlan() {
                   ) : (
                     dayObj.exercises.map((exercise, exerciseIndex) => (
                       <ul key={exerciseIndex}>
-                      
-                          <li>Exercise:{exercise.name}</li>
-                          <li>Sets:{exercise.sets}</li>
-                          <li>Reps:{exercise.reps}</li>
-                        
+                          <li>Exercise<hr/>{exercise.name}</li>
+                          <li>Sets:  {exercise.sets}</li>
+                          <li>Reps:  {exercise.reps}</li>
+                        <hr />
                       </ul>
                     ))
                   )}

@@ -2,7 +2,6 @@ import Navbar from "../../components/Navbar.jsx";
 import Footer from "../../components/Footer.jsx";
 import MobileView from "./MobileView.jsx";
 import DesktopView from "./DesktopView.jsx";
-import TabletView from "./TabletView.jsx";
 import api from "../../api.js";
 import { Link, Outlet } from "react-router";
 import { useState, useEffect, createContext } from "react";
@@ -12,7 +11,7 @@ export const CurrentPlanContext = createContext(null);
 export default function WorkoutPlan() {
   // Dynamically changes which component depending on screen size as too complicted to change in one component
   const MOBILE_QUERY = "(max-width: 640px)";
-  const TABLET_QUERY = "(min-width: 641px) and (max-width: 1023px)";
+ 
 
   /*all loading and errors as well as workout plans stored in top level of workout section and passed to relevent components  */
   const [loading, setLoading] = useState(false);
@@ -91,7 +90,6 @@ useEffect(() => {
   const getActiveView = () => {
     if (typeof window === "undefined") return DesktopView;
     if (window.matchMedia(MOBILE_QUERY).matches) return MobileView;
-    if (window.matchMedia(TABLET_QUERY).matches) return TabletView;
     return DesktopView;
   };
 
@@ -99,18 +97,14 @@ useEffect(() => {
 
   useEffect(() => {
     const mobileWatcher = window.matchMedia(MOBILE_QUERY);
-    const tabletWatcher = window.matchMedia(TABLET_QUERY);
 
     function updateWorkoutScreen(e) {
       setViewType(() => getActiveView());
     }
-
     mobileWatcher.addEventListener("change", updateWorkoutScreen);
-    tabletWatcher.addEventListener("change", updateWorkoutScreen);
 
     return function cleanup() {
       mobileWatcher.removeEventListener("change", updateWorkoutScreen);
-      tabletWatcher.removeEventListener("change", updateWorkoutScreen);
     };
   }, []);
 

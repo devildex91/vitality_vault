@@ -21,7 +21,7 @@ export default function FullPlan() {
   });
 
   return (
-    <div className="flex flex-col items-center bg-neutral justify-center border-accent border-2 p-4 my-2 rounded flex-1 max-h-80vh overflow-y-auto rounded-xl">
+    <div className="flex flex-col items-center bg-neutral justify-center border-accent border-2 p-4 my-2 flex-1 max-h-80vh overflow-y-auto rounded-xl">
       {sortedPlan?.map((plan, index) => {
         return (
           <table className="table w-full">

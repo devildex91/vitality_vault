@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import Exercise, WorkoutDay, WorkoutExercise, WorkoutPlan, ExerciseImage
-from .serializers import ExerciseSerializer, WorkoutPlanSerializer, ExerciseImageSerializer
+from .serializers import ExerciseSerializer, WorkoutPlanSerializer, ExerciseImageSerializer, ExerciseListSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
@@ -11,8 +11,8 @@ from django.db.models import Q
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def getExercises(request):
-    models = Exercise.objects.all()
-    serializer = ExerciseSerializer(models, many=True)
+    models = Exercise.objects.only("id", "name")
+    serializer = ExerciseListSerializer(models, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 

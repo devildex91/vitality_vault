@@ -50,7 +50,7 @@ class Exercise(models.Model):
 
     id = models.CharField(
         primary_key=True,
-        max_length=50
+        max_length=150
     )
 
     name = models.CharField(max_length=200)
