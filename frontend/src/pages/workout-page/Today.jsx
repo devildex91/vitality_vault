@@ -12,24 +12,35 @@ export default function TodaysPlan(){
     return(
 
     
-<div className="flex flex-col items-center bg-neutral justify-center border-accent border-2 p-4 my-2 flex-1 max-h-80vh overflow-y-auto rounded-xl">
-  {todaysPlan?.exercises?.length === 0 ? (
-    <p>Nothing to do today, take a break and relax</p>
-  ) : (
-    todaysPlan?.exercises?.map((exercise, exerciseIndex) => (
-      <ul key={exerciseIndex} className="mb-4">
-        <li>
-          <span>Exercise <hr /> {exercise.exercise}</span>
-        </li>
-        <li>
-          <span>Sets: {exercise.sets}</span>
-        </li>
-        <li>
-          <span>Reps: {exercise.reps}</span>
-        </li>
-      </ul>
-    ))
-  )}
-</div>
+<div className="flex flex-col items-center bg-base-300 justify-center border-primary border-2 text-primary p-4 my-2 flex-1 max-h-80vh overflow-y-auto rounded-xl">
+    {todaysPlan?.exercises?.length === 0 ? (
+                    <p>Nothing to do today take a break and relax</p>
+                  ) : (
+                    
+  
+                    <table className="table-fixed w-full">
+                      <thead>
+                        <tr>
+                          <th className="w-1/4 break-words">Todays Plan</th>
+                          <th className="w-1/4 break-words">Exercise</th>
+                          <th className="w-1/4 break-words">Sets</th>
+                          <th className="w-1/4 break-words">Reps</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {todaysPlan?.exercises?.map((exercise, exerciseIndex) => (
+                                               <tr key={exerciseIndex}>
+                            <th>  </th>
+                            <td >{exercise.exercise.replace(/_/g, ' ')}</td>
+                            <td >{exercise.sets}</td>
+                            <td >{exercise.reps}</td>
+                          </tr>
+                          
+                          
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
 )
 }

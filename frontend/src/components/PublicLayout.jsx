@@ -9,7 +9,7 @@ export default function PublicLayout() {
   }
 
   if (isAuthorized) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/workoutPlan" replace />;
   }
 
   return <Outlet />;

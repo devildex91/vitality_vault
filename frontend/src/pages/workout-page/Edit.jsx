@@ -271,7 +271,7 @@ setError(null);
 
  
   return (
-    <div className=" flex flex-col h-full items-center bg-neutral justify-start content-center justify-items-center align border-accent border-2 p-4 my-2 rounded">
+    <div className=" flex flex-col h-full items-center bg-base-300 justify-start content-center justify-items-center align border-primary border-2 p-4 my-2 rounded-xl">
     <h2 className="card-title text-accent">Edit Plan</h2>
      <form onSubmit ={saveWorkout} className = "flex flex-col items-center ">
       {/*Workout Select */}
@@ -345,7 +345,7 @@ setError(null);
       </select>
       {/*sets select*/}
       <select
-      className="input input-accent bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+      className="input input-accent bg-base-300 text-primary font-bold focus:bg-primary focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
       value ={newExercise?.sets}
       disabled={!newExercise}
       onChange={(e) => setNewExercise((exercise)=> ({
@@ -375,36 +375,44 @@ onChange={(e) => setNewExercise((exercise) => ({
 
 </select>
 <div id="buttonDiv" className = "flex flex-wrap justify-evenly">
-      <button className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 w-1/2 mt-3" type = "button" onClick = {updateWorkout}>Update Workout</button>
-      <button className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 w-1/2 mt-3" type = "button" onClick = {deleteExercise}>Delete Exercise</button>
-      <button className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 w-1/2 mt-3" type = "button" onClick = {deleteDay}>Delete day</button>
-      <button className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 w-1/2 mt-3" type = "button" onClick = {deleteWorkout}>Delete Workout</button>
-      <button  className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 w-1/2 mt-3" type = "submit">Save Workout</button>
+      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {updateWorkout}>Update Workout</button>
+      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteExercise}>Delete Exercise</button>
+      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteDay}>Delete day</button>
+      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteWorkout}>Delete Workout</button>
+      <button  className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "submit">Save Workout</button>
       </div>
          </form>
         <div id = "workoutDisplay"
-          className = "card lg:card-side bg-neutral text-secondary-content shadow-sm w-full overflow-x-auto">
+           className="card lg:card-side bg-base-300 text-primary rounded-xl shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
             {selectedWorkout && (
-              <>
-             <h3>{selectedWorkout.title}</h3>
-              <ol>
-                {[...selectedWorkout?.days]
-                .sort((a, b) => week.indexOf(a.day) - week.indexOf(b.day))
-                .map((day) => (
-                  <>
-                  <li key ={day.id}>{day.day}</li>
-                  <ol>
-                    {[...day?.exercises].map((exercise) => (
-                      <li key = {exercise.id}><span>{(exercise.exercise)} Sets:{exercise.sets} Reps:{exercise.reps}</span></li>
-                      
-                    ))}
-                  </ol>
-                  </>
-                ))}
-              </ol>
-             
-             </>
-            )}
+  <div className="flex flex-col items-stretch bg-base-300 justify-start border-primary text-primary border-2 p-4 my-2 flex-1 max-h-[80vh] overflow-y-auto overflow-x-auto rounded-xl">
+    <h3 className="text-xl font-bold mb-4">{selectedWorkout.title}</h3>
+    {selectedWorkout?.days.map((days) => {return(
+     <table className="table-fixed w-full">
+       <thead>
+              <tr>
+                <th className = "w-1/4 break-words">{days.day}</th>
+                <th className = "w-1/4 break-words">Exercise</th>
+                <th className = "w-1/4 break-words">Sets</th>
+                <th className = "w-1/4 break-words">Reps</th>
+              </tr>
+            </thead>
+            <tbody>
+              {days?.exercises?.map((exercise, exerciseIndex) => (
+                <tr key={exerciseIndex}>
+                  <th> </th>
+                  <td>{exercise.exercise.replace(/_/g, ' ')}</td>
+                  <td>{exercise.sets}</td>
+                  <td>{exercise.reps}</td>
+                </tr>
+              ))}
+            </tbody>
+     </table>
+    )})}
+    
+  </div>
+)}
+
         </div> 
     </div>
   );

@@ -109,9 +109,9 @@ export default function CreatePlan() {
     <>
       {loading && <p>loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
-      <div className="card lg:card-side bg-neutral text-primary  shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
-        <div className="card-body  rounded-xl text-align-center">
-          <h2 className="card-title text-accent">Create Plan</h2>
+      <div className="card lg:card-side bg-base-300 text-primary  shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
+        <div className="card-body  rounded-xl text-align-center border-1 border-primary">
+          <h2 className="card-title text-primary">Create Plan</h2>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -125,20 +125,20 @@ export default function CreatePlan() {
                 }))
               }
               placeholder="Workout Title"
-              className="input input-accent bg-base-300  font-bold  focus:border-3 focus:border-base-300 "
+              className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300 "
               required
             />
             {weeksWorkout.days.map((dayObj, dayIndex) => (
               <fieldset
                 key={dayIndex}
-                className="flex flex-col items-center justify-center border-accent border-2 p-4 my-2 rounded"
+                className="flex flex-col items-center justify-center border-primary border-2 p-4 my-2 rounded"
               >
-                <h3 className="capitalize font-bold text-accent">
+                <h3 className="capitalize font-bold text-primary">
                   {dayObj.day}
                 </h3>
                 {/*Exercise Selection */}
                 <select
-                  className="input input-accent bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
+                  className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
                   value={selectedExercises[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedExercises((prev) => ({
@@ -158,7 +158,7 @@ export default function CreatePlan() {
                 </select>
                 {/*Sets Selection */}
                 <select
-                  className="input input-accent bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
+                  className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
                   value={selectedSets[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedSets((prev) => ({
@@ -176,7 +176,7 @@ export default function CreatePlan() {
                 </select>
                 {/*Reps Selection */}
                 <select
-                  className="input input-accent bg-base-300 font-bold  focus:border-3 focus:border-base-300 mt-3"
+                  className="input input-primary bg-base-300 font-bold  focus:border-3 focus:border-base-300 mt-3"
                   value={selectedReps[dayIndex]}
                   onChange={(e) => {
                     setSelectedReps((prev) => ({
@@ -194,14 +194,14 @@ export default function CreatePlan() {
                 </select>
                 <button
                   type="button"
-                  className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 my-3 "
+                  className="btn btn-soft border-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
                   onClick={() => handleAddExercise(dayIndex, dayObj)}
                 >
                   Add Exercise to Day {dayIndex + 1}
                 </button>
                 <div
                   id="display-box"
-                  className="card-body items-center bg-base-300 text-bold-neutral focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+                  className="card-body items-center bg-base-300 text-bold-primary focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
                 >
                   {dayObj.exercises.length === 0 ? (
                     <p>No exercises have been added yet.</p>
@@ -221,7 +221,7 @@ export default function CreatePlan() {
 
             <button
               type="submit"
-               className="btn btn-soft text-accent bg-base-300 focus:bg-neutral active:border-3 active:border-base-300 active:text-base-300 my-3 "
+               className="btn btn-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
             >
               Submit Plan
             </button>

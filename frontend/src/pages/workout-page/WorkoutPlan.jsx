@@ -142,13 +142,13 @@ useEffect(() => {
   };
 };
   return (
-    <div className="flex min-h-screen flex-col bg-base-300 text-base-300">
+    <div className="flex min-h-screen flex-col bg-base-100 text-base-100">
       <Navbar />
-      <header className = "flex flex-col items-center justify-center border-accent border-2 p-4 mt-5 rounded">
+      <header className = "flex flex-col items-center bg-base-300 justify-center border-primary border-1 p-4 mt-5 rounded-xl">
         <h1 className = "text-primary font-bold mt-1 mb-3" >Workout Plan</h1>
         <h3 className = "text-primary font-bold"> Set/change your workout below</h3>
         <select
-                  className="input input-accent bg-neutral text-base-300 font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 m-3"
+                  className="input input-primary bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 m-3"
                   value={selectedWorkout?.title|| ""}
                   onChange={(e) => {
                     findWorkout(e.target.value)
