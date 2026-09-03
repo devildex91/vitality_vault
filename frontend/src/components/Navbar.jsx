@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useLocation } from "react-router";
-import { useEffect } from "react";
 import { useTheme } from "../ThemeContext";
 import useAuthentication from "../Auth";
+import favicon from "../assets/images/VV-logo-favicon.png"
+import faviconblue from "../assets/images/VV-logo-blue-large.png"
 export default function Navbar() {
   //useTheme set in navbar component as it is a child in all pages of app so always avaliable to change theme
   const { theme, setTheme } = useTheme();
@@ -15,24 +16,24 @@ export default function Navbar() {
     const location = useLocation();
   };
   return (
-    <div className="navbar bg-base-200 shadow-sm border-3 border-b-primary">
+    <div className="navbar bg-base-200 shadow-sm border-3 border-base-200 border-b-primary ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
+              className="h-5 w-5 text-primary"
+              fill=""
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
+              
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h16M4 18h7"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
@@ -64,7 +65,7 @@ export default function Navbar() {
               )}
 
               <li>
-                {" "}
+                
                 {/*Checkbox to control state on click to change themes between light and */}
                 <label className="swap swap-rotate">
                   {/* this hidden checkbox controls the state */}
@@ -100,14 +101,14 @@ export default function Navbar() {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">Vitality Vault</a>
+        
       </div>
       <div className="navbar-end">
-        <div className="avatar">
-          <div className="ring-primary ring-offset-base-100 w-10 m-4 rounded-full ring-2 ring-offset-2 ">
-            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+        
+          <div className=" w-16 m-4">
+            <img src={ theme==="halloween"?favicon:faviconblue} alt ="vitality-vault logo" />
           </div>
-        </div>
+        
       </div>
     </div>
   );

@@ -3,30 +3,30 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "start": "echo 'NGINX will serve the built files'",
-  "heroku-postbuild": "npm run build"
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "echo 'NGINX will serve the built files'",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@mui/icons-material": "^9.2.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.0.5",
     "axios": "^1.18.1",
     "daisyui": "^5.7.4",
     "jwt-decode": "^4.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router": "^8.3.0",
+    "tailwind-animations": "^1.0.2",
     "tailwindcss": "^4.3.3",
-    "vite": "^8.1.1",
-    "@vitejs/plugin-react": "^6.0.5"
+    "vite": "^8.1.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "oxlint": "^1.71.0"
-    
   }
 }
