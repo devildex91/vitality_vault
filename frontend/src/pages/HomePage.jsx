@@ -3,10 +3,12 @@ import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
 import Logo from "../assets/images/VV-logo-large.png"
 import { useTheme } from "../ThemeContext";
+import { Link} from "react-router";
 import Logoblue from "../assets/images/VV-logo-blue-large.png"
 export default function HomePage(){
   const { theme, setTheme } = useTheme();
   console.log(theme)
+
     return (
            <div className = "flex min-h-screen flex-col">
            <Navbar />
@@ -19,7 +21,7 @@ export default function HomePage(){
             </div>
             <div className="col-start-1 row-start-1 flex flex-col items-center gap-6 items animate-expand-horizontally [animation-delay:6s] [animation-duration:6s] [animation-iteration:1][animation-fill-mode:both] ">
                <p className = "text-center text-primary border-2 border-primary rounded-xl text-xl m-5">Welcome to Vitality Vault. Our aim is to provide you with the tools nescesary to create your perfect workout. So if that sound like something you want then Sign up or sign in by clicking below and lets get started.  </p>
-               <button className="btn btn-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 " >Sign in </button>
+               <button className="btn btn-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "> <Link to="/login">Login</Link></button>
             </div>
            </main>
            <Footer />

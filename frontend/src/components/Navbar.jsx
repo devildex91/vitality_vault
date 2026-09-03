@@ -68,6 +68,9 @@ export default function Navbar() {
       <li className="bg-base-100 focus:border-2-primary text-primary">
         <Link to="/login">Login</Link>
       </li>
+       <li className="bg-base-100 focus:border-2-primary text-primary">
+        <Link to="/register">Register</Link>
+        </li>
     </>
   )}
 
