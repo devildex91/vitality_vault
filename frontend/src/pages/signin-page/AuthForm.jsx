@@ -53,9 +53,6 @@ export default function AuthForm({route, method}){
     }
   }
 
-  const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8000/accounts/google/login";
-  };
 
 
     return (
@@ -65,14 +62,14 @@ export default function AuthForm({route, method}){
               <div className="hero bg-base-200 flex flex-col">{error ? <span>{error}</span>: <div>spinner</div>} </div>
             )}
             {!loading && (
-              <form onSubmit = {handleSubmit} className = "hero-content flex-col lg:flex-row-reverse bg-accent text-base-100 rounded-lg">
+              <form onSubmit = {handleSubmit} className = "hero-content flex-col lg:flex-row-reverse bg-base-300 text-primary rounded-xl border-3 border-primary">
                <h2>{method === 'register' ? "Register" : "Login"}</h2>
                {error && <div>{error}</div>}
                {success && <div>{success}</div>}
                <div className = "fieldset">
                 <label htmlFor="username" className="label">Username:</label>
                 <input 
-                className = "input text-accent"
+                className = "input input-primary"
                 type = "text"
                 id="username"
                 name="username"
@@ -82,7 +79,7 @@ export default function AuthForm({route, method}){
 
                  <label htmlFor="password" className = "label">Password:</label>
                 <input 
-                className="input text-accent"
+                className="input input-primary"
                 type = "password"
                 id="password"
                 name="password"
@@ -91,19 +88,18 @@ export default function AuthForm({route, method}){
                 required />
               
                </div>
-               <button type = "submit" className = "btn btn-soft text-accent">
+               <button type = "submit" className = "btn btn-soft text-primary border-3 border-primary">
                 {method === 'register'? 'Register' : 'Login'}
                </button>
-               <button type ="button" onClick={handleGoogleLogin}>{method === 'register'? 'Register with Google': 'Login with Google'}</button>
                {method === 'login' && (
                 <>
                 <p>Dont have an account?</p>
-                <button onClick={()=> navigate("/register")} className = "btn btn-soft text-accent">Register</button>
+                <button onClick={()=> navigate("/register")} className = "btn btn-soft text-primary border-3 border-primary">Register</button>
                 </>
                )}
                {method === 'register' && (
                 <>
-                <p>Already have an account ?</p> <button onClick={()=> navigate("/login")} className = "btn btn-soft">Login</button>
+                <p>Already have an account ?</p> <button onClick={()=> navigate("/login")} className = "btn btn-soft text-primary border-3 border-primary">Login</button>
                 </>
                )}
               </form>

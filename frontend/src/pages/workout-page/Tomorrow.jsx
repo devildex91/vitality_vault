@@ -12,7 +12,7 @@ import React from "react";
        return(
    
        
-        <div className="flex flex-col items-center bg-base-300 justify-center border-accent border-2 p-4 my-2 flex-1 max-h-80vh overflow-y-auto rounded-xl">
+        <div className="flex flex-col items-center bg-base-300 justify-center border-primary text-primary border-3 p-4 my-2 flex-1 max-h-80vh overflow-y-auto rounded-xl">
                      {todaysPlan?.exercises?.length === 0 ? (
                        <p>Nothing to do today take a break and relax</p>
                      ) : (

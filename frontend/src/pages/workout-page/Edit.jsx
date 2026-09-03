@@ -272,11 +272,11 @@ setError(null);
  
   return (
     <div className=" flex flex-col h-full items-center bg-base-300 justify-start content-center justify-items-center align border-primary border-2 p-4 my-2 rounded-xl">
-    <h2 className="card-title text-accent">Edit Plan</h2>
+    <h2 className="card-title text-primary">Edit Plan</h2>
      <form onSubmit ={saveWorkout} className = "flex flex-col items-center ">
       {/*Workout Select */}
       <select
-        className=" flex flex-col items-center input input-accent bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+        className=" input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
         value={selectedWorkout?.id || ""}
         onChange={(e) => {
           findWorkout(Number(e.target.value));
@@ -293,7 +293,7 @@ setError(null);
       </select>
       {/*Day Select */}
       <select
-        className="input input-accent bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+        className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
         value={selectedDay?.day || ""}
         disabled={!selectedWorkout}
         onChange={(e) => {
@@ -311,7 +311,7 @@ setError(null);
       </select>
       {/*Current exercise select  */}
       <select
-       className="input input-accent bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+       className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
        value = {selectedExercise?.exercise || ""}
        disabled = {!selectedDay}
        onChange={(e) => findExercise(e.target.value)}
@@ -327,7 +327,7 @@ setError(null);
       </select>
       {/*New exercise select */}
       <select
-      className="input input-accent bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+      className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
       value = {newExercise?.exercise}
       disabled = {!selectedDay}
       onChange = {(e) => setNewExercise((exercise) =>({
@@ -345,7 +345,7 @@ setError(null);
       </select>
       {/*sets select*/}
       <select
-      className="input input-accent bg-base-300 text-primary font-bold focus:bg-primary focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+      className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
       value ={newExercise?.sets}
       disabled={!newExercise}
       onChange={(e) => setNewExercise((exercise)=> ({
@@ -360,7 +360,7 @@ setError(null);
 </select>
 {/*reps select */}
 <select
-className="input input-accent bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 mt-3"
+className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
 value={newExercise?.reps}
 disabled={!newExercise}
 onChange={(e) => setNewExercise((exercise) => ({
@@ -375,11 +375,11 @@ onChange={(e) => setNewExercise((exercise) => ({
 
 </select>
 <div id="buttonDiv" className = "flex flex-wrap justify-evenly">
-      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {updateWorkout}>Update Workout</button>
-      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteExercise}>Delete Exercise</button>
-      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteDay}>Delete day</button>
-      <button className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteWorkout}>Delete Workout</button>
-      <button  className="btn btn-soft bg-primary text-base-300  focus:bg-neutral active:border-3 active:border-base-300  w-1/2 mt-3" type = "submit">Save Workout</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {updateWorkout}>Update Workout</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteExercise}>Delete Exercise</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteDay}>Delete day</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteWorkout}>Delete Workout</button>
+      <button  className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "submit">Save Workout</button>
       </div>
          </form>
         <div id = "workoutDisplay"

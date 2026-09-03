@@ -148,7 +148,7 @@ useEffect(() => {
         <h1 className = "text-primary font-bold mt-1 mb-3" >Workout Plan</h1>
         <h3 className = "text-primary font-bold"> Set/change your workout below</h3>
         <select
-                  className="input input-primary bg-base-300 text-primary font-bold focus:bg-neutral focus:border-3 focus:border-base-300 focus:text-base-300 m-3"
+                  className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
                   value={selectedWorkout?.title|| ""}
                   onChange={(e) => {
                     findWorkout(e.target.value)

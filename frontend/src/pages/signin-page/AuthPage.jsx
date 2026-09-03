@@ -16,7 +16,7 @@ export default function AuthPage({initialMethod}){
     const route = method === 'login' ? '/api/token/' : '/api/user/register/';
     const title = method ==='login' ? "Please login below" : "Please Register below"
     return(
-        <div className = "flex min-h-screen flex-col text-base-100">
+        <div className = "flex min-h-screen flex-col text-primary">
             <Navbar />
             <header>
                 <h1>{title}</h1>
