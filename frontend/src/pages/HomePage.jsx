@@ -13,7 +13,7 @@ export default function HomePage(){
            <div className = "flex min-h-screen flex-col">
            <Navbar />
            <header>
-             <h1 className = " justify-self-center animate-fade-in [animation-delay:6s] [animation-duration:3s] [animation-iteration:1]"><img className="w-50 mt-5" src= {theme==="halloween"?Logo:Logoblue} alt = "company logo"/></h1>
+             <h1 className = " justify-self-center content-center animate-fade-in [animation-delay:6s] [animation-duration:3s] [animation-iteration:1]"><img className="w-50 mt-5" src= {theme==="halloween"?Logo:Logoblue} alt = "company logo"/></h1>
            </header>
            <main className="grow grid grid-cols-1 grid-rows-1  ">
             <div className = "  col-start-1 row-start-1 flex justify-center items-start animate-contract-vertically [animation-delay:3s] [animation-duration:3s] [animation-fill-mode:both] [animation-iteration-count:1]">
