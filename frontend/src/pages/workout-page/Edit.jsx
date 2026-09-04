@@ -276,7 +276,7 @@ setError(null);
      <form onSubmit ={saveWorkout} className = "flex flex-col items-center ">
       {/*Workout Select */}
       <select
-        className=" input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+        className=" select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
         value={selectedWorkout?.id || ""}
         onChange={(e) => {
           findWorkout(Number(e.target.value));
@@ -293,7 +293,7 @@ setError(null);
       </select>
       {/*Day Select */}
       <select
-        className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+        className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
         value={selectedDay?.day || ""}
         disabled={!selectedWorkout}
         onChange={(e) => {
@@ -311,7 +311,7 @@ setError(null);
       </select>
       {/*Current exercise select  */}
       <select
-       className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+       className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
        value = {selectedExercise?.exercise || ""}
        disabled = {!selectedDay}
        onChange={(e) => findExercise(e.target.value)}
@@ -327,7 +327,7 @@ setError(null);
       </select>
       {/*New exercise select */}
       <select
-      className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+      className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
       value = {newExercise?.exercise}
       disabled = {!selectedDay}
       onChange = {(e) => setNewExercise((exercise) =>({
@@ -345,7 +345,7 @@ setError(null);
       </select>
       {/*sets select*/}
       <select
-      className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+      className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
       value ={newExercise?.sets}
       disabled={!newExercise}
       onChange={(e) => setNewExercise((exercise)=> ({
@@ -360,7 +360,7 @@ setError(null);
 </select>
 {/*reps select */}
 <select
-className="input input-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
 value={newExercise?.reps}
 disabled={!newExercise}
 onChange={(e) => setNewExercise((exercise) => ({
@@ -401,9 +401,9 @@ onChange={(e) => setNewExercise((exercise) => ({
               {days?.exercises?.map((exercise, exerciseIndex) => (
                 <tr key={exerciseIndex}>
                   <th> </th>
-                  <td>{exercise.exercise.replace(/_/g, ' ')}</td>
-                  <td>{exercise.sets}</td>
-                  <td>{exercise.reps}</td>
+                  <td className="border-2 border-primary break-words">{exercise.exercise.replace(/_/g, ' ')}</td>
+                  <td className="border-2 border-secondary">{exercise.sets}</td>
+                  <td className="border-2 border-primary">{exercise.reps}</td>
                 </tr>
               ))}
             </tbody>

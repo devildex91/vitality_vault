@@ -138,7 +138,7 @@ export default function CreatePlan() {
                 </h3>
                 {/*Exercise Selection */}
                 <select
-                  className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
+                  className="select select-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
                   value={selectedExercises[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedExercises((prev) => ({
@@ -158,7 +158,7 @@ export default function CreatePlan() {
                 </select>
                 {/*Sets Selection */}
                 <select
-                  className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
+                  className="select select-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
                   value={selectedSets[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedSets((prev) => ({
@@ -176,7 +176,7 @@ export default function CreatePlan() {
                 </select>
                 {/*Reps Selection */}
                 <select
-                  className="input input-primary bg-base-300 font-bold  focus:border-3 focus:border-base-300 mt-3"
+                  className="select select-primary bg-base-300 font-bold  focus:border-3 focus:border-base-300 mt-3"
                   value={selectedReps[dayIndex]}
                   onChange={(e) => {
                     setSelectedReps((prev) => ({
@@ -197,7 +197,7 @@ export default function CreatePlan() {
                   className="btn btn-soft border-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
                   onClick={() => handleAddExercise(dayIndex, dayObj)}
                 >
-                  Add Exercise to Day {dayIndex + 1}
+                  Add Exercise 
                 </button>
                 <div
                   id="display-box"

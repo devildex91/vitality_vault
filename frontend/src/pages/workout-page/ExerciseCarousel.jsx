@@ -1,8 +1,11 @@
 import React from "react";
 import {useState, useEffect, useContext} from "react";
 import { CurrentPlanContext } from "./WorkoutPlan.jsx";
-import api from "../../api.js";
+import { useTheme } from "../../ThemeContext";
 
+import api from "../../api.js";
+import Logo from "../../assets/images/VV-logo-large.png"
+import Logoblue from "../../assets/images/VV-logo-blue-large.png"
 
 export default function ExerciseCarousel() {
 const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
@@ -11,8 +14,7 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
   const [exerciseImages, setExerciseImages] = useState([])
 /*Optional chaining added to make sure data is their to stop undefined error  */
   const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
-     console.log(todaysPlan)
-     console.log(exerciseImages)
+   const { theme, setTheme } = useTheme();
     useEffect(() => {
   const fetchExerciseImages = async () => {
     const exerciseIds = todaysPlan?.exercises
@@ -52,7 +54,9 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
 
     return (
 <>
-{exerciseImages.map((exercise, index) => {
+{exerciseImages.length > 0 ? (
+  
+  exerciseImages.map((exercise, index) => {
 
  const previous = index === 0
     ? exerciseImages.length
@@ -64,7 +68,8 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
 
 
   return (
- <div id={`slide${index + 1}`} className="carousel-item relative w-[95%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden" key = {exercise.id}>
+ <div id= {`slide${index + 1}`}
+ className="carousel-item relative w-[95%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden" key = {exercise.id}>
    <img
       className = "scale-75 border-8 border-primary rounded-xl"
       src={`https://res.cloudinary.com/dxhclnrp/image/upload/${exercise.public_id}`}
@@ -79,7 +84,17 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
     
  </div>)
   
-})}
+})): (
+   <div id="slide 1" className="carousel-item relative w-[95%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden">
+   <img
+      className = "scale-75 border-8 border-primary rounded-xl"
+      
+      src={theme ==="halloween"? Logo: Logoblue}
+      alt = "No exercises planned"
+       />
+ </div>
+)}
+
   </>
     )
 

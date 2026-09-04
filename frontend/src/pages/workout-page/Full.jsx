@@ -37,9 +37,9 @@ export default function FullPlan() {
               {plan?.exercises?.map((exercise, exerciseIndex) => (
                 <tr key={exerciseIndex}>
                   <th> </th>
-                  <td className="break-words">{exercise.exercise.replace(/_/g, ' ')}</td>
-                  <td className="break-words">{exercise.sets}</td>
-                  <td className="break-words">{exercise.reps}</td>
+                  <td className="border-2 border-primary break-words">{exercise.exercise.replace(/_/g, ' ')}</td>
+                  <td className="border-2 border-secondary break-words">{exercise.sets}</td>
+                  <td className="border-2 border-primary break-words">{exercise.reps}</td>
                 </tr>
               ))}
             </tbody>

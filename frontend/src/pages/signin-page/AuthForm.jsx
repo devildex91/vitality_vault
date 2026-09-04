@@ -59,7 +59,7 @@ export default function AuthForm({route, method}){
         <div>
         
             {loading && (
-              <div className="hero bg-base-200 flex flex-col">{error ? <span>{error}</span>: <div>spinner</div>} </div>
+              <div className="hero bg-base-200 flex flex-col">{error ? <span>{error}</span>: <div><span className="loading loading-spinner loading-xl"></span></div>} </div>
             )}
             {!loading && (
               <form onSubmit = {handleSubmit} className = "hero-content flex-col lg:flex-row-reverse bg-base-300 text-primary rounded-xl border-3 border-primary">

@@ -34,9 +34,9 @@ import { CurrentPlanContext } from "./WorkoutPlan";
                            {todaysPlan?.exercises?.map((exercise, exerciseIndex) => (
                              <tr key={exerciseIndex}>
                                <th > </th>
-                               <td>{exercise.exercise.replace(/_/g, ' ')}</td>
-                               <td>{exercise.sets}</td>
-                               <td>{exercise.reps}</td>
+                               <td className="border-2 border-primary break-words">{exercise.exercise.replace(/_/g, ' ')}</td>
+                               <td className="border-2 border-secondary break-words">{exercise.sets}</td>
+                               <td className="border-2 border-primary break-words">{exercise.reps}</td>
                              </tr>
                            ))}
                          </tbody>
