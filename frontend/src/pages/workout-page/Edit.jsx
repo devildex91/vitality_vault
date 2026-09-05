@@ -387,8 +387,8 @@ onChange={(e) => setNewExercise((exercise) => ({
             {selectedWorkout && (
   <div className="flex flex-col items-stretch bg-base-300 justify-start border-primary text-primary border-2 p-4 my-2 flex-1 max-h-[80vh] overflow-y-auto overflow-x-auto rounded-xl">
     <h3 className="text-xl font-bold mb-4">{selectedWorkout.title}</h3>
-    {selectedWorkout?.days.map((days) => {return(
-     <table className="table-fixed w-full">
+    {sortedPlan?.map((days) => {return(
+     <table key ={days.id} className="table-fixed w-full">
        <thead>
               <tr>
                 <th className = "w-1/4 break-words">{days.day}</th>
@@ -402,7 +402,7 @@ onChange={(e) => setNewExercise((exercise) => ({
                 <tr key={exerciseIndex}>
                   <th> </th>
                   <td className="border-2 border-primary break-words">{exercise.exercise.replace(/_/g, ' ')}</td>
-                  <td className="border-2 border-secondary">{exercise.sets}</td>
+                  <td className="border-2 border-accent">{exercise.sets}</td>
                   <td className="border-2 border-primary">{exercise.reps}</td>
                 </tr>
               ))}
