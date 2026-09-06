@@ -110,7 +110,7 @@ export default function CreatePlan() {
       {loading && <p>loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
       <div className="card lg:card-side bg-base-300 text-primary  shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
-        <div className="card-body  rounded-xl text-align-center border-3 border-primary">
+        <div className="card-body  rounded-xl text-align-center">
           <h2 className="card-title text-primary">Create Plan</h2>
           <form onSubmit={handleSubmit}>
             <input
@@ -131,7 +131,7 @@ export default function CreatePlan() {
             {weeksWorkout.days.map((dayObj, dayIndex) => (
               <fieldset
                 key={dayIndex}
-                className="flex flex-col items-center justify-center border-primary border-3 p-4 my-2 rounded"
+                className="flex flex-col items-center justify-center border-primary border-3 p-4 my-2 rounded-xl"
               >
                 <h3 className="capitalize font-bold text-primary">
                   {dayObj.day}

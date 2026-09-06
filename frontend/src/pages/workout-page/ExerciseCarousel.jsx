@@ -69,7 +69,7 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
 
   return (
  <div id= {`slide${index + 1}`}
- className="carousel-item relative w-[95%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden" key = {exercise.id}>
+ className="carousel-item relative w-[98%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden" key = {exercise.id}>
    <img
       className = "scale-75 border-8 border-primary rounded-xl"
       src={`https://res.cloudinary.com/dxhclnrp/image/upload/${exercise.public_id}`}

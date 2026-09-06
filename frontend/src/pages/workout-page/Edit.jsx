@@ -312,12 +312,11 @@ setError(null);
       {/*Current exercise select  */}
       <select
        className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
-       value = {selectedExercise?.exercise || ""}
+       value = {selectedExercise?.id || ""}
        disabled = {!selectedDay}
        onChange={(e) => findExercise(e.target.value)}
       >
-        <option value = "">--Select Exercise / Add new--</option>
-        <option value = "Add Exercise">Add New</option>
+        <option value = "">--Select Exercise to edit or add new below--</option>
         {selectedDay?.exercises?.map((exercise) => {
           return (
             <option key = {exercise?.id} value={exercise?.exercise}>{exercise?.exercise}</option>
