@@ -16,6 +16,7 @@ couldnt access deployed site got 400 errors followed by 500 errors and had to up
 changed workout plan section to useContext for picking  your workout sas originally was in my current workout section but as the layour changes dramatically on different screen sizes i could no longer access the state from the other screen layouts.
 
 Got GET POST PUT and DELETE working but state was not updating and the values were not showing in any select elements but were in backend to solve this added in a fetchworkoutPlan function and still had issue to discover was being saved to back end but was not registering to the user creating the workout so had to update the serializer to include user.
+First lighthouse tests resulted in adding meta description and link preconnect to html to help loading times, labels added to select boxes and forgotten aria labels for betrter accessbility. Images stored locally were also compressed for better contentful paint loading times. 
 ## Table of Contents
 
 
@@ -117,7 +118,12 @@ Got GET POST PUT and DELETE working but state was not updating and the values we
 
 
 
-The primary goals of Vitality Vault are:
+The primary goals of Vitality Vault are: 
+- To help simplify working out.
+ - To provide an extensive list of exercises to choose from and simple form with which to build workouts from.
+ - To show that a gym membership is not required and whatever your fitness level you can work out.
+ - To get people working out.
+ - To get users trying new exercises they may not have heard of before.
 
 
 
@@ -130,7 +136,7 @@ The primary goals of Vitality Vault are:
 
 #### Business Goals
 
-
+  
 
 
 ---
@@ -139,6 +145,10 @@ The primary goals of Vitality Vault are:
 
 
 The business goals of Vitality Vault are:
+- To simplify planning a workout
+- Optimise peoples workouts.
+- Maximise users experience by making the whole process as streamlined and simple as possible.
+- Long term business goals are to provide an all in one experience that users can track progress and upload weights used and get back body composition information as well as calorie tracking. 
 
 
 
@@ -160,6 +170,11 @@ The business goals of Vitality Vault are:
 
 
 The goals for users would be:
+- Save time looking for the perfect workout
+- Reduce time wasted by creating a personalised workout that suits their lifestyle
+- Avoid injuries by providing images so they know exactly what to do.
+- Find inspiration from new exercises.
+
 
 
 
@@ -182,6 +197,14 @@ The goals for users would be:
 
 For full Acceptance Criteria and tasks please follow [this link](https://github.com/users/devildex91/projects/8) to the project board for Vitality Vault.
 
+- As a *user tracking my strength, *I can *view the specific details  of a previous days  workout I completed  *so that *I know exactly what Ive been doing to make sure Im not doing the wrong workout  .*
+
+- As a *registered fitness user,* I can *create and save a custom workout routine with a name and a list of exercises * so that * I can quickly select it whenever I go to the gym.*
+
+- As a *flexible trainee,* I can *edit the sets  and reps of a previously  created workout * so that * I can keep my workouts fresh and up to date*
+
+-As a *user cleaning up my profile,* I can *delete an old workout routine that I no longer perform* so that *my list of active routines stays organised and clutter-free.*
+
 
 
 
@@ -203,6 +226,10 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
 
 ---
 
+The original design for this project included a workout page a body tracker page and calorie log page along with graphs. The scope of the project meant it was simplified down to a simple app that you can Create, Read, Update, and Delete a workout [(click here for original design)](). This original design is reflected in the User Stories. 
+
+The brand identity and colour theme has been chosen to project Strength and trust through the use of the two contrasting themes. The blues and whites of the Nord theme have been chosen to present trust, stability and professionalism. The halloween theme will help users while in dimly lit gyms to reduce eye strain, while the accent colors will help direct the users eyes directly towords the Call to action buttons.
+
 
 ##### Fonts
 
@@ -212,12 +239,10 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
  <summary>logo</summary>
 
 
+![logo dark theme](/frontend/src/assets/images/VV-logo-large.png)
+[logo light theme](/frontend/src/assets/images/VV-logo-blue-large.png)
 
-
-![logo]()
-
-
-
+The logo and name have been chosen becuase firstly the name suggests energetic and secure which are both important aspects to convey to the user. THe Logo then helps to back up this claim with a vault within a shield presenting a secure environment to create your workout.
 
   </details>
 
@@ -225,6 +250,8 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
  <details>
  <summary>Fonts</summary>
 
+
+The typography has been chosen using the Daisy UI default font. This helps to increase legibility, which is especially important in a workout setting where fatique may potentially set in so a simple font helps to reduce the cognitive load. Bold fonts have also been used to help add a hierarchy especially when you have a title like monday then the exercise list the bold font helps simplify the process for the user.
 
  </details>
 
@@ -237,6 +264,27 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
 
 
 ##### Colours
+
+The colours chosen are the nord theme for the light theme and halloween for the dark theme. The default colours for these themes are 
+Nord
+primary #5E81AC frost blue
+secondary #81A1C1 arctic blue
+accent #88C0D0 ice cyan
+base- 100 #ECEFF4 light background
+base-200 #E5E9F0 middle light background
+base-300 #D8DEE9 darker light background
+
+Halloween 
+primary #F28C18 jack-o-lantern orange
+secondary #6D3A9C spooky purple
+accent #51A800 poson green
+base- 100 #212121 charcoal black background
+base-200 #1a1a1a darker surface panel background
+base-300 #121212 deepest background tint
+
+More colour are avaliable for each theme but these are the ones used for the app.
+
+I chose these themes because I felt the contrast reflected suitable dark/light themes, whilst changing the psychological vibe of the app to reflec the users mood. Nords blues and whites provide a crisp, calm clean and clinical environment to lower the heart rate and make the workout fell more managable. Halloween in contrast gives a High intensity and aggressive vibe. The stark contrast between the charcoal and neon oranges, greens and purples help to create an energy boosting high adrenaline atmosphere. 
 
 
 
@@ -254,6 +302,7 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
 
 ---
 
+The styling has been chosen with efficency of movement in mind. This is shown in the use of the select elements across the app which give the user streamlined movements with less room for error helping both the user and the admin for the site. This reduces interaction cost and effort needed to create your workout and for flow of data. The styling has also been used  to soften the app and make it feel more like a trainer than a machine helping user interactivity.
 
 [back to top](#vitality-vault)
 
@@ -265,6 +314,7 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
 
 ---
 
+The background colour have been chosen to give the app soft layers drawing you to the content at the centre with use3 from base-100 for the background up to base-300 for the background of the cards with the information for the user. base-200 has been used to almost frame and bridge the gap between base-100 and base-300 across both themes adding for a unform yet softer feel for the user.
 
 [Back to top](#vitality-vault)
 
