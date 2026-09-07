@@ -13,7 +13,7 @@ export default defineConfig({
       'X-Frame-Options': 'DENY',
       
       
-      "Content-Security-Policy": "default-src 'self'; img-src 'self' https://*.cloudinary.com data:; connect-src 'self' https://vitality-vault-backend-c2878a5636af.herokuapp.com*; require-trusted-types-for 'script';"
+      "Content-Security-Policy": "default-src 'self'; img-src 'self' https://*.cloudinary.com data:; connect-src 'self' https://vitality-vault-backend-c2878a5636af.herokuapp.com; "
 
     }
   },
