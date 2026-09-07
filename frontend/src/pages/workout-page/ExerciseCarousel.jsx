@@ -76,8 +76,8 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
       alt = {exercise.exercise}
        />
     <div className="absolute left-10 right-10 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href={`#slide${previous}`} className="btn btn-circle bg-primary text-base-300">❮</a>
-      <a href={`#slide${next}`} className="btn btn-circle bg-primary text-base-300">❯</a>
+      <a href={`#slide${previous}`} className="btn btn-circle bg-primary text-base-300" aria-label="Previous Slide">❮</a>
+      <a href={`#slide${next}`} className="btn btn-circle bg-primary text-base-300" aria-label="Next Slide">❯</a>
 
       
     </div>
@@ -90,7 +90,6 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
       className = "scale-75 border-8 border-primary rounded-xl"
       
       src={theme ==="halloween"? Logo: Logoblue}
-      loading="lazy"
       alt = "No exercises planned"
        />
  </div>

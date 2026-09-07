@@ -482,11 +482,12 @@ The background colour have been chosen to give the app soft layers drawing you t
 
  <details>
 
-Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also added aria labels to all link tags and the a href tags for the facebook etc links as well as target = blank. Also found apop was being slowed down by quite a lot of unused usestate imports and MUI incons was installed but never deleted  after being unused so was removed from the codebase. I also still had some props being imported from before useContext was used so deleted these as well to help improve the score.A robots .txt file was also added so that the SEO score was imporved filling all criteria and giving results of 100 for accessibility best practices and SEo scores. 
 
 
  <summary>Lighthouse test results</summary>
-
+First lighthouse tests
+[origninal scores desktop](/frontend/src/assets/images/desktop-original-lighthouse.png)
+[original scores mobile](/frontend/src/assets/images/mobile-original-lighthouse.png)
 
 
 
@@ -498,7 +499,8 @@ Table of results goes here expected/actual
 #### Mobile lighthouse notes
 
 
-
+Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also added aria labels to all link tags and the a href tags for the facebook etc links as well as target = blank. Also found apop was being slowed down by quite a lot of unused usestate imports and MUI incons was installed but never deleted  after being unused so was removed from the codebase. I also still had some props being imported from before useContext was used so deleted these as well to help improve the score.A robots .txt file was also added so that the SEO score was imporved filling all criteria and giving results of 100 for accessibility best practices and SEo scores.
+Have ran lighthouse snapshot tests on all tab elements that do not get tested by the lighthouse test and have since added aria labels to the navigation links for the image carousel. 
 
 
 
@@ -509,11 +511,11 @@ Table of results goes here expected/actual
 #### Desktop lighthouse notes
 
 
+All scores are 90 or above with the exception of best practices. The only issue causing the 77 in best practices is the fact that the images come from cloudinary and because i lack the ability to change the domain name on my current package and subsequent security workarounds ended up breaking my application completely we found this to be an acceptable compromise. As we are only serving images the current security we have in place is more than subsequent enough to ensure the safety of the site and although google is registering it as a third party that is only due to the name as it is set up and maintained along with the application. 
 
 
 
 
-#### 404 lighthouse scores
 
 
 Table of results goes here 
@@ -522,7 +524,7 @@ Table of results goes here
 #### Mobile 404 notes
 
 
-
+THe link back to homepage was reducing the accessibility scores because it was inside a button so removed the button and styled the link to look like a button. Other than this all scores were in the 90s meaning any alterations were not needed. 
 
 
 #### Desktop 404 notes

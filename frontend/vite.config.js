@@ -8,20 +8,12 @@ export default defineConfig({
     headers: {
       
       'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
-      
-      
       'X-Frame-Options': 'DENY',
-      
-      
-      "Content-Security-Policy": "default-src 'self'; img-src 'self' https://*.cloudinary.com data:; connect-src 'self' https://vitality-vault-backend-c2878a5636af.herokuapp.com; "
 
     }
   },
   build: {
     outDir: "dist",
     emptyOutDir: true
-  },
-  preview: {
-    allowedHosts: ["://herokuapp.com"]
   }
 });
