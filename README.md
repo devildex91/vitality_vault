@@ -482,7 +482,7 @@ The background colour have been chosen to give the app soft layers drawing you t
 
  <details>
 
-Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also 
+Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also added aria labels to all link tags and the a href tags for the facebook etc links as well as target = blank. Also found apop was being slowed down by quite a lot of unused usestate imports and MUI incons was installed but never deleted  after being unused so was removed from the codebase. I also still had some props being imported from before useContext was used so deleted these as well to help improve the score.A robots .txt file was also added so that the SEO score was imporved filling all criteria and giving results of 100 for accessibility best practices and SEo scores. 
 
 
  <summary>Lighthouse test results</summary>

@@ -90,6 +90,7 @@ const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
       className = "scale-75 border-8 border-primary rounded-xl"
       
       src={theme ==="halloween"? Logo: Logoblue}
+      loading="lazy"
       alt = "No exercises planned"
        />
  </div>
