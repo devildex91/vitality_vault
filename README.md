@@ -485,50 +485,65 @@ Note--- all screenshots are of the dark halloween the3me but similar tests were 
 
 
  <summary>Lighthouse test results</summary>
-First lighthouse tests
-[origninal scores desktop](/frontend/src/assets/images/desktop-original-lighthouse.png)
+
+mobile lighthouse tests
+
 [original scores mobile](/frontend/src/assets/images/mobile-original-lighthouse.png)
+[final test mobile](/frontend/src/assets/images/mobile-second-lighthouse.png)
+[404 first test](/frontend/src/assets/images/404-page-original-lighthouse.png)
+[404 second test](/frontend//src/assets/images/404-page-mobile.png)
+[homepage](/frontend/src/assets/images/homepage-mobile-lighthouse-original.png)
+[register first](/frontend/src/assets/images/mobile-register-first-lighthouse.png)
+[register second](/frontend/src/assets/images/mobile-register-lighthouse.png)
+[login](/frontend/src/assets/images/login-mobile-lighthouse.png)
+
+desktop lighthouse tests
+[origninal scores desktop](/frontend/src/assets/images/desktop-original-lighthouse.png)
+[second desktop test](/frontend//src/assets/images/desktop-second-lighthouse.png)
 
 
+#### mobile content scores
 
-#### main content scores
-
-Table of results goes here expected/actual 
+| mobile              	| performance 	| Best practices 	| Accessibility 	| SEO     	| expected/actual 	|
+|---------------------	|-------------	|----------------	|---------------	|---------	|-----------------	|
+| workout plan/first  	| 95/86       	| 95/100         	| 95/89         	| 95/83   	|                 	|
+| workout plan second 	| 90/91       	| 100/100        	| 100/100       	| 90/92   	|                 	|
+| Homepage            	| 90/92       	| 95/100         	| 95/100        	| 95/100  	|                 	|
+| 404 page first      	| 95/99       	| 95/100         	| 95/96         	| 95/92   	|                 	|
+| 404 page second     	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
+| Register            	| 95/100      	| 95/100         	| 100/96        	| 100/100 	|                 	|
+| Register second     	| 95/100      	| 100/100        	| 100/100       	| 100/100 	|                 	|
+| Login               	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
 
 
 #### Mobile lighthouse notes
 
 
-Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also added aria labels to all link tags and the a href tags for the facebook etc links as well as target = blank. Also found apop was being slowed down by quite a lot of unused usestate imports and MUI incons was installed but never deleted  after being unused so was removed from the codebase. I also still had some props being imported from before useContext was used so deleted these as well to help improve the score.A robots .txt file was also added so that the SEO score was imporved filling all criteria and giving results of 100 for accessibility best practices and SEo scores.
-Have ran lighthouse snapshot tests on all tab elements that do not get tested by the lighthouse test and have since added aria labels to the navigation links for the image carousel. 
+Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also added aria labels to all link tags and the a href tags for the facebook etc links as well as target = blank. Also found apop was being slowed down by quite a lot of unused usestate imports and MUI incons was installed but never deleted  after being unused so was removed from the codebase. I also still had some props being imported from before useContext was used so deleted these as well to help improve the score. A robots .txt file was also added so that the SEO score was imporved filling all criteria and giving results of 100 for accessibility best practices and SEo scores.
+For the homepage as all of the scores were so high to start off with that I felt that the time could be better spent improving the other pages so left them as they were. 
+The 404 page dropped accessibility score because of a button element with a link tag within it which caused a saturation error for best practices. To solve this the button was removed and the link tag styled to look like a button so it worked for both accessibility and appearance. The register/login pages both gave me the same error which was the label elements were using a slightly different shade of the primary font which meant that the contrast was not good enough for the testing. I fixed this by styling both of them to match the same shade of font as the rest of the site. Upon getting this error made me check the nord theme which was failing contrast ratio because the standard primary font and background did not have enough contrast. To solve this i added a custom primary colour which is the same blue but a shade darker to pass contrast which is shown in the contrast testing section of the testing. 
+ 
 
 
 
 
+#### desktop lighthouse scores
 
-
+| Desktop             	| performance 	| Best practices 	| Accessibility 	| SEO     	| expected/actual 	|
+|---------------------	|-------------	|----------------	|---------------	|---------	|-----------------	|
+| workout plan/first  	| 95/97       	| 95/77          	| 95/90         	| 95/83   	|                 	|
+| workout plan second 	| 97/98       	| 77/77          	| 100/100       	| 90/92   	|                 	|
+| Homepage            	| 95/95       	| 95/100         	| 95/100        	| 95/100  	|                 	|
+| 404 page            	| 95/100      	| 95/100         	| 95/100        	| 95/100  	|                 	|
+| Login               	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
+| Register            	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
+|                     	|             	|                	|               	|         	|                 	|
+|                     	|             	|                	|               	|         	|                 	|
 
 #### Desktop lighthouse notes
 
 
-All scores are 90 or above with the exception of best practices. The only issue causing the 77 in best practices is the fact that the images come from cloudinary and because i lack the ability to change the domain name on my current package and subsequent security workarounds ended up breaking my application completely we found this to be an acceptable compromise. As we are only serving images the current security we have in place is more than subsequent enough to ensure the safety of the site and although google is registering it as a third party that is only due to the name as it is set up and maintained along with the application. 
-
-
-
-
-
-
-Table of results goes here 
-
-
-#### Mobile 404 notes
-
-
-THe link back to homepage was reducing the accessibility scores because it was inside a button so removed the button and styled the link to look like a button. Other than this all scores were in the 90s meaning any alterations were not needed. 
-
-
-#### Desktop 404 notes
-
+All scores are 90 or above with the exception of best practices. The only issue causing the 77 in best practices is the fact that the images come from cloudinary and because i lack the ability to change the domain name on my current package and subsequent security workarounds ended up breaking my application completely we found this to be an acceptable compromise. As we are only serving images the current security we have in place is more than subsequent enough to ensure the safety of the site and although google is registering it as a third party that is only due to the name as it is set up and maintained along with the application. Apart from this all other issues were solved whilst testing the mobile versions of the pages.
 
 
 
