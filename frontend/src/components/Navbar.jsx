@@ -108,9 +108,6 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
-      <div className="navbar-center">
-        
-      </div>
       <div className="navbar-end">
         
           <div className=" w-16 m-4">

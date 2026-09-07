@@ -7,12 +7,9 @@ import { Link, Outlet } from "react-router";
 import { useState, useEffect, createContext } from "react";
 
 export const CurrentPlanContext = createContext(null);
+const MOBILE_QUERY = "(max-width: 1023px)";
 
 export default function WorkoutPlan() {
-  // Dynamically changes which component depending on screen size as too complicted to change in one component
-  const MOBILE_QUERY = "(max-width: 640px)";
- 
-
   /*all loading and errors as well as workout plans stored in top level of workout section and passed to relevent components  */
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
@@ -87,26 +84,25 @@ useEffect(() => {
     fetchcurrentPlan();
   }, [workoutPlans]);
  
-  const getActiveView = () => {
-    if (typeof window === "undefined") return DesktopView;
-    if (window.matchMedia(MOBILE_QUERY).matches) return MobileView;
-    return DesktopView;
-  };
-
-  const [ViewType, setViewType] = useState(getActiveView);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches
+  );
 
   useEffect(() => {
     const mobileWatcher = window.matchMedia(MOBILE_QUERY);
 
-    function updateWorkoutScreen(e) {
-      setViewType(() => getActiveView());
+    function updateWorkoutScreen(event) {
+      setIsMobile(event.matches);
     }
+    setIsMobile(mobileWatcher.matches);
     mobileWatcher.addEventListener("change", updateWorkoutScreen);
 
     return function cleanup() {
       mobileWatcher.removeEventListener("change", updateWorkoutScreen);
     };
   }, []);
+
+  const ViewType = isMobile ? MobileView : DesktopView;
 
   /*useEffect to fetch EXERCISES from api  */
   useEffect(() => {
@@ -142,9 +138,9 @@ useEffect(() => {
   };
 };
   return (
-    <div className="flex min-h-screen flex-col bg-base-100 text-base-100">
+    <div className="flex min-h-screen min-w-0 flex-col overflow-x-hidden bg-base-100 text-base-100">
       <Navbar />
-      <header className = "flex flex-col items-center bg-base-300 justify-center border-primary border-1 p-4 mt-5 rounded-xl">
+      <header className = "mx-3 flex min-w-0 flex-col items-center bg-base-300 justify-center border-primary border-1 p-4 mt-5 rounded-xl">
         <h1 className = "text-primary font-bold mt-1 mb-3" >Workout Plan</h1>
         <h3 className = "text-primary font-bold"> Set/change your workout below</h3>
         <select
