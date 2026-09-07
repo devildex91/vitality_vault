@@ -63,13 +63,13 @@ export default function AuthForm({route, method}){
             )}
             {!loading && (
               <form onSubmit = {handleSubmit} className = "hero-content flex-col lg:flex-row-reverse bg-base-300 text-primary rounded-xl border-3 border-primary">
-               <h2>{method === 'register' ? "Register" : "Login"}</h2>
+               <h2 className = "text-primary font-bold">{method === 'register' ? "Register" : "Login"}</h2>
                {error && <div>{error}</div>}
                {success && <div>{success}</div>}
                <div className = "fieldset">
-                <label htmlFor="username" className="label text-primary">Username:</label>
+                <label htmlFor="username" className="label text-primary font-bold">Username:</label>
                 <input 
-                className = "input input-primary"
+                className = "input input-primary text-primary"
                 type = "text"
                 id="username"
                 name="username"
@@ -77,7 +77,7 @@ export default function AuthForm({route, method}){
                 onChange={(e) => setUsername(e.target.value)}
                 required />
 
-                 <label htmlFor="password" className = "label text-primary">Password:</label>
+                 <label htmlFor="password" className = "label text-primary font-bold">Password:</label>
                 <input 
                 className="input input-primary"
                 type = "password"
@@ -93,7 +93,7 @@ export default function AuthForm({route, method}){
                </button>
                {method === 'login' && (
                 <>
-                <p>Dont have an account?</p>
+                <p className = "text-primary font-bold">Dont have an account?</p>
                 <button onClick={()=> navigate("/register")} aria-label="register" className = "btn btn-soft text-primary border-3 border-primary">Register</button>
                 </>
                )}

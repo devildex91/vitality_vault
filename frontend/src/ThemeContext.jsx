@@ -12,7 +12,7 @@ export function ThemeProvider({ children }) {
   const [profileLoaded, setProfileLoaded] = useState(false);
   
   useEffect(() => {
-const accesstoken = localStorage.getItem("ACCESS_TOKEN");
+const accesstoken = localStorage.getItem(ACCESS_TOKEN);
 
 if(!accesstoken) {
   setProfileLoaded(true);

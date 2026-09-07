@@ -269,7 +269,7 @@ The typography has been chosen using the Daisy UI default font. This helps to in
 
 The colours chosen are the nord theme for the light theme and halloween for the dark theme. The default colours for these themes are 
 Nord
-primary #5E81AC frost blue
+primary #5E81AC frost blue(updated to #25364B to pass contrast ratios)
 secondary #81A1C1 arctic blue
 accent #88C0D0 ice cyan
 base- 100 #ECEFF4 light background
@@ -478,7 +478,7 @@ The background colour have been chosen to give the app soft layers drawing you t
 ---
 
 
-
+Note--- all screenshots are of the dark halloween the3me but similar tests were carried out for the Nord theme as well which after updating the primary-color for improved contrast ratios yielded the exact same results as the halloween theme.
 
  <details>
 

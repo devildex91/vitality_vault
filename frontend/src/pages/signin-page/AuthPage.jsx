@@ -19,7 +19,7 @@ export default function AuthPage({initialMethod}){
         <div className = "flex min-h-screen flex-col text-primary">
             <Navbar />
             <header>
-                <h1>{title}</h1>
+                <h1 className = "text-primary font-bold">{title}</h1>
             </header>
             <main className = "hero-content flex-col lg:flex-row-reverse grow">
             <AuthForm route = {route} method={method} />
