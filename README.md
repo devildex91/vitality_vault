@@ -17,6 +17,8 @@ changed workout plan section to useContext for picking  your workout sas origina
 
 Got GET POST PUT and DELETE working but state was not updating and the values were not showing in any select elements but were in backend to solve this added in a fetchworkoutPlan function and still had issue to discover was being saved to back end but was not registering to the user creating the workout so had to update the serializer to include user.
 First lighthouse tests resulted in adding meta description and link preconnect to html to help loading times, labels added to select boxes and forgotten aria labels for betrter accessbility. Images stored locally were also compressed for better contentful paint loading times. 
+
+Replaced media query with isMobile state in workout plan and adjusted screen sizes as was causing erratic behavior within the chrome browser as was not switching between screen sizes about 75 percent of the time so adjusted the media queries to suit. The root cause was origianlly their was a tablet view that spanned the middle ground between mobile and desktop which after i had scaled back the app was no longer required as the desktop and tablet view were near identical but as the desktop was already styled i chose to keep that and delete the tablet view. 
 ## Table of Contents
 
 
