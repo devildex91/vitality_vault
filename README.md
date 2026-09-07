@@ -482,7 +482,7 @@ The background colour have been chosen to give the app soft layers drawing you t
 
  <details>
 
-
+Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also 
 
 
  <summary>Lighthouse test results</summary>

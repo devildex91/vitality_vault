@@ -6,7 +6,7 @@ import { useTheme } from "../ThemeContext";
 import { Link} from "react-router";
 import Logoblue from "../assets/images/VV-logo-blue-large.png"
 export default function HomePage(){
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   console.log(theme)
 
     return (

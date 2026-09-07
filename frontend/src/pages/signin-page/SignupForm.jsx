@@ -23,7 +23,7 @@ const handleRegister = () => {
 
    <label className="label" htmlFor="password">Password</label>
   <input type="password" id="name" className="input" placeholder="Password" required />
-   <button type ="submit">Sign up now</button>
+   <button type ="submit" aria-label="sign up">Sign up now</button>
         </form>
         </div>
     )

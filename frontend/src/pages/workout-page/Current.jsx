@@ -1,6 +1,5 @@
 import React from "react";
-import {  useState, useContext } from "react";
-import { NavLink,Link, Outlet } from "react-router";
+import { useContext } from "react";
 import TodaysPlan from "./Today.jsx";
 import PreviousPlan from "./Previous.jsx";
 import TomorrowsPlan from "./Tomorrow.jsx";

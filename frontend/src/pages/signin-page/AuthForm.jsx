@@ -88,18 +88,18 @@ export default function AuthForm({route, method}){
                 required />
               
                </div>
-               <button type = "submit" className = "btn btn-soft text-primary border-3 border-primary">
+               <button type = "submit" aria-label="submit" className = "btn btn-soft text-primary border-3 border-primary">
                 {method === 'register'? 'Register' : 'Login'}
                </button>
                {method === 'login' && (
                 <>
                 <p>Dont have an account?</p>
-                <button onClick={()=> navigate("/register")} className = "btn btn-soft text-primary border-3 border-primary">Register</button>
+                <button onClick={()=> navigate("/register")} aria-label="register" className = "btn btn-soft text-primary border-3 border-primary">Register</button>
                 </>
                )}
                {method === 'register' && (
                 <>
-                <p>Already have an account ?</p> <button onClick={()=> navigate("/login")} className = "btn btn-soft text-primary border-3 border-primary">Login</button>
+                <p>Already have an account ?</p> <button onClick={()=> navigate("/login")} aria-label="register" className = "btn btn-soft text-primary border-3 border-primary">Login</button>
                 </>
                )}
               </form>

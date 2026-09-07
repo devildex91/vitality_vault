@@ -10,11 +10,11 @@ import Logoblue from "../../assets/images/VV-logo-blue-large.png"
 export default function ExerciseCarousel() {
 const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
  const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
-  const [weekDay, setWeekday]= useState(weekdays[new Date().getDay()])
+  const weekDay = weekdays[new Date().getDay()]
   const [exerciseImages, setExerciseImages] = useState([])
 /*Optional chaining added to make sure data is their to stop undefined error  */
   const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
-   const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
     useEffect(() => {
   const fetchExerciseImages = async () => {
     const exerciseIds = todaysPlan?.exercises

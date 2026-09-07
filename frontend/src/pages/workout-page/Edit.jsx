@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { CurrentPlanContext } from "./WorkoutPlan";
 import api from "../../api";
 
-export default function EditPlan({}) {
+export default function EditPlan() {
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedExercise, setSelectedExercise] = useState(null);
@@ -275,8 +275,12 @@ setError(null);
     <h2 className="card-title text-primary">Edit Plan</h2>
      <form onSubmit ={saveWorkout} className = "flex flex-col items-center ">
       {/*Workout Select */}
+      <label htmlFor="edit-workout" className="label text-primary font-bold mt-3">
+        Workout
+      </label>
       <select
-        className=" select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+        id="edit-workout"
+        className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
         value={selectedWorkout?.id || ""}
         onChange={(e) => {
           findWorkout(Number(e.target.value));
@@ -292,8 +296,12 @@ setError(null);
         })}
       </select>
       {/*Day Select */}
+      <label htmlFor="edit-day" className="label text-primary font-bold mt-3">
+        Workout day
+      </label>
       <select
-        className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+        id="edit-day"
+        className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
         value={selectedDay?.day || ""}
         disabled={!selectedWorkout}
         onChange={(e) => {
@@ -310,8 +318,12 @@ setError(null);
         })}
       </select>
       {/*Current exercise select  */}
+      <label htmlFor="edit-current-exercise" className="label text-primary font-bold mt-3">
+        Current exercise
+      </label>
       <select
-       className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+       id="edit-current-exercise"
+       className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
        value = {selectedExercise?.id || ""}
        disabled = {!selectedDay}
        onChange={(e) => findExercise(e.target.value)}
@@ -325,8 +337,12 @@ setError(null);
 
       </select>
       {/*New exercise select */}
+      <label htmlFor="edit-new-exercise" className="label text-primary font-bold mt-3">
+        New exercise
+      </label>
       <select
-      className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+      id="edit-new-exercise"
+      className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
       value = {newExercise?.exercise}
       disabled = {!selectedDay}
       onChange = {(e) => setNewExercise((exercise) =>({
@@ -343,8 +359,12 @@ setError(null);
                   })}
       </select>
       {/*sets select*/}
+      <label htmlFor="edit-sets" className="label text-primary font-bold mt-3">
+        Sets
+      </label>
       <select
-      className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+      id="edit-sets"
+      className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
       value ={newExercise?.sets}
       disabled={!newExercise}
       onChange={(e) => setNewExercise((exercise)=> ({
@@ -358,8 +378,12 @@ setError(null);
                   ))}
 </select>
 {/*reps select */}
+<label htmlFor="edit-reps" className="label text-primary font-bold mt-3">
+  Reps
+</label>
 <select
-className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+id="edit-reps"
+className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
 value={newExercise?.reps}
 disabled={!newExercise}
 onChange={(e) => setNewExercise((exercise) => ({
@@ -374,11 +398,11 @@ onChange={(e) => setNewExercise((exercise) => ({
 
 </select>
 <div id="buttonDiv" className = "flex flex-wrap justify-evenly">
-      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {updateWorkout}>Update Workout</button>
-      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteExercise}>Delete Exercise</button>
-      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteDay}>Delete day</button>
-      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "button" onClick = {deleteWorkout}>Delete Workout</button>
-      <button  className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" type = "submit">Save Workout</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" aria-label="update workout" type = "button" onClick = {updateWorkout}>Update Workout</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" aria-label="delete exercise" type = "button" onClick = {deleteExercise}>Delete Exercise</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" aria-label="delete day" type = "button" onClick = {deleteDay}>Delete day</button>
+      <button className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" aria-label="delete workout" type = "button" onClick = {deleteWorkout}>Delete Workout</button>
+      <button  className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3" aria-label="save workout" type = "submit">Save Workout</button>
       </div>
          </form>
         <div id = "workoutDisplay"

@@ -3,7 +3,6 @@ import Footer from "../../components/Footer.jsx";
 import MobileView from "./MobileView.jsx";
 import DesktopView from "./DesktopView.jsx";
 import api from "../../api.js";
-import { Link, Outlet } from "react-router";
 import { useState, useEffect, createContext } from "react";
 
 export const CurrentPlanContext = createContext(null);
@@ -142,9 +141,13 @@ useEffect(() => {
       <Navbar />
       <header className = "mx-3 flex min-w-0 flex-col items-center bg-base-300 justify-center border-primary border-1 p-4 mt-5 rounded-xl">
         <h1 className = "text-primary font-bold mt-1 mb-3" >Workout Plan</h1>
-        <h3 className = "text-primary font-bold"> Set/change your workout below</h3>
+        <h2 className = "text-primary font-bold"> Set/change your workout below</h2>
+        <label htmlFor="current-workout" className="label text-primary font-bold mt-3">
+          Current workout
+        </label>
         <select
-                  className="select select-primary bg-base-300 text-primary font-bold focus:border-3 mt-3"
+                  id="current-workout"
+                  className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
                   value={selectedWorkout?.title|| ""}
                   onChange={(e) => {
                     findWorkout(e.target.value)

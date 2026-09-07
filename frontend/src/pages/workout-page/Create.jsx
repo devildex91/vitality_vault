@@ -1,6 +1,5 @@
 import React from "react";
-import { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
 import api from "../../api";
 import { CurrentPlanContext } from "./WorkoutPlan";
 
@@ -107,12 +106,16 @@ export default function CreatePlan() {
   };
   return (
     <>
-      {loading && <p>loading...</p>}
+      {loading && <p><span className="loading loading-spinner loading-xl"></span></p>}
       {error && <p className="text-red-500">{error}</p>}
       <div className="card lg:card-side bg-base-300 text-primary  shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
-        <div className="card-body  rounded-xl text-align-center">
+        <div className="card-body  rounded-xl text-align-center"  >
           <h2 className="card-title text-primary">Create Plan</h2>
           <form onSubmit={handleSubmit}>
+            <div className= " flex flex-col gap-1">
+            <label htmlFor="workout_title" className="label text-primary font-bold mt-3">
+                  Workout title
+                  </label>
             <input
               type="text"
               id="workout_title"
@@ -128,6 +131,7 @@ export default function CreatePlan() {
               className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300 "
               required
             />
+            </div>
             {weeksWorkout.days.map((dayObj, dayIndex) => (
               <fieldset
                 key={dayIndex}
@@ -137,8 +141,12 @@ export default function CreatePlan() {
                   {dayObj.day}
                 </h3>
                 {/*Exercise Selection */}
+                <label htmlFor={`create-exercise-${dayIndex}`} className="label text-primary font-bold mt-3">
+                  Exercise
+                </label>
                 <select
-                  className="select select-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
+                  id={`create-exercise-${dayIndex}`}
+                  className="select select-primary bg-base-300 font-bold focus:border-3 focus:border-base-300"
                   value={selectedExercises[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedExercises((prev) => ({
@@ -157,8 +165,12 @@ export default function CreatePlan() {
                   })}
                 </select>
                 {/*Sets Selection */}
+                <label htmlFor={`create-sets-${dayIndex}`} className="label text-primary font-bold mt-3">
+                  Sets
+                </label>
                 <select
-                  className="select select-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300  mt-3"
+                  id={`create-sets-${dayIndex}`}
+                  className="select select-primary bg-base-300 font-bold focus:border-3 focus:border-base-300"
                   value={selectedSets[dayIndex] || ""}
                   onChange={(e) => {
                     setSelectedSets((prev) => ({
@@ -175,8 +187,12 @@ export default function CreatePlan() {
                   ))}
                 </select>
                 {/*Reps Selection */}
+                <label htmlFor={`create-reps-${dayIndex}`} className="label text-primary font-bold mt-3">
+                  Reps
+                </label>
                 <select
-                  className="select select-primary bg-base-300 font-bold  focus:border-3 focus:border-base-300 mt-3"
+                  id={`create-reps-${dayIndex}`}
+                  className="select select-primary bg-base-300 font-bold focus:border-3 focus:border-base-300"
                   value={selectedReps[dayIndex]}
                   onChange={(e) => {
                     setSelectedReps((prev) => ({
@@ -194,6 +210,7 @@ export default function CreatePlan() {
                 </select>
                 <button
                   type="button"
+                  aria-label="Add Exercise"
                   className="btn btn-soft border-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
                   onClick={() => handleAddExercise(dayIndex, dayObj)}
                 >
@@ -221,6 +238,7 @@ export default function CreatePlan() {
 
             <button
               type="submit"
+              aria-label="submit plan"
                className="btn btn-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
             >
               Submit Plan

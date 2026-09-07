@@ -6,8 +6,8 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "light"
   );
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [, setLoading] = useState(false)
+  const [, setError] = useState(false)
 
   useEffect(() => {
     const preferredTheme  = async () => {

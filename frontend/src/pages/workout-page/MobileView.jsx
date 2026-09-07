@@ -1,6 +1,4 @@
 import React from "react"
-import { useState } from "react";
-import { NavLink, Link, Outlet } from "react-router";
 import CurrentPlan from "./Current";
 import CreatePlan from "./Create";
 import EditPlan from "./Edit";

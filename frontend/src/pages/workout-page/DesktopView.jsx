@@ -1,6 +1,5 @@
 import React from "react"
 import { useContext } from "react";
-import { NavLink, Outlet } from "react-router";
 import CreatePlan from "./Create";
 import EditPlan from "./Edit";
 import FullPlan from "./Full";

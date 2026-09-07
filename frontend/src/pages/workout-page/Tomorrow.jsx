@@ -1,10 +1,10 @@
 import React from "react";
-   import { useState, useContext } from "react";
+  import { useContext } from "react";
    import { CurrentPlanContext } from "./WorkoutPlan.jsx";
    export default function TomorrowsPlan(){
     const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
     const tomorrow = (new Date().getDay() + 1) % 7
-    const [weekDay, setWeekday]= useState(weekdays[tomorrow])
+    const weekDay = weekdays[tomorrow]
       const {selectedWorkout} = useContext(CurrentPlanContext);
       const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
       

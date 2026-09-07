@@ -23,7 +23,7 @@ export default function Navbar() {
     <div className="navbar bg-base-200 shadow-sm border-3 border-base-200 border-b-primary ">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <div tabIndex={0} role="button" aria-label="dropdown button"className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-primary"
@@ -47,29 +47,29 @@ export default function Navbar() {
             <nav>
   {isAuthorized ? (
     <li className="bg-base-100 focus:border-2-primary text-primary">
-      <Link onClick={handleLogout} to="/">
+      <Link aria-label="Logout" onClick={handleLogout} to="/">
         Logout
       </Link>
     </li>
   ) : location.pathname === "/login" ? (
     <>
       <li className="bg-base-100 focus:border-2-primary text-primary">
-        <Link to="/">Home</Link>
+        <Link aria-label="Home" to="/">Home</Link>
       </li>
       <li className="bg-base-100 focus:border-2-primary text-primary">
-        <Link to="/register">Register</Link>
+        <Link aria-label="regiter" to="/register">Register</Link>
       </li>
     </>
   ) : (
     <>
       <li className="bg-base-100 focus:border-2-primary text-primary">
-        <Link to="/">Home</Link>
+        <Link aria-label="Home" to="/">Home</Link>
       </li>
       <li className="bg-base-100 focus:border-2-primary text-primary">
-        <Link to="/login">Login</Link>
+        <Link aria-label="login" to="/login">Login</Link>
       </li>
        <li className="bg-base-100 focus:border-2-primary text-primary">
-        <Link to="/register">Register</Link>
+        <Link aria-label="register" to="/register">Register</Link>
         </li>
     </>
   )}
