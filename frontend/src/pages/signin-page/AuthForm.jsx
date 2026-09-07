@@ -67,7 +67,7 @@ export default function AuthForm({route, method}){
                {error && <div>{error}</div>}
                {success && <div>{success}</div>}
                <div className = "fieldset">
-                <label htmlFor="username" className="label">Username:</label>
+                <label htmlFor="username" className="label text-primary">Username:</label>
                 <input 
                 className = "input input-primary"
                 type = "text"
@@ -77,7 +77,7 @@ export default function AuthForm({route, method}){
                 onChange={(e) => setUsername(e.target.value)}
                 required />
 
-                 <label htmlFor="password" className = "label">Password:</label>
+                 <label htmlFor="password" className = "label text-primary">Password:</label>
                 <input 
                 className="input input-primary"
                 type = "password"
