@@ -15,7 +15,6 @@ export default function NotFound() {
          <p className = "text-primary">Sorry, the page youve been looking for does not exist.</p>
           <Link className="btn btn-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 p-3 my-3" to="/" aria-label="return to home">Return to Home</Link>
          </div>
-         
          </main>
         <Footer />
         </div>

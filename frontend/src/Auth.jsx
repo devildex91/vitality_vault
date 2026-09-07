@@ -12,8 +12,6 @@ export default function useAuthentication(){
         const auth = async () => {
             const token = localStorage.getItem(ACCESS_TOKEN);
 
-            console.log('ACCESS_TOKEN', token);
-
             if(token) {
                 const decoded = jwtDecode(token);
                 const tokenExpiration = decoded.exp;

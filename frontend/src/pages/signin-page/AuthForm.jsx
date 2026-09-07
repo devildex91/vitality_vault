@@ -99,7 +99,7 @@ export default function AuthForm({route, method}){
                )}
                {method === 'register' && (
                 <>
-                <p>Already have an account ?</p> <button onClick={()=> navigate("/login")} aria-label="register" className = "btn btn-soft text-primary border-3 border-primary">Login</button>
+                <p>Already have an account ?</p> <button onClick={()=> navigate("/login")} className = "btn btn-soft text-primary border-3 border-primary">Login</button>
                 </>
                )}
               </form>

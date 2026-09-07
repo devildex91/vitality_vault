@@ -7,7 +7,7 @@ import { Link} from "react-router";
 import Logoblue from "../assets/images/VV-logo-blue-large.png"
 export default function HomePage(){
   const { theme } = useTheme();
-  console.log(theme)
+
 
     return (
            <div className = "flex min-h-screen flex-col">
