@@ -37,7 +37,7 @@ export default function FullPlan() {
                 <tr>
                   <th />
                   <td className="border-2 border-primary break-words">Rest Day</td>
-                   <td className="border-2 border-accent break-words">
+                   <td className="border-2 border-primary break-words">
                       0
                     </td>
                     <td className="border-2 border-primary break-words">
@@ -50,7 +50,7 @@ export default function FullPlan() {
                   <th key={exerciseIndex}></th><td className="border-2 border-primary break-words">
                       {exercise.exercise.replace(/_/g, " ")}
                     </td>
-                    <td className="border-2 border-accent break-words">
+                    <td className="border-2 border-primary break-words">
                       {exercise.sets}
                     </td>
                     <td className="border-2 border-primary break-words">

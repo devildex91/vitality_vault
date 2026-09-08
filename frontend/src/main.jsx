@@ -7,11 +7,10 @@ import { ThemeProvider } from './ThemeContext.jsx';
 /*import router from './AppRoutes.jsx'
  /*<RouterProvider router={router} />*/
 createRoot(document.getElementById('root')).render(
+  <StrictMode>
    <ThemeProvider>
-   <StrictMode>
   <App />
-  </StrictMode>
   </ThemeProvider>
-    
+    </StrictMode>
   
 )

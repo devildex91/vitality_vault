@@ -9,3 +9,8 @@
   name: "nord";
   --color-primary: #25364B; 
 }
+
+form,
+form * {
+  border-color: var(--color-primary);
+}
