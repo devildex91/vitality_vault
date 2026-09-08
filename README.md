@@ -1,33 +1,12 @@
 # Vitality Vault
 
-
-
-
 ---
-
-
-
 
 [To view site]()
 
-
-registration not working properly on test so ran through all seperate Auth files and backend and found a missing trailing / on my register api call which was causing it to fail
-couldnt access deployed site got 400 errors followed by 500 errors and had to update my middlewar for cors headers and update both my Allowed hosts and run migrations to my heroku backend to fix the database link
-changed workout plan section to useContext for picking  your workout sas originally was in my current workout section but as the layour changes dramatically on different screen sizes i could no longer access the state from the other screen layouts.
-
-Got GET POST PUT and DELETE working but state was not updating and the values were not showing in any select elements but were in backend to solve this added in a fetchworkoutPlan function and still had issue to discover was being saved to back end but was not registering to the user creating the workout so had to update the serializer to include user.
-First lighthouse tests resulted in adding meta description and link preconnect to html to help loading times, labels added to select boxes and forgotten aria labels for betrter accessbility. Images stored locally were also compressed for better contentful paint loading times. 
-
-Replaced media query with isMobile state in workout plan and adjusted screen sizes as was causing erratic behavior within the chrome browser as was not switching between screen sizes about 75 percent of the time so adjusted the media queries to suit. The root cause was origianlly their was a tablet view that spanned the middle ground between mobile and desktop which after i had scaled back the app was no longer required as the desktop and tablet view were near identical but as the desktop was already styled i chose to keep that and delete the tablet view. 
 ## Table of Contents
 
-
-
-
 ## [UX](#ux-1)
-
-
-
 
 [Primary Goals](#primary-goals)  
 [Business Goals](#business-goals)  
@@ -36,202 +15,102 @@ Replaced media query with isMobile state in workout plan and adjusted screen siz
 [Design Choices](#design-choices)  
 [Wireframes](#wireframes)
 
-
-
-
 ## [Features](#features-1)
 
-
-
-
 [Existing features](#existing-features)  
-[User Goals mapping](#user-goals-mapping)    
+[User Goals mapping](#user-goals-mapping)  
 [Features left to implement](#features-left-to-implement)  
-[User Goals still to implement](#user-goals-still-to-implement)  
-
-
-
+[User Goals still to implement](#user-goals-still-to-implement)
 
 ## [Technologies used](#technologies-used-1)
 
-
-
-
 ## [Testing](#testing-1)
-
-
-
 
 [Lighthouse tests](#lighthouse-tests)  
 [HTML tests](#html-tests)  
 [CSS tests](#css-tests)  
-[JSX tests](#jsx-tests)  
 [Contrast tests](#contrast-tests)  
 [Keyboard Accessibility tests](#keyboard-accessibility-tests)  
 [Development bugs and fixes](#development-bugs-and-fixes)  
 [Cross browser testing](#cross-browser-testing)  
 [User Testing](#user-testing)
 
-
-
-
 ## [Deployment](#deployment-1)
-
-
-
 
 [How to run this project](#how-to-run-project)
 
-
-
-
 ## [Credits](#credits-1)
+
 [Content/Media/Code/Acknowledgements](#contentmediacodeacknowledgements)  
 [dependencies](#dependencies-for-reactvite)
 
-
-
-
-
-
-
-
-
-
-
-
 ### UX
 
-
-
-
 ---
-
-
-
 
 #### Primary Goals
 
-
-
-
 ---
 
+The primary goals of Vitality Vault are:
 
-
-
-The primary goals of Vitality Vault are: 
 - To help simplify working out.
- - To provide an extensive list of exercises to choose from and simple form with which to build workouts from.
- - To show that a gym membership is not required and whatever your fitness level you can work out.
- - To get people working out.
- - To get users trying new exercises they may not have heard of before.
-
-
-
-
+- To provide an extensive list of exercises to choose from and simple form with which to build workouts from.
+- To show that a gym membership is not required and whatever your fitness level you can work out.
+- To get people working out.
+- To get users trying new exercises they may not have heard of before.
 
 [Back to top](#vitality-vault)
-
-
-
 
 #### Business Goals
 
-  
-
-
 ---
 
-
-
-
 The business goals of Vitality Vault are:
+
 - To simplify planning a workout
 - Optimise peoples workouts.
 - Maximise users experience by making the whole process as streamlined and simple as possible.
-- Long term business goals are to provide an all in one experience that users can track progress and upload weights used and get back body composition information as well as calorie tracking. 
-
-
-
-
+- Long term business goals are to provide an all in one experience that users can track progress and upload weights used and get back body composition information as well as calorie tracking.
 
 [Back to top](#vitality-vault)
 
-
-
-
 #### User Goals
-
-
-
 
 ---
 
-
-
-
 The goals for users would be:
+
 - Save time looking for the perfect workout
 - Reduce time wasted by creating a personalised workout that suits their lifestyle
 - Avoid injuries by providing images so they know exactly what to do.
 - Find inspiration from new exercises.
 
-
-
-
-
-
 [Back to top](#vitality-vault)
-
-
-
 
 #### User Stories
 
-
-
-
 ---
-
-
-
 
 For full Acceptance Criteria and tasks please follow [this link](https://github.com/users/devildex91/projects/8) to the project board for Vitality Vault.
 
-- As a *user tracking my strength, *I can *view the specific details  of a previous days  workout I completed  *so that *I know exactly what Ive been doing to make sure Im not doing the wrong workout  .*
+- As a *user tracking my strength, *I can *view the specific details of a previous days workout I completed *so that _I know exactly what Ive been doing to make sure Im not doing the wrong workout ._
 
-- As a *registered fitness user,* I can *create and save a custom workout routine with a name and a list of exercises * so that * I can quickly select it whenever I go to the gym.*
+- As a _registered fitness user,_ I can _create and save a custom workout routine with a name and a list of exercises _ so that _ I can quickly select it whenever I go to the gym._
 
-- As a *flexible trainee,* I can *edit the sets  and reps of a previously  created workout * so that * I can keep my workouts fresh and up to date*
+- As a _flexible trainee,_ I can _edit the sets and reps of a previously created workout _ so that _ I can keep my workouts fresh and up to date_
 
--As a *user cleaning up my profile,* I can *delete an old workout routine that I no longer perform* so that *my list of active routines stays organised and clutter-free.*
-
-
-
-
-
-
-
-
-
-
-
-
+-As a _user cleaning up my profile,_ I can _delete an old workout routine that I no longer perform_ so that _my list of active routines stays organised and clutter-free._
 
 [Back to top](#vitality-vault)
-
-
-
 
 #### Design Choices
 
 ---
 
-The original design for this project included a workout page a body tracker page and calorie log page along with graphs. The scope of the project meant it was simplified down to a simple app that you can Create, Read, Update, and Delete a workout [(click here for original design)](). This original design is reflected in the User Stories. 
+The original design for this project included a workout page a body tracker page and calorie log page along with graphs. The scope of the project meant it was simplified down to a simple app that you can Create, Read, Update, and Delete a workout [(click here for original design)](). This original design is reflected in the User Stories.
 
 The brand identity and colour theme has been chosen to project Strength and trust through the use of the two contrasting themes. The blues and whites of the Nord theme have been chosen to present trust, stability and professionalism. The halloween theme will help users while in dimly lit gyms to reduce eye strain, while the accent colors will help direct the users eyes directly towords the Call to action buttons.
-
 
 ##### Fonts
 
@@ -240,7 +119,6 @@ The brand identity and colour theme has been chosen to project Strength and trus
   <details>
  <summary>logo</summary>
 
-
 ![logo dark theme](/frontend/src/assets/images/VV-logo-large.png)
 [logo light theme](/frontend/src/assets/images/VV-logo-blue-large.png)
 
@@ -248,71 +126,45 @@ The logo and name have been chosen becuase firstly the name suggests energetic a
 
   </details>
 
-
  <details>
  <summary>Fonts</summary>
-
 
 The typography has been chosen using the Daisy UI default font. This helps to increase legibility, which is especially important in a workout setting where fatique may potentially set in so a simple font helps to reduce the cognitive load. Bold fonts have also been used to help add a hierarchy especially when you have a title like monday then the exercise list the bold font helps simplify the process for the user.
 
  </details>
 
-
-
-
 [Back to top](#vitality-vault)
-
-
-
 
 ##### Colours
 
-The colours chosen are the nord theme for the light theme and halloween for the dark theme. The default colours for these themes are 
+The colours chosen are the nord theme for the light theme and halloween for the dark theme. The default colours for these themes are
 Nord
 primary #5E81AC frost blue(updated to #25364B to pass contrast ratios)
-secondary #81A1C1 arctic blue
-accent #88C0D0 ice cyan
 base- 100 #ECEFF4 light background
 base-200 #E5E9F0 middle light background
 base-300 #D8DEE9 darker light background
 
-Halloween 
+Halloween
 primary #F28C18 jack-o-lantern orange
-secondary #6D3A9C spooky purple
-accent #51A800 poson green
 base- 100 #212121 charcoal black background
 base-200 #1a1a1a darker surface panel background
 base-300 #121212 deepest background tint
 
 More colour are avaliable for each theme but these are the ones used for the app.
 
-I chose these themes because I felt the contrast reflected suitable dark/light themes, whilst changing the psychological vibe of the app to reflec the users mood. Nords blues and whites provide a crisp, calm clean and clinical environment to lower the heart rate and make the workout fell more managable. Halloween in contrast gives a High intensity and aggressive vibe. The stark contrast between the charcoal and neon oranges, greens and purples help to create an energy boosting high adrenaline atmosphere. 
-
-
-
-
-
-
+I chose these themes because I felt the contrast reflected suitable dark/light themes, whilst changing the psychological vibe of the app to reflec the users mood. Nords blues and whites provide a crisp, calm clean and clinical environment to lower the heart rate and make the workout fell more managable. Halloween in contrast gives a High intensity and aggressive vibe. The stark contrast between the charcoal and neon oranges, greens and purples help to create an energy boosting high adrenaline atmosphere.
 
 [Back to top](#vitality-vault)
 
-
-
-
 ##### Styling
-
 
 ---
 
-The styling has been chosen with efficency of movement in mind. This is shown in the use of the select elements across the app which give the user streamlined movements with less room for error helping both the user and the admin for the site. This reduces interaction cost and effort needed to create your workout and for flow of data. The styling has also been used  to soften the app and make it feel more like a trainer than a machine helping user interactivity.
+The styling has been chosen with efficency of movement in mind. This is shown in the use of the select elements across the app which give the user streamlined movements with less room for error helping both the user and the admin for the site. This reduces interaction cost and effort needed to create your workout and for flow of data. The styling has also been used to soften the app and make it feel more like a trainer than a machine helping user interactivity.
 
 [back to top](#vitality-vault)
 
-
-
-
 ##### Background
-
 
 ---
 
@@ -320,169 +172,91 @@ The background colour have been chosen to give the app soft layers drawing you t
 
 [Back to top](#vitality-vault)
 
-
-
-
 ##### Images
-
 
 ---
 
-
 [Back to top](#vitality-vault)
-
-
-
 
 ##### Wireframes
 
-
 ---
 
-
 [Back to top](#vitality-vault)
-
-
-
 
 ### Features
 
-
-
-
 ---
-
-
-
 
 #### Existing Features
 
-
 ---
-
-
-
-
-
-
-
-
 
 [Back to top](#vitality-vault)
+
 ### User Goals mapping
 
-
-
-
 ---
-
-
-
 
 <details>
 <summary>User goals mapping</summary>
 
-
-
-
 - To support the existing features that have been implemented, please see the table below that outlines implemented User Stories and their supporting evidence screenshots.
 
-
-
 [Back to top](#vitality-vault)
-</details>
 
+</details>
 
 #### Features left to implement
 
-
-
-
 ---
 
-
-
 [Back to top](#vitality-vault)
-
 
 ### User Goals still to implement
 
 ---
 
-
-
-
 <details>
 <summary>User stories still to implement</summary>
 
-
-
-
 - Please see the table below that shows the User Stores behind the features left to implement along with our reasoning for not implementing them yet.
-
-
 
 </details>
 
-
-
-
 [Back to top](#vitality-vault)
-
-
-
 
 ### Technologies used
 
-
-
-
 ---
-| Technology      | Use                                        |
-|---------------- |------------------------------------------- |
-| Visual Studios  | Primary IDE                                |
-|  Vite           | Development Server                         |
-| React           | Javascript library/component architecture  |
-| GITHUB          | Hosting and managing repositories          |
-| GEMINI          | Supported learning and best practices      |
-| GITHUB copilot  | Supported learning and best practices      |
-| HTML            | Language used                              |
-| CSS             | Language used                              |
-|Javascript       | Language used                              |
-|Django           | Backend Environment                        |
-|Ninja API        | API linking react and Django               | 
 
-
-
-
-
-
-
+| Technology     | Use                                       |
+| -------------- | ----------------------------------------- |
+| Visual Studios | Primary IDE                               |
+| Vite           | Development Server                        |
+| React          | Javascript library/component architecture |
+| GITHUB         | Hosting and managing repositories         |
+| GEMINI         | Supported learning and best practices     |
+| GITHUB copilot | Supported learning and best practices     |
+| HTML           | Language used                             |
+| CSS            | Language used                             |
+| Javascript     | Language used                             |
+| Django         | Backend Environment                       |
+| Ninja API      | API linking react and Django              |
 
 [Back to top](#vitality-vault)
 
-
-
-
 ## Testing
 
-
-
-
 ---
-
-
-
 
 ### Lighthouse tests
----
 
+---
 
 Note--- all screenshots are of the dark halloween the3me but similar tests were carried out for the Nord theme as well which after updating the primary-color for improved contrast ratios yielded the exact same results as the halloween theme.
 
  <details>
-
-
 
  <summary>Lighthouse test results</summary>
 
@@ -503,309 +277,229 @@ desktop lighthouse tests
 [404 mobile test](/frontend/src/assets/images/404-page-mobile.png)
 [homepage](/frontend/src/assets/images/homepage-mobile-lighthouse-original.png)
 [register mobile](/frontend/src/assets/images/mobile-register-first-lighthouse.png)
-[register second](/frontend/src/assets/images/mobile-register-lighthouse.png) 
+[register second](/frontend/src/assets/images/mobile-register-lighthouse.png)
 [login mobile](/frontend/src/assets/images/login-mobile-lighthouse.png)
-
 
 #### mobile content scores
 
-| mobile              	| performance 	| Best practices 	| Accessibility 	| SEO     	| expected/actual 	|
-|---------------------	|-------------	|----------------	|---------------	|---------	|-----------------	|
-| workout plan/first  	| 95/86       	| 95/100         	| 95/89         	| 95/83   	|                 	|
-| workout plan second 	| 90/91       	| 100/100        	| 100/100       	| 90/92   	|                 	|
-| Homepage            	| 90/92       	| 95/100         	| 95/100        	| 95/100  	|                 	|
-| 404 page first      	| 95/99       	| 95/100         	| 95/96         	| 95/92   	|                 	|
-| 404 page second     	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
-| Register            	| 95/100      	| 95/100         	| 100/96        	| 100/100 	|                 	|
-| Register second     	| 95/100      	| 100/100        	| 100/100       	| 100/100 	|                 	|
-| Login               	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
-
+| mobile              | performance | Best practices | Accessibility | SEO     | expected/actual |
+| ------------------- | ----------- | -------------- | ------------- | ------- | --------------- |
+| workout plan/first  | 95/86       | 95/100         | 95/89         | 95/83   |                 |
+| workout plan second | 90/91       | 100/100        | 100/100       | 90/92   |                 |
+| Homepage            | 90/92       | 95/100         | 95/100        | 95/100  |                 |
+| 404 page first      | 95/99       | 95/100         | 95/96         | 95/92   |                 |
+| 404 page second     | 100/100     | 100/100        | 100/100       | 100/100 |                 |
+| Register            | 95/100      | 95/100         | 100/96        | 100/100 |                 |
+| Register second     | 95/100      | 100/100        | 100/100       | 100/100 |                 |
+| Login               | 100/100     | 100/100        | 100/100       | 100/100 |                 |
 
 #### Mobile lighthouse notes
-
 
 When first testing the workout plan page for mobiles, I had to add labels to all select/ input elements to imporve accessibility.Aria labels were then added to all link tags and the href tags for all social media links as well as target = blank being added to make sure it opened in an external page. We then found app was being slowed down by quite a lot of unused javascript. To fix this we subsequently deleted all redundent code such as unused imports and old useState. While deleting these we discoverd that MUI icons had been installed but never deleted so also removed this from the codebase. While creating the app I also removed some prop drilling and replaced it with useContext. THis led to some props still being in the codebase which meant we also had to delete all of these redundent props. After all of these had been deleted to improve the SEO score a robots.txt file was added on reccomendation from the lighthouse test. Once all of these improvements had been made the scores increased considerably across the board with everything hitting 90 or above.
 
 After these improvements had been made across the board while testing the workout page, when i came to test the homepage i found that no more imporvements were nescesary as the scores were all hitting 90 or above.
 
-Following on from this we moved onto the register/login pages which both threw up the same error. This error was the fact that the label elements were using a slightly different shade of the primary font which had gone unnoticed until testing. This lighter shade meant  that the contrast test failed. I fixed this by styling both of them to match the same shade of font as the rest of the site. Once I had solved this error I realised that I had not tested the nord theme at all which on investigation was failing contrast ratio because the standard primary colour used for the font although passed on Halloween failed on nord, because the background did not have enough contrast with this primary font. I solved this by adding custom styling to change the colour of the primary colour on the nord theme which then passed contrast testing.As this was  the only difference between the tests on Nord and the tests on Halloween themes I have chosen not to supply the Nord tests as well as the Halloween tests as I do not feel there is anything to be gained but have providerd both the failed contrast tests and changed colour contrast tests in the relevent section. 
- 
+Following on from this we moved onto the register/login pages which both threw up the same error. This error was the fact that the label elements were using a slightly different shade of the primary font which had gone unnoticed until testing. This lighter shade meant that the contrast test failed. I fixed this by styling both of them to match the same shade of font as the rest of the site. Once I had solved this error I realised that I had not tested the nord theme at all which on investigation was failing contrast ratio because the standard primary colour used for the font although passed on Halloween failed on nord, because the background did not have enough contrast with this primary font. I solved this by adding custom styling to change the colour of the primary colour on the nord theme which then passed contrast testing.As this was the only difference between the tests on Nord and the tests on Halloween themes I have chosen not to supply the Nord tests as well as the Halloween tests as I do not feel there is anything to be gained but have providerd both the failed contrast tests and changed colour contrast tests in the relevent section.
 
-The 404 page lighthouse testing showed a dropped accessibility score. This was because of a button element with a link tag within it w causing a saturation and spacing error for best practices. The remedy for this was to remove the button element completely. Then the link tag was  styled to look like a button so it worked for both accessibility and appearance. 
-
-
+The 404 page lighthouse testing showed a dropped accessibility score. This was because of a button element with a link tag within it w causing a saturation and spacing error for best practices. The remedy for this was to remove the button element completely. Then the link tag was styled to look like a button so it worked for both accessibility and appearance.
 
 #### desktop lighthouse scores
 
-| Desktop             	| performance 	| Best practices 	| Accessibility 	| SEO     	| expected/actual 	|
-|---------------------	|-------------	|----------------	|---------------	|---------	|-----------------	|
-| workout plan/first  	| 95/97       	| 95/77          	| 95/90         	| 95/83   	|                 	|
-| workout plan second 	| 97/98       	| 77/77          	| 100/100       	| 90/92   	|                 	|
-| Homepage            	| 95/95       	| 95/100         	| 95/100        	| 95/100  	|                 	|
-| 404 page            	| 95/100      	| 95/100         	| 95/100        	| 95/100  	|                 	|
-| Login               	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
-| Register            	| 100/100     	| 100/100        	| 100/100       	| 100/100 	|                 	|
-|                     	|             	|                	|               	|         	|                 	|
-|                     	|             	|                	|               	|         	|                 	|
+| Desktop             | performance | Best practices | Accessibility | SEO     | expected/actual |
+| ------------------- | ----------- | -------------- | ------------- | ------- | --------------- |
+| workout plan/first  | 95/97       | 95/77          | 95/90         | 95/83   |                 |
+| workout plan second | 97/98       | 77/77          | 100/100       | 90/92   |                 |
+| Homepage            | 95/95       | 95/100         | 95/100        | 95/100  |                 |
+| 404 page            | 95/100      | 95/100         | 95/100        | 95/100  |                 |
+| Login               | 100/100     | 100/100        | 100/100       | 100/100 |                 |
+| Register            | 100/100     | 100/100        | 100/100       | 100/100 |                 |
+|                     |             |                |               |         |                 |
+|                     |             |                |               |         |                 |
 
 #### Desktop lighthouse notes
 
 All testing for Desktop sized screens was carried out alongside mobile testing with the only real problem coming from the workoutplan page.
-This issue was because the carousel of images only renders itself on tablet screen and above. This led to a previously unforeseen error from third party cookies, because although they are from a linked cloudinary account as the name of the account is a provided name they are being seen as third party cookies. To try to remedy this I added some security patches into the relevent vercel.json this led to more problems and failing to load the images at all. The simplest fix for this would have been to change the name of my cloudinary account but was unable to do so because of the type of account it is. After trying a few different ways around  the issue I decided that it was bet to be left as is as we know that it is not a third party and I do not have the relevent plan on cloudinary to fix the issue. As the other scores are all in the 90s and it is only the best practice score lower than I would like I decided the best course of action was to explain the reasoning that hte issue cannot be fixed.
-
+This issue was because the carousel of images only renders itself on tablet screen and above. This led to a previously unforeseen error from third party cookies, because although they are from a linked cloudinary account as the name of the account is a provided name they are being seen as third party cookies. To try to remedy this I added some security patches into the relevent vercel.json this led to more problems and failing to load the images at all. The simplest fix for this would have been to change the name of my cloudinary account but was unable to do so because of the type of account it is. After trying a few different ways around the issue I decided that it was bet to be left as is as we know that it is not a third party and I do not have the relevent plan on cloudinary to fix the issue. As the other scores are all in the 90s and it is only the best practice score lower than I would like I decided the best course of action was to explain the reasoning that hte issue cannot be fixed.
 
 [Back to top](#vitality-vault)
 
-
  </details>
 
-
-
-
 ### HTML tests
+
 ---
 
-
-
+[html test](/frontend/src/assets/images/html-test.png)
 
  <details>
  <summary> HTML tests</summary>
 
-
-
-
-- HTML code tested, and all pages passed with no errors or warnings.
-
-
-
-
-#### Main content HTML check
-
-
-
-
-#### 404-page HTML check
-
-
-
-
-
-
-
-
+- As the frontend is created using react most of the code is JSX rather than html so the main index.HTML has been tested and passed with no errors.
 
 [Back to top](#vitality-vault)
 
-
-
-
  </details>
 
-
-
-
 ### CSS tests
+
 ---
-
-
-
 
 <details>
  <summary> CSS testing</summary>
 
-
-
-
 #### index CSS test
 
-
-
-
-- CSS validates as CSS level 3 + SVG.
-
+All CSS is inline using tailwind CSS so the only code to check within the index.css file is plugins to use tailwind and Daisy UI styles which are not recognised by CSS checkers.
 
 [Back to top](#vitality-vault)
-
 
  </details>
 
-
 ### JSX tests
+
 ---
 
+### API Testing 
 
-<details>
-<summary>JSX testing</summary>
+---
 
+Please find screenshots of all API routes tested to confirm working(Most of the API require authentication but have screenshot the screen to show that they are up and running where possible due to authentication.)
 
-##### Navbar
-
-
-
-
-##### Header
-##### Footer
-##### Main
-
-[Back to top](#vitality-vault)
-
-
-</details>
+[api token](/frontend/src/assets/images/POST-api-token.png)
+[api-token refresh](/frontend/src/assets/images/token-refresh.png)
+[api-register](/frontend/src/assets/images/api-register.png)
+[api-profile](/frontend/src/assets/images/api-profile.png)
+[api-exercises](/frontend/src/assets/images/get-api-exercises.png)
+[api-exerciseimage](/frontend/src/assets/images/get-exercise-images.png)
+[api-createworkout](/frontend/src/assets/images/create-workout.png)
+[api-fetchworkout](/frontend/src/assets/images/fetch-user-workout.png)
+[api-update-workout](/frontend/src/assets/images/update-workout.png)
 
 
 
+
+
+["api/exercises"]
 
 ### Contrast tests
+
 ---
-
-
-
 
  <details>
  <summary> Contrast testing </summary>
+nord tests
 
+[failed-test](/frontend/src/assets/images/failed-contrast-test.png)
 
+[primary-base-300](/frontend/src/assets/images/nord-primary-contrast.png)
 
+[base-300-primary](/frontend/src/assets/images/base-text-primary-bg-nord.png)
+
+halloween tests
+
+[primary-base](/frontend//src/assets/images/primary-base-300-halloween.png)
+
+[base-primary](/frontend//src/assets/images/base-300-primary-halloween.png)
 
 #### Contrast testing
 
+While contrast testing I found that one of the default Nord themes i was using for text did not pass the required checks. To resolve this I changed the default primary colour for that theme to a darker blue that did pass. To make sure all the other tests passed i chose a simple solution of combining the same t wo colours across the nord theme and the corrosponding primary and base colours for the halloween theme. This choice gave the app a simplistic but uniform feel which I believed suited the app well and meant that all tests passed contrast testing.
 
 [Back to top](#vitality-vault)
 
-
  </details>
 
-
-
-
 ### Keyboard Accessibility tests
+
 ---
-
-
-
 
  <details>
  <summary>Keyboard Accessibility</summary>
 
+[select-box](/frontend/src/assets/images/keyboard-test-select-element.png)
+[navbar](/frontend/src/assets/images/keyboard-test-dropdown.png)
+[button](/frontend/src/assets/images/keyboard-test-button.png)
+[tab-navigation](/frontend//src/assets/images/keyboard-test-tab-navigation.png)
+[tab](/frontend/src/assets/images/keyboard-test-tabs.png)
+
+All keyboard accessibility has been tested with screenshots above of navigation around and the different elements when selected.
 
 [Back to top](#recipe-rescue)
 
-
-
-
  </details>
 
-
-
-
 ### development bugs and fixes
----
 
+---
 
 <details>
 <summary>Development bugs and fixes</summary>
 
-Table of bugs and fixes goes here
- [Back to top](#vitality-vault)
+registration not working properly on test so ran through all seperate Auth files and backend and found a missing trailing / on my register api call which was causing it to fail
+couldnt access deployed site got 400 errors followed by 500 errors and had to update my middlewar for cors headers and update both my Allowed hosts and run migrations to my heroku backend to fix the database link
+changed workout plan section to useContext for picking your workout sas originally was in my current workout section but as the layour changes dramatically on different screen sizes i could no longer access the state from the other screen layouts.
 
+Got GET POST PUT and DELETE working but state was not updating and the values were not showing in any select elements but were in backend to solve this added in a fetchworkoutPlan function and still had issue to discover was being saved to back end but was not registering to the user creating the workout so had to update the serializer to include user.
+First lighthouse tests resulted in adding meta description and link preconnect to html to help loading times, labels added to select boxes and forgotten aria labels for betrter accessbility. Images stored locally were also compressed for better contentful paint loading times.
 
+Replaced media query with isMobile state in workout plan and adjusted screen sizes as was causing erratic behavior within the chrome browser as was not switching between screen sizes about 75 percent of the time so adjusted the media queries to suit. The root cause was origianlly their was a tablet view that spanned the middle ground between mobile and desktop which after i had scaled back the app was no longer required as the desktop and tablet view were near identical but as the desktop was already styled i chose to keep that and delete the tablet view.
 
+[Back to top](#vitality-vault)
 
 </details>
 
-
 ### Cross browser testing
+
 ---
+
 <details>
 <summary> Cross browser testing</summary>
-
-
-
 
 - Table guide
 - (Expected result/Actual result )
 
-
-
-
-| Action          | All components render    | Form works   | Form buttons work  | Back to ingredients button work   | Recipe cards load correctly    | Link from recipe cards work    | Images respond as intended  |
-|---------------- |-----------------------   |------------  |------------------- |---------------------------------  |------------------------------  |-----------------------------   |---------------------------- |
-| Browser         | Pass/Pass                | Pass/Pass    | Pass/Pass          | Pass/Pass                         | Pass/Pass                      | Pass/Pass                      | Pass/Pass                   |
-| Chrome          | Pass/Pass                | Pass/Pass    | Pass/Pass          | Pass/Pass                         | Pass/Pass                      | Pass/Pass                      | Pass/Pass                   |
-| Chrome (mobile)    | Pass/Pass                | Pass/Pass    | Pass/Pass          | Pass/Pass                         | Pass/Pass                      | Pass/Pass                      | Pass/Pass                   |
-| Safari          | Pass/Pass                | Pass/Pass    | Pass/Pass          | Pass/Pass                         | Pass/Pass                      | Pass/Pass                      | Pass/Pass                   |
-| Edge            | Pass/Pass                | Pass/Pass    | Pass/Pass          | Pass/Pass                         | Pass/Pass                      | Pass/Pass                      | Pass/Pass                   |
-| Firefox         | Pass/Pass                | Pass/Pass    | Pass/Pass          | Pass/Pass                         | Pass/Pass                      | Pass/Pass                      | Pass/Pass                   |
-
-
-
-
-
-
-
+| Action          | All components render | Form works | Form buttons work | Back to ingredients button work | Recipe cards load correctly | Link from recipe cards work | Images respond as intended |
+| --------------- | --------------------- | ---------- | ----------------- | ------------------------------- | --------------------------- | --------------------------- | -------------------------- |
+| Browser         | Pass/Pass             | Pass/Pass  | Pass/Pass         | Pass/Pass                       | Pass/Pass                   | Pass/Pass                   | Pass/Pass                  |
+| Chrome          | Pass/Pass             | Pass/Pass  | Pass/Pass         | Pass/Pass                       | Pass/Pass                   | Pass/Pass                   | Pass/Pass                  |
+| Chrome (mobile) | Pass/Pass             | Pass/Pass  | Pass/Pass         | Pass/Pass                       | Pass/Pass                   | Pass/Pass                   | Pass/Pass                  |
+| Safari          | Pass/Pass             | Pass/Pass  | Pass/Pass         | Pass/Pass                       | Pass/Pass                   | Pass/Pass                   | Pass/Pass                  |
+| Edge            | Pass/Pass             | Pass/Pass  | Pass/Pass         | Pass/Pass                       | Pass/Pass                   | Pass/Pass                   | Pass/Pass                  |
+| Firefox         | Pass/Pass             | Pass/Pass  | Pass/Pass         | Pass/Pass                       | Pass/Pass                   | Pass/Pass                   | Pass/Pass                  |
 
 [Back to top](#vitality-vault)
+
 </details>
 
-
 ### User testing
-
 
 <details>
 <summary>User testing notes</summary>
 
-
 #### Issues
-
-
 
 #### Solutions
 
-
 [Back to top](#vitality-vault)
+
 </details>
 
-
 [Back to top](#vitality-vault)
-
-
-
 
 ### Deployment
 
-
-
-
 ---
-
-
-
 
 - ##### Note for anybody working on this code React and Vite has been to develop this app so will need to be used to work with this code please see credits for a full list of dependencies and versions
 
-
-
-
 [To view site](https://devildex91.github.io/recipe-rescue/)
 
-
-
-
 #### How to run project
-
-
-
 
  <details>
  <summary>Site has been deployed through GITHUB pages by:</summary>
 
-
-
-
 ---
-
-
-
 
 1.  Set up a Vite project by opening up your IDE and opening a terminal.
 2.  Type:  
@@ -813,32 +507,17 @@ Table of bugs and fixes goes here
     and follow the prompts making sure to select React and javascript.
 3.  Once set up open vite.config.js and replace the code with:
 
-
-
-
     import { defineConfig } from 'vite'
 
-
-
-
 import react from '@vitejs/plugin-react'
-
-
-
 
 export default defineConfig({  
 plugins: [react()],  
 base: "/your-repo-name/", // Replace with your exact repository name
 })
 
-
-
-
 1. In the terminal again type :  
    npm install gh-pages --save-dev
-
-
-
 
 2. Update package.json by adding the following:  
    {  
@@ -854,32 +533,17 @@ base: "/your-repo-name/", // Replace with your exact repository name
    }  
    }
 
-
-
-
 - Note: Vite builds into a folder named dist (unlike Create React App which used build), so ensure the script says -d dist.
-
-
-
 
 1. Run:  
    npm run deploy  
    This will:
 
-
-
-
 - Run npm run build to create a production-ready dist folder.
 - Create a new branch in your GitHub repository called gh-pages.
 - Push the contents of dist to that branch.
 
-
-
-
 1. Enable GITHUB pages by:
-
-
-
 
 - Go to your repository on GITHUB.
 - Click Settings > Pages in the left sidebar.
@@ -887,125 +551,60 @@ base: "/your-repo-name/", // Replace with your exact repository name
 - Under Branch, select gh-pages and the /(root) folder.
 - Click Save.
 
-
-
-
 ###### Your site should now be live at <https://your-username.github.io/your-repo-name/>
 
-
-
-
  </details>
-
-
-
 
  <details>  
  <summary> To download and work on the code yourself locally. </summary>
 
-
-
-
 ---
-
-
-
 
 1.  Navigate to [devildex91/vitality-vault](https://github.com/devildex91/vitality-vault)
 2.  Click on the green code button
 3.  Select download zip
 4.  Once downloaded, unpack the zipped file to a location of your choosing, and you can work on and run the code in an IDE of your choosing.
-5. Before running this code, set up your React environment, open a terminal and type npm install. This should download all dependencies needed. For reference see dependencies section at end of README to confirm all have been downloaded.
-
-
-
+5.  Before running this code, set up your React environment, open a terminal and type npm install. This should download all dependencies needed. For reference see dependencies section at end of README to confirm all have been downloaded.
 
   </details>
-
-
-
 
   <details>  
  <summary> To fork a repository.</summary>
 
-
-
-
 ---
-
-
-
 
 - please see [github docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) for more detailed and an easier to follow guide than I can produce but remember to navigate to [devildex91/vitality-vault](https://github.com/devildex91/vitality-vault) to fork this repository.
 
-
-
-
  </details>
-
-
-
 
 [Back to top](#vitality-vault)
 
-
-
-
 ### Credits
+
 ---
+
 #### Content/Media/Code/Acknowledgements
+
 ---
-| Credits               | Use                         |
-|---------------------- |---------------------------- |
-| [React Icons](https://react-icons.github.io/react-icons/)             | All Icons                   |
-| [Google fonts](https://fonts.google.com/)           | fonts                       |
-| [getcssscan](https://getcssscan.com/)            | box-shadow property         |
-| [VITE documentation](https://vite.dev/)    | deployment and setup        |
-| [GITHUB documentation](https://docs.github.com/en)  | GITHUB pages setup          |
-| [REACT documentation](https://react.dev/)     | JSX elements/best practice  |
-| [Spoonacular](https://spoonacular.com/food-api)           |  API                        |
-| [SQUOOSH](https://squoosh.app/)               | Image compression           |
-| [Pexels](https://squoosh.app/)                | Image sourcing              |
-| Lighthouse            | Testing                     |
-| [validator.w3](https://validator.w3.org/)           | HTML testing                |
-| [jigsaw.w3](https://jigsaw.w3.org/css-validator/)               | CSS testing                 |
-| [json table](https://jsontotable.org/)              | JSX testing                 |
-| [webaim](https://webaim.org/resources/contrastchecker/)                  | contrast testing            |
-|[Logo.com](https://logo.com/)               | Logo and title favicon      |
-|[whimsical](https://whimsical.com/)         | wireframing                 |
-| [colorhunt](https://colorhunt.co/)         | Colour palete               |
-  
 
-
+| Credits                                                 | Use                        |
+| ------------------------------------------------------- | -------------------------- |
+| [VITE documentation](https://vite.dev/)                 | deployment and setup       |
+| django                                                  | backend                    |
+| [GITHUB documentation](https://docs.github.com/en)      | GITHUB pages setup         |
+| [REACT documentation](https://react.dev/)               | JSX elements/best practice |
+| Lighthouse                                              | Testing                    |
+| [validator.w3](https://validator.w3.org/)               | HTML testing               |
+| [webaim](https://webaim.org/resources/contrastchecker/) | contrast testing           |
+| [Logo.com](https://logo.com/)                           | Logo and title favicon     |
+| [whimsical](https://whimsical.com/)                     | wireframing                |
 
 ###### All code was written by myself apart from code for deployment which was based on instruction from Vite documentation and GITHUB documentation.
 
-
-
-
 [Back to top](#vitality-vault)
-
-
-
 
 #### dependencies for React/Vite
 
-
-
-
 ---
 
-
-
- [Back to top](#vitality-vault)
-
-
-
-
-
-
-
-
-
-
-
+[Back to top](#vitality-vault)
