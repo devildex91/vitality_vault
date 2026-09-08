@@ -500,6 +500,11 @@ mobile lighthouse tests
 desktop lighthouse tests
 [origninal scores desktop](/frontend/src/assets/images/desktop-original-lighthouse.png)
 [second desktop test](/frontend//src/assets/images/desktop-second-lighthouse.png)
+[404 mobile test](/frontend/src/assets/images/404-page-mobile.png)
+[homepage](/frontend/src/assets/images/homepage-mobile-lighthouse-original.png)
+[register mobile](/frontend/src/assets/images/mobile-register-first-lighthouse.png)
+[register second](/frontend/src/assets/images/mobile-register-lighthouse.png) 
+[login mobile](/frontend/src/assets/images/login-mobile-lighthouse.png)
 
 
 #### mobile content scores
@@ -519,11 +524,14 @@ desktop lighthouse tests
 #### Mobile lighthouse notes
 
 
-Afte rirst mobile test added labels to all select/ input elements to imporve accessibility. Also added aria labels to all link tags and the a href tags for the facebook etc links as well as target = blank. Also found apop was being slowed down by quite a lot of unused usestate imports and MUI incons was installed but never deleted  after being unused so was removed from the codebase. I also still had some props being imported from before useContext was used so deleted these as well to help improve the score. A robots .txt file was also added so that the SEO score was imporved filling all criteria and giving results of 100 for accessibility best practices and SEo scores.
-For the homepage as all of the scores were so high to start off with that I felt that the time could be better spent improving the other pages so left them as they were. 
-The 404 page dropped accessibility score because of a button element with a link tag within it which caused a saturation error for best practices. To solve this the button was removed and the link tag styled to look like a button so it worked for both accessibility and appearance. The register/login pages both gave me the same error which was the label elements were using a slightly different shade of the primary font which meant that the contrast was not good enough for the testing. I fixed this by styling both of them to match the same shade of font as the rest of the site. Upon getting this error made me check the nord theme which was failing contrast ratio because the standard primary font and background did not have enough contrast. To solve this i added a custom primary colour which is the same blue but a shade darker to pass contrast which is shown in the contrast testing section of the testing. 
+When first testing the workout plan page for mobiles, I had to add labels to all select/ input elements to imporve accessibility.Aria labels were then added to all link tags and the href tags for all social media links as well as target = blank being added to make sure it opened in an external page. We then found app was being slowed down by quite a lot of unused javascript. To fix this we subsequently deleted all redundent code such as unused imports and old useState. While deleting these we discoverd that MUI icons had been installed but never deleted so also removed this from the codebase. While creating the app I also removed some prop drilling and replaced it with useContext. THis led to some props still being in the codebase which meant we also had to delete all of these redundent props. After all of these had been deleted to improve the SEO score a robots.txt file was added on reccomendation from the lighthouse test. Once all of these improvements had been made the scores increased considerably across the board with everything hitting 90 or above.
+
+After these improvements had been made across the board while testing the workout page, when i came to test the homepage i found that no more imporvements were nescesary as the scores were all hitting 90 or above.
+
+Following on from this we moved onto the register/login pages which both threw up the same error. This error was the fact that the label elements were using a slightly different shade of the primary font which had gone unnoticed until testing. This lighter shade meant  that the contrast test failed. I fixed this by styling both of them to match the same shade of font as the rest of the site. Once I had solved this error I realised that I had not tested the nord theme at all which on investigation was failing contrast ratio because the standard primary colour used for the font although passed on Halloween failed on nord, because the background did not have enough contrast with this primary font. I solved this by adding custom styling to change the colour of the primary colour on the nord theme which then passed contrast testing.As this was  the only difference between the tests on Nord and the tests on Halloween themes I have chosen not to supply the Nord tests as well as the Halloween tests as I do not feel there is anything to be gained but have providerd both the failed contrast tests and changed colour contrast tests in the relevent section. 
  
 
+The 404 page lighthouse testing showed a dropped accessibility score. This was because of a button element with a link tag within it w causing a saturation and spacing error for best practices. The remedy for this was to remove the button element completely. Then the link tag was  styled to look like a button so it worked for both accessibility and appearance. 
 
 
 
@@ -542,14 +550,11 @@ The 404 page dropped accessibility score because of a button element with a link
 
 #### Desktop lighthouse notes
 
-
-All scores are 90 or above with the exception of best practices. The only issue causing the 77 in best practices is the fact that the images come from cloudinary and because i lack the ability to change the domain name on my current package and subsequent security workarounds ended up breaking my application completely we found this to be an acceptable compromise. As we are only serving images the current security we have in place is more than subsequent enough to ensure the safety of the site and although google is registering it as a third party that is only due to the name as it is set up and maintained along with the application. Apart from this all other issues were solved whilst testing the mobile versions of the pages.
-
+All testing for Desktop sized screens was carried out alongside mobile testing with the only real problem coming from the workoutplan page.
+This issue was because the carousel of images only renders itself on tablet screen and above. This led to a previously unforeseen error from third party cookies, because although they are from a linked cloudinary account as the name of the account is a provided name they are being seen as third party cookies. To try to remedy this I added some security patches into the relevent vercel.json this led to more problems and failing to load the images at all. The simplest fix for this would have been to change the name of my cloudinary account but was unable to do so because of the type of account it is. After trying a few different ways around  the issue I decided that it was bet to be left as is as we know that it is not a third party and I do not have the relevent plan on cloudinary to fix the issue. As the other scores are all in the 90s and it is only the best practice score lower than I would like I decided the best course of action was to explain the reasoning that hte issue cannot be fixed.
 
 
 [Back to top](#vitality-vault)
-
-
 
 
  </details>
