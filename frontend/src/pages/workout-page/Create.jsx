@@ -106,31 +106,38 @@ export default function CreatePlan() {
   };
   return (
     <>
-      {loading && <p><span className="loading loading-spinner loading-xl"></span></p>}
+      {loading && (
+        <p>
+          <span className="loading loading-spinner loading-xl"></span>
+        </p>
+      )}
       {error && <p className="text-red-500">{error}</p>}
       <div className="card lg:card-side bg-base-300 text-primary  shadow-sm  flex-1 max-h-[78vh] overflow-y-auto ml-3 mr-3 mt-3">
-        <div className="card-body  rounded-xl text-align-center"  >
+        <div className="card-body  rounded-xl text-align-center">
           <h2 className="card-title text-primary">Create Plan</h2>
           <form onSubmit={handleSubmit}>
-            <div className= " flex flex-col gap-1">
-            <label htmlFor="workout_title" className="label text-primary font-bold mt-3">
-                  Workout title
-                  </label>
-            <input
-              type="text"
-              id="workout_title"
-              name="title"
-              value={weeksWorkout.title}
-              onChange={(e) =>
-                setWeeksWorkout((prev) => ({
-                  ...prev,
-                  title: e.target.value,
-                }))
-              }
-              placeholder="Workout Title"
-              className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300 "
-              required
-            />
+            <div className=" flex flex-col gap-1">
+              <label
+                htmlFor="workout_title"
+                className="label text-primary font-bold mt-3"
+              >
+                Workout title
+              </label>
+              <input
+                type="text"
+                id="workout_title"
+                name="title"
+                value={weeksWorkout.title}
+                onChange={(e) =>
+                  setWeeksWorkout((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                  }))
+                }
+                placeholder="Workout Title"
+                className="input input-primary bg-base-300  font-bold  focus:border-3 focus:border-base-300 "
+                required
+              />
             </div>
             {weeksWorkout.days.map((dayObj, dayIndex) => (
               <fieldset
@@ -141,7 +148,10 @@ export default function CreatePlan() {
                   {dayObj.day}
                 </h3>
                 {/*Exercise Selection */}
-                <label htmlFor={`create-exercise-${dayIndex}`} className="label text-primary font-bold mt-3">
+                <label
+                  htmlFor={`create-exercise-${dayIndex}`}
+                  className="label text-primary font-bold mt-3"
+                >
                   Exercise
                 </label>
                 <select
@@ -165,7 +175,10 @@ export default function CreatePlan() {
                   })}
                 </select>
                 {/*Sets Selection */}
-                <label htmlFor={`create-sets-${dayIndex}`} className="label text-primary font-bold mt-3">
+                <label
+                  htmlFor={`create-sets-${dayIndex}`}
+                  className="label text-primary font-bold mt-3"
+                >
                   Sets
                 </label>
                 <select
@@ -187,7 +200,10 @@ export default function CreatePlan() {
                   ))}
                 </select>
                 {/*Reps Selection */}
-                <label htmlFor={`create-reps-${dayIndex}`} className="label text-primary font-bold mt-3">
+                <label
+                  htmlFor={`create-reps-${dayIndex}`}
+                  className="label text-primary font-bold mt-3"
+                >
                   Reps
                 </label>
                 <select
@@ -214,7 +230,7 @@ export default function CreatePlan() {
                   className="btn btn-soft border-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
                   onClick={() => handleAddExercise(dayIndex, dayObj)}
                 >
-                  Add Exercise 
+                  Add Exercise
                 </button>
                 <div
                   id="display-box"
@@ -225,9 +241,13 @@ export default function CreatePlan() {
                   ) : (
                     dayObj.exercises.map((exercise, exerciseIndex) => (
                       <ul key={exerciseIndex}>
-                          <li>Exercise<hr/>{exercise.name}</li>
-                          <li>Sets:  {exercise.sets}</li>
-                          <li>Reps:  {exercise.reps}</li>
+                        <li>
+                          Exercise
+                          <hr />
+                          {exercise.name}
+                        </li>
+                        <li>Sets: {exercise.sets}</li>
+                        <li>Reps: {exercise.reps}</li>
                         <hr />
                       </ul>
                     ))
@@ -239,7 +259,7 @@ export default function CreatePlan() {
             <button
               type="submit"
               aria-label="submit plan"
-               className="btn btn-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
+              className="btn btn-primary text-base-300 bg-primary focus:bg-neutral active:border-3 active:border-base-300 my-3 "
             >
               Submit Plan
             </button>

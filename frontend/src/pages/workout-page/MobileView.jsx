@@ -1,26 +1,42 @@
-import React from "react"
+import React from "react";
 import CurrentPlan from "./Current";
 import CreatePlan from "./Create";
 import EditPlan from "./Edit";
-export default function MobileView(){
+export default function MobileView() {
+  return (
+    <main className="min-w-0 grow text-base-300 mb-5">
+      <div className="tabs tabs-box w-full min-w-0 bg-base-100 text-accent">
+        <input
+          type="radio"
+          name="my_tabs_6"
+          className="tab bg-base-300 border-primary text-primary  focus:bg-primary focus:text-base-300"
+          aria-label="Current Plan"
+        />
+        <div className="tab-content bg-base-200 border-primary p-6">
+          <CurrentPlan />
+        </div>
 
-    return (
-            
-<main className = "min-w-0 grow text-base-300 mb-5"> 
-<div className="tabs tabs-box w-full min-w-0 bg-base-100 text-accent">
-  <input type="radio" name="my_tabs_6" className="tab bg-base-300 border-primary text-primary  focus:bg-primary focus:text-base-300" aria-label="Current Plan" />
-  <div className="tab-content bg-base-200 border-primary p-6"><CurrentPlan /></div>
+        <input
+          type="radio"
+          name="my_tabs_6"
+          className="tab bg-base-300 border-primary text-primary focus:bg-primary focus:text-base-300"
+          aria-label="Create Plan"
+          defaultChecked
+        />
+        <div className="tab-content bg-base-200 border-primary p-6">
+          <CreatePlan />
+        </div>
 
-  <input type="radio" name="my_tabs_6" className="tab bg-base-300 border-primary text-primary focus:bg-primary focus:text-base-300" aria-label="Create Plan" defaultChecked />
-  <div className="tab-content bg-base-200 border-primary p-6"><CreatePlan /></div>
-
-  <input type="radio" name="my_tabs_6" className="tab bg-base-300 border-primary text-primary focus:bg-primary focus:text-base-300" aria-label="Edit Plan" />
-  <div className="tab-content bg-base-200 border-primary border-2 p-6"><EditPlan/></div>
-  
-</div>
-</main>
-
-
-
-    )
-} 
+        <input
+          type="radio"
+          name="my_tabs_6"
+          className="tab bg-base-300 border-primary text-primary focus:bg-primary focus:text-base-300"
+          aria-label="Edit Plan"
+        />
+        <div className="tab-content bg-base-200 border-primary border-2 p-6">
+          <EditPlan />
+        </div>
+      </div>
+    </main>
+  );
+}

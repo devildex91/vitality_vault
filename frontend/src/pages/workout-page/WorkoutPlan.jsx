@@ -15,56 +15,56 @@ export default function WorkoutPlan() {
   const [workoutPlans, setWorkoutPlans] = useState([]);
   /*state to store workouts from api call*/
   const [exerciseData, setExerciseData] = useState([]);
-  const [selectedWorkout, setSelectedWorkout]=useState(null) 
+  const [selectedWorkout, setSelectedWorkout] = useState(null);
 
-/*workout plan consolidated into one function for easier refreh of data  */
-const fetchWorkoutPlans = async () => {
-  try {
-    setLoading(true);
-    const accessToken = localStorage.getItem("access_token");
+  /*workout plan consolidated into one function for easier refreh of data  */
+  const fetchWorkoutPlans = async () => {
+    try {
+      setLoading(true);
+      const accessToken = localStorage.getItem("access_token");
 
-    const response = await api.get("/api/fetchuserworkout/", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+      const response = await api.get("/api/fetchuserworkout/", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
-    setWorkoutPlans(response.data);
-    setError(null);
-  } catch (err) {
-    console.error("error fetching data:", err);
-    setError("Failed to load data. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
-/*Update current workout */
-const updateCurrentWorkout = async (workout) => {
-  try {
-    setLoading(true);
+      setWorkoutPlans(response.data);
+      setError(null);
+    } catch (err) {
+      console.error("error fetching data:", err);
+      setError("Failed to load data. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  /*Update current workout */
+  const updateCurrentWorkout = async (workout) => {
+    try {
+      setLoading(true);
 
-    await api.patch("api/profile/", {
-      current_workout: workout.id,
-    });
-    setSelectedWorkout(workout)
-    await fetchWorkoutPlans();
+      await api.patch("api/profile/", {
+        current_workout: workout.id,
+      });
+      setSelectedWorkout(workout);
+      await fetchWorkoutPlans();
 
-    setError(null);
-  } catch (err) {
-    console.error("Update Error:", err.response.data)
-    setError("Failed to save changes");
-  } finally {
-    setLoading(false)
-  }
+      setError(null);
+    } catch (err) {
+      console.error("Update Error:", err.response.data);
+      setError("Failed to save changes");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const selectWorkoutById = (id) => {
-  const workout = workoutPlans.find(w => w.id === id);
-  setSelectedWorkout(workout || null);
-};
+    const workout = workoutPlans.find((w) => w.id === id);
+    setSelectedWorkout(workout || null);
+  };
 
-/*Useeffect to fetch current default workout for current logged in user  */
-useEffect(() => {
+  /*Useeffect to fetch current default workout for current logged in user  */
+  useEffect(() => {
     const fetchcurrentPlan = async () => {
       try {
         setLoading(true);
@@ -82,9 +82,10 @@ useEffect(() => {
     };
     fetchcurrentPlan();
   }, [workoutPlans]);
- 
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches
+
+  const [isMobile, setIsMobile] = useState(
+    () =>
+      typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches,
   );
 
   useEffect(() => {
@@ -122,48 +123,51 @@ useEffect(() => {
     fetchexerciseData();
   }, []);
 
-
-
-/*Initial load for workout plans  */
+  /*Initial load for workout plans  */
   useEffect(() => {
-   fetchWorkoutPlans();
+    fetchWorkoutPlans();
   }, []);
 
-
-  function findWorkout(targetTitle){
-  const foundTitle = workoutPlans.find(workouts => workouts.title === targetTitle)
-  if (foundTitle) {
-     updateCurrentWorkout(foundTitle)
-  };
-};
+  function findWorkout(targetTitle) {
+    const foundTitle = workoutPlans.find(
+      (workouts) => workouts.title === targetTitle,
+    );
+    if (foundTitle) {
+      updateCurrentWorkout(foundTitle);
+    }
+  }
   return (
     <div className="flex min-h-screen min-w-0 flex-col overflow-x-hidden bg-base-100 text-base-100">
       <Navbar />
-      <header className = "mx-3 flex min-w-0 flex-col items-center bg-base-300 justify-center border-primary border-1 p-4 mt-5 rounded-xl">
-        <h1 className = "text-primary font-bold mt-1 mb-3" >Workout Plan</h1>
-        <h2 className = "text-primary font-bold"> Set/change your workout below</h2>
-        <label htmlFor="current-workout" className="label text-primary font-bold mt-3">
+      <header className="mx-3 flex min-w-0 flex-col items-center bg-base-300 justify-center border-primary border-1 p-4 mt-5 rounded-xl">
+        <h1 className="text-primary font-bold mt-1 mb-3">Workout Plan</h1>
+        <h2 className="text-primary font-bold">
+          {" "}
+          Set/change your workout below
+        </h2>
+        <label
+          htmlFor="current-workout"
+          className="label text-primary font-bold mt-3"
+        >
           Current workout
         </label>
         <select
-                  id="current-workout"
-                  className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
-                  value={selectedWorkout?.title|| ""}
-                  onChange={(e) => {
-                    findWorkout(e.target.value)
-                  }}
-                
-                >
-
-                  <option value="">Select your workout</option>
-                  {workoutPlans?.map((workout) => {
-                    return (
-                      <option key={workout.id} value={workout.title}>
-                        {workout.title}
-                      </option>
-                         );
-                  })}
-                </select>
+          id="current-workout"
+          className="select select-primary bg-base-300 text-primary font-bold focus:border-3"
+          value={selectedWorkout?.title || ""}
+          onChange={(e) => {
+            findWorkout(e.target.value);
+          }}
+        >
+          <option value="">Select your workout</option>
+          {workoutPlans?.map((workout) => {
+            return (
+              <option key={workout.id} value={workout.title}>
+                {workout.title}
+              </option>
+            );
+          })}
+        </select>
       </header>
       <CurrentPlanContext.Provider
         value={{

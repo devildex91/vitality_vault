@@ -1,103 +1,116 @@
 import React from "react";
-import {useState, useEffect, useContext} from "react";
+import { useState, useEffect, useContext } from "react";
 import { CurrentPlanContext } from "./WorkoutPlan.jsx";
 import { useTheme } from "../../ThemeContext";
 
 import api from "../../api.js";
-import Logo from "../../assets/images/VV-logo-large.png"
-import Logoblue from "../../assets/images/VV-logo-blue-large.png"
+import Logo from "../../assets/images/VV-logo-large.png";
+import Logoblue from "../../assets/images/VV-logo-blue-large.png";
 
 export default function ExerciseCarousel() {
-const {selectedWorkout,setLoading, setError} = useContext(CurrentPlanContext);
- const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
-  const weekDay = weekdays[new Date().getDay()]
-  const [exerciseImages, setExerciseImages] = useState([])
-/*Optional chaining added to make sure data is their to stop undefined error  */
-  const todaysPlan = selectedWorkout?.days?.find(day => day?.day ===weekDay)
+  const { selectedWorkout, setLoading, setError } =
+    useContext(CurrentPlanContext);
+  const weekdays = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  const weekDay = weekdays[new Date().getDay()];
+  const [exerciseImages, setExerciseImages] = useState([]);
+  /*Optional chaining added to make sure data is their to stop undefined error  */
+  const todaysPlan = selectedWorkout?.days?.find((day) => day?.day === weekDay);
   const { theme } = useTheme();
-    useEffect(() => {
-  const fetchExerciseImages = async () => {
-    const exerciseIds = todaysPlan?.exercises
-      ?.map((entry) => entry?.exercise)
-      .filter(Boolean) ?? [];
+  useEffect(() => {
+    const fetchExerciseImages = async () => {
+      const exerciseIds =
+        todaysPlan?.exercises
+          ?.map((entry) => entry?.exercise)
+          .filter(Boolean) ?? [];
 
-    if (!exerciseIds.length) {
-      setExerciseImages([]);
-      return;
-    }
+      if (!exerciseIds.length) {
+        setExerciseImages([]);
+        return;
+      }
 
-    try {
-      setLoading(true);
+      try {
+        setLoading(true);
 
-      const response = await api.get("/api/exerciseimages/", {
-        params: {
-          exercises: exerciseIds,
-        },
-        paramsSerializer: {
-          indexes: null,
-        },
-      });
+        const response = await api.get("/api/exerciseimages/", {
+          params: {
+            exercises: exerciseIds,
+          },
+          paramsSerializer: {
+            indexes: null,
+          },
+        });
 
-      setExerciseImages(response.data ?? []);
-      setError(null);
-    } catch (err) {
-      console.error("Error fetching exercise images:", err);
-      setError("Failed to load images. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+        setExerciseImages(response.data ?? []);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching exercise images:", err);
+        setError("Failed to load images. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchExerciseImages();
-}, [todaysPlan]);
-
-
-    return (
-<>
-{exerciseImages.length > 0 ? (
-  
-  exerciseImages.map((exercise, index) => {
-
- const previous = index === 0
-    ? exerciseImages.length
-    : index;
-
-  const next = index === exerciseImages.length - 1
-    ? 1
-    : index + 2;
-
+    fetchExerciseImages();
+  }, [todaysPlan]);
 
   return (
- <div id= {`slide${index + 1}`}
- className="carousel-item relative w-[98%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden" key = {exercise.id}>
-   <img
-      className = "scale-75 border-8 border-primary rounded-xl"
-      src={`https://res.cloudinary.com/dxhclnrp/image/upload/${exercise.public_id}`}
-      alt = {exercise.exercise}
-       />
-    <div className="absolute left-10 right-10 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href={`#slide${previous}`} className="btn btn-circle bg-primary text-base-300" aria-label="Previous Slide">❮</a>
-      <a href={`#slide${next}`} className="btn btn-circle bg-primary text-base-300" aria-label="Next Slide">❯</a>
+    <>
+      {exerciseImages.length > 0 ? (
+        exerciseImages.map((exercise, index) => {
+          const previous = index === 0 ? exerciseImages.length : index;
 
-      
-    </div>
-    
- </div>)
-  
-})): (
-   <div id="slide 1" className="carousel-item relative w-[95%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden">
-   <img
-      className = "scale-75 border-8 border-primary rounded-xl"
-      
-      src={theme ==="halloween"? Logo: Logoblue}
-      alt = "No exercises planned"
-       />
- </div>
-)}
+          const next = index === exerciseImages.length - 1 ? 1 : index + 2;
 
-  </>
-    )
-
-
-    
+          return (
+            <div
+              id={`slide${index + 1}`}
+              className="carousel-item relative w-[98%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden"
+              key={exercise.id}
+            >
+              <img
+                className="scale-75 border-8 border-primary rounded-xl"
+                src={`https://res.cloudinary.com/dxhclnrp/image/upload/${exercise.public_id}`}
+                alt={exercise.exercise}
+              />
+              <div className="absolute left-10 right-10 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <a
+                  href={`#slide${previous}`}
+                  className="btn btn-circle bg-primary text-base-300"
+                  aria-label="Previous Slide"
+                >
+                  ❮
+                </a>
+                <a
+                  href={`#slide${next}`}
+                  className="btn btn-circle bg-primary text-base-300"
+                  aria-label="Next Slide"
+                >
+                  ❯
+                </a>
+              </div>
+            </div>
+          );
+        })
+      ) : (
+        <div
+          id="slide 1"
+          className="carousel-item relative w-[95%] justify-center items-center rounded-xl justify-self-center align-self-center bg-base-300 p-4 mb-4 gap-4 overflow-y-hidden"
+        >
+          <img
+            className="scale-75 border-8 border-primary rounded-xl"
+            src={theme === "halloween" ? Logo : Logoblue}
+            alt="No exercises planned"
+          />
+        </div>
+      )}
+    </>
+  );
 }

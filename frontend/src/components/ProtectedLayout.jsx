@@ -1,6 +1,8 @@
-import { Navigate, Outlet } from "react-router";
-import useAuthentication from "../Auth";
+import { Navigate, Outlet } from 'react-router';
 
+import useAuthentication from '../Auth';
+
+// Authenticated pages redirect to the login screen until the user has a valid token.
 export default function ProtectedLayout() {
   const { isAuthorized, loading } = useAuthentication();
 

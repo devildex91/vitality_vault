@@ -1,50 +1,47 @@
-import React from "react";
-import {  createBrowserRouter } from "react-router";
-/*pages imports*/
-/*Sign in components */
+import React from 'react';
+import { createBrowserRouter } from 'react-router';
+
 import ProtectedLayout from './components/ProtectedLayout.jsx';
 import PublicLayout from './components/PublicLayout.jsx';
 import AuthPage from './pages/signin-page/AuthPage.jsx';
 import HomePage from './pages/HomePage.jsx';
-/* Workout plan components*/
-import WorkoutPlan from './pages//workout-page/WorkoutPlan.jsx';
-import NotFound from './pages/NotFound.jsx'
+import WorkoutPlan from './pages/workout-page/WorkoutPlan.jsx';
+import NotFound from './pages/NotFound.jsx';
 
- 
+// Public pages are visible without an auth token; protected pages require login.
 const AppRoutes = createBrowserRouter([
-  {element: <PublicLayout />,
+  {
+    element: <PublicLayout />,
     children: [
-       {
-    path: "/",
-    Component: HomePage,
+      {
+        path: '/',
+        Component: HomePage,
+      },
+      {
+        path: '/login',
+        element: <AuthPage initialMethod="login" />,
+      },
+      {
+        path: '/register',
+        element: <AuthPage initialMethod="register" />,
+      },
+    ],
   },
   {
-    path:"/login",
-    element: <AuthPage initialMethod="login" />,
+    element: <ProtectedLayout />,
+    children: [
+      {
+        path: '/workoutplan',
+        Component: WorkoutPlan,
+      },
+    ],
   },
   {
-   path:"/register",
-   element:<AuthPage initialMethod="register" />, 
-  },],},
-  {
-   element:<ProtectedLayout />,
-   children: [
-  
-
-  {
-    path:"/workoutplan",
-    Component: WorkoutPlan,
-  },
-
-],},
-  {
-    path:"*",
+    path: '*',
     Component: NotFound,
+  },
+]);
 
-  }
-
-]);    
- 
 export default AppRoutes;
  
  
