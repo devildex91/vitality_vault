@@ -13,6 +13,7 @@
 [User Goals](#user-goals)  
 [User Stories](#user-stories)  
 [Design Choices](#design-choices)  
+[ERD Diagram](#erd-diagram)
 [Wireframes](#wireframes)
 
 ## [Features](#features-1)
@@ -92,15 +93,15 @@ The goals for users would be:
 
 ---
 
-For full Acceptance Criteria and tasks please follow [this link](https://github.com/users/devildex91/projects/8) to the project board for Vitality Vault.
+For full Acceptance Criteria and tasks please follow [this link](https://github.com/users/devildex91/projects/9) to the project board for Vitality Vault.
 
-- As a *user tracking my strength, *I can *view the specific details of a previous days workout I completed *so that _I know exactly what Ive been doing to make sure Im not doing the wrong workout ._
+- As a *user tracking my strength, *I can *view the specific details of a previous days workout I completed *so that _I know exactly what Ive been doing to make sure Im not doing the wrong workout.
 
-- As a _registered fitness user,_ I can _create and save a custom workout routine with a name and a list of exercises _ so that _ I can quickly select it whenever I go to the gym._
+- As a registered fitness user, I can create and save a custom workout routine with a name and a list of exercises  so that  I can quickly select it whenever I go to the gym.
 
-- As a _flexible trainee,_ I can _edit the sets and reps of a previously created workout _ so that _ I can keep my workouts fresh and up to date_
+- As a _flexible trainee,_ I can _edit the sets and reps of a previously created workout _ so that _ I can keep my workouts fresh and up to date
 
--As a _user cleaning up my profile,_ I can _delete an old workout routine that I no longer perform_ so that _my list of active routines stays organised and clutter-free._
+-As a _user cleaning up my profile,_ I can _delete an old workout routine that I no longer perform_ so that _my list of active routines stays organised and clutter-free.
 
 [Back to top](#vitality-vault)
 
@@ -108,7 +109,7 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
 
 ---
 
-The original design for this project included a workout page a body tracker page and calorie log page along with graphs. The scope of the project meant it was simplified down to a simple app that you can Create, Read, Update, and Delete a workout [(click here for original design)](). This original design is reflected in the User Stories.
+The original design for this project included a workout page a body tracker page and calorie log page along with graphs. The scope of the project meant it was simplified down to a simple app that you can Create, Read, Update, and Delete a workout [(click here for original design)](/frontend/src/assets/images/original-tablet-design.png). This original design is reflected in the User Stories.
 
 The brand identity and colour theme has been chosen to project Strength and trust through the use of the two contrasting themes. The blues and whites of the Nord theme have been chosen to present trust, stability and professionalism. The halloween theme will help users while in dimly lit gyms to reduce eye strain, while the accent colors will help direct the users eyes directly towords the Call to action buttons.
 
@@ -176,11 +177,75 @@ The background colour have been chosen to give the app soft layers drawing you t
 
 ---
 
+All Images for the project were sourced from the same database that the exercise data has come from and their are tweo images for every exercise. They are all stored in cloudinary to not only imporve load times but keep the quality as high as possible without effecting the load times. 
+
 [Back to top](#vitality-vault)
+
+
+##### ERD diagram 
+---
+Please see below diagram of the flow of data through this app.  
+
+![ERD diagram](/frontend/src/assets/images/ERD-diagram.png)
 
 ##### Wireframes
 
 ---
+###### Mobile Wireframes 
+
+<details>
+<summary>Homepage</summary>
+
+![homepage](/frontend/src/assets/images/mobile-homepage-wireframe.png)
+
+The mobile screen homepage on initial load has the company logo take up most of the screen. This logo will be a different colour to suit the chosen theme. After a couple of seconds this will slowly fade away. Once his has faded away the display seen above will slowly fade in. This will all be happeneing between the navbar and footer elements which both act as a familiar stay through the whole app. The main content of this page will be a paragraph of text with a simple explanation of what we hope to achieve. Below thsi will be a button to take you to the login page as well as the dropdown displaying Login and register links depending on your destination. 
+</details>
+
+<details>
+<summary>Login/ Register pages</summary>
+
+![login page](/frontend/src/assets/images/mobile-login-register-wireframe.png)
+
+THese pages are desinged to be near indentical for ease of use. They both contain text in the top corner taht will either say PLease login or please register below. The forms are both identical as well, the only difference being that the content of the buttons switches between login and register depending on your current location. The dropdown links at the top also change slightly depending on location. So for example if you are on the login page it will say register and vice versa for the register page. Other than this both pages are indentical on all screen sizes.  
+</details>
+
+<details>
+<summary>Workout plan</summary>
+
+![workout plan page](/frontend/src/assets/images/mobile-workoutplan-wireframe.png)
+
+The workout page is designed to have all the information at hand without drawing the users focus. The first thing avalaible to the user is a dropdown to select your current workout this will then be logged to the user profile. This is done so that when you click on the other tabs avaliable on the page the information will already have been fetfched so that it is readily avaliable to the user. Below this you will have tabs for create, current and edit plan tabs. The default selection create plan renders a form too create your workout before submitting it the the backend. The next tab along edit plan will render a form which means you can select any workout that you have created to make changes to individual days or delete days exercises and even delete them entirely. The final tab current plan renders four seperate tabs below it which are Today, Previous, Tomorrow or Full Plan which gives you the options to seperate the content of your workout however you want. Full plan renders your workout in full with Todays tab seperating your workout to just display the workout you have planned for today. previous brings you yesterdays workout so you can check whgat you have been doing. Tomorrows workout brings you tomorrows workout plan so you can prepare or set up in advance for tomorrows workout.     
+</details>
+
+###### Desktop/tablet view wireframes
+
+- Orignally an elaborate design with tablet view and desktop view being enitirely different with extra columns in the grid appearing on larger screens. After the size of the app was downscaled along with the features to a simple Workout planner app this was no longer required. As the desktop design was implemented first the four grid columnh system was kept in place and the tablet view removed from the app. This is reflected in the wireframes only showing desktop view below. 
+
+<details>
+<summary> Homepage</summary>
+
+![Homepage view](/frontend/src/assets/images/Desktop-view-homepage-wireframe.png)
+
+ The same effects described in the mobile section are relevant for the desktop view as well with everything being near identical at this stage of the app to the mobile section.
+</details>
+
+<details>
+<summary>login/register page</summary>
+
+![login page](/frontend/src/assets/images/Desktop-view-login-register-wireframe.png)
+
+As the page is identical on all screen sizes please see description in Mobile wirteframes for full description of the page.
+</details>
+
+<details>
+
+<summary>Workout plan page</summary>
+
+![workout plan](/frontend//src/assets/images/Desktop-view-workoutplan-wireframe.png)
+
+The tablet and desktop views render slightly different the start of the page is the same with the same dropdown to select your current workout. Following on from this the right hand side of the page renders the same Todays, Full, Previous and Tomorrows plans. The left hand side of the page has two tabs for the Create and Edit plan forms. Below this is where the view changes from the mobnile view and depending on what todays workout is an Exercise Carousel will render displaying pictures of the exercises in your current workout or a default image of the company logo if the day is a rest day.  
+</details>
+
 
 [Back to top](#vitality-vault)
 
@@ -189,8 +254,13 @@ The background colour have been chosen to give the app soft layers drawing you t
 ---
 
 #### Existing Features
-
 ---
+- Dynamic Homepage explaining the site and how it can help you.
+- Create workout form with extensive list of exercises to choose from.
+- Edit workout form with ability to change/update or even delete the workout. 
+- Ability to single out yesterdays, tomorrows or even the full workout plan foe viewing. 
+- On larger screens a carousel of images displaying pictures of the workout you have planned for the day.
+- Abilit yto change the theme of the website to suit your own personel preferences which saves so can continue where you left off the next time you log in. 
 
 [Back to top](#vitality-vault)
 
@@ -203,6 +273,13 @@ The background colour have been chosen to give the app soft layers drawing you t
 
 - To support the existing features that have been implemented, please see the table below that outlines implemented User Stories and their supporting evidence screenshots.
 
+| User Story                                                                                                                                                                                                 	| Supporting screenshot                                                   	|
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-------------------------------------------------------------------------	|
+| As a user tracking my strength I can view the specific <br>details of a previous days workout I completed so that <br>I know exactly what Ive been doing to make sure I am <br>not doing the wrong workout 	| [previous plan](/frontend/src/assets/images/previous-plan-evidence.png) 	|
+| As a registered fitness user, I can create and save a <br>custom workout routine with a name and a list of exercises<br> so that I can quickly select it whenever I go to the gym.                         	| [create plan](/frontend/src/assets/images/create-plan-evidence.png)     	|
+| As a flexible trainee, I can edit the sets and reps of a previously <br>created workout so that I can keep my workouts up to date.                                                                         	| [edit plan](/frontend/src/assets/images/edit-plan-evidence.png)         	|
+| As a user cleaning up my profile, I can delete an old workout routine<br>that I no longer perform so that my list of active routines stays <br> orgainised and clutter free                                	| [edit-plan](/frontend/src/assets/images/edit-plan-evidence.png)         	|
+
 [Back to top](#vitality-vault)
 
 </details>
@@ -210,6 +287,11 @@ The background colour have been chosen to give the app soft layers drawing you t
 #### Features left to implement
 
 ---
+- Body tracker page.
+- Calorie Log page.
+- ability to log calories.
+- graphs to show your progress.
+- ability to add weights you used to a workout.
 
 [Back to top](#vitality-vault)
 
@@ -220,8 +302,7 @@ The background colour have been chosen to give the app soft layers drawing you t
 <details>
 <summary>User stories still to implement</summary>
 
-- Please see the table below that shows the User Stores behind the features left to implement along with our reasoning for not implementing them yet.
-
+For full list of User Stories still to implement  please follow [this link](https://github.com/users/devildex91/projects/9) to the project board for Vitality Vault. This is because the scope of the app was changed to keep within completion dates so was downscaled to suit the criteria at hand. The original User Stories have been left on the project board to show the original features planned and to leave scope for future updates to the app. 
 </details>
 
 [Back to top](#vitality-vault)
@@ -237,10 +318,12 @@ The background colour have been chosen to give the app soft layers drawing you t
 | React          | Javascript library/component architecture |
 | GITHUB         | Hosting and managing repositories         |
 | GEMINI         | Supported learning and best practices     |
+| CHAT-GPT       | Supported adding exercises to database    |
 | GITHUB copilot | Supported learning and best practices     |
 | HTML           | Language used                             |
 | CSS            | Language used                             |
 | Javascript     | Language used                             |
+| Python         | Language used                             |
 | Django         | Backend Environment                       |
 | Django rest    |API linking react and Django/authentication|
 | Daisy UI       |React UI                                   |
@@ -371,7 +454,7 @@ This issue was because the carousel of images only renders itself on tablet scre
 
 #### index CSS test
 
-All CSS is inline using tailwind CSS so the only code to check within the index.css file is plugins to use tailwind and Daisy UI styles which are not recognised by CSS checkers.
+All CSS is inline using tailwind CSS so the only code to check within the index.css file is plugins to use tailwind and Daisy UI styles which are not recognised by CSS checkers. This was used to add the ability to style components inline making their reusability easier following best practices for react. 
 
 [Back to top](#vitality-vault)
 
@@ -380,8 +463,14 @@ All CSS is inline using tailwind CSS so the only code to check within the index.
 #### Python code validation
 <details>
 <summary>Python validation </summary>
+
 All models.py, serializer.py and views hgave been tested and passed with no syntax errors
-![user-model]()
+![user-models](/frontend/src/assets/images/user-models.py-validation.png)
+![user-serializer](/frontend//src/assets/images/user-serializers.py-validation.png)
+![user-views](/frontend/src/assets/images/user-views.py-validation.png)
+![workouts-models](/frontend/src/assets/images/workouts-models.py-validation.png)
+![workouts-serializer](/frontend/src/assets/images/workouts-serializer.py-validation.png)
+![workouts-views](/frontend/src/assets/images/workouts-views.py-validation.png)
 
 
 
@@ -413,6 +502,19 @@ Please find screenshots of all API routes tested to confirm working(Most of the 
 [Back to top](#vitality-vault)
 
 </details>
+
+
+### Security 
+<details>
+<summary>Security </summary>
+
+![first security test](/frontend/src/assets/images/security-test-first.png)
+
+Following the first security test we found that although a low risk we were getting an error relating to a missing security header. To fix this we have updated our vercel.json to include the new security header.
+
+</details>
+
+
 
 ### Automated Testing
 
@@ -663,14 +765,18 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 <details>
 <summary>Development bugs and fixes</summary>
 
-registration not working properly on test so ran through all seperate Auth files and backend and found a missing trailing / on my register api call which was causing it to fail
-couldnt access deployed site got 400 errors followed by 500 errors and had to update my middlewar for cors headers and update both my Allowed hosts and run migrations to my heroku backend to fix the database link
-changed workout plan section to useContext for picking your workout sas originally was in my current workout section but as the layour changes dramatically on different screen sizes i could no longer access the state from the other screen layouts.
+| Development Bugs/Issues                                                                          	| Fix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   	|
+|--------------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| Registration not working when tested                                                             	| Ran through all seperate Auth files and backend and found a missing trailing / on the regsiter api which was causing the failure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	|
+| 400 error when accessing deployed site <br>followed by 500 errors.                               	| Had to update my middleware for cors headers and update both allowed hosts and run migrations to my herokuy backend to fix the database link                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          	|
+| prop drilling for workout page section                                                           	| Was becoming quite complicated to have the selected workout avalable in all components of workout page so moved it into useContext because <br>the changing design and way the pages are rendered meant state could not be accessed easily from the other page layouts.                                                                                                                                                                                                                                                                                                                                                                                                               	|
+| all API calls were working but state was not updating<br>and no values were showing in frontend  	| Added in a fetchworkout plan function to fix this but still had issue that although  the workout was being saved to backend it was <br>still not being registered to the user creating the workout so had to update the serializer to includer user.                                                                                                                                                                                                                                                                                                                                                                                                                                  	|
+| dynamic sizes behaving erratically and not always changing <br>with screen size in chrome.       	| Replaced media query with isMobile state in workout plan and adjusted screen sizes. Discovered the root cause was orginally their was a tablet view seperating mobile and desktop. <br>With the design change this was deleted because the desktop design became the same as the tablet design after the redesign. As I had allready got the desktop design working I <br>deleted the tablet design meaning the sizing did not work properly for the adjustments. This is also why you will find that the design for  the tablet and desktop view could <br>also work with less columns in the grid design but was left alone as was already working and not effecting any scores.    	|
 
-Got GET POST PUT and DELETE working but state was not updating and the values were not showing in any select elements but were in backend to solve this added in a fetchworkoutPlan function and still had issue to discover was being saved to back end but was not registering to the user creating the workout so had to update the serializer to include user.
-First lighthouse tests resulted in adding meta description and link preconnect to html to help loading times, labels added to select boxes and forgotten aria labels for betrter accessbility. Images stored locally were also compressed for better contentful paint loading times.
 
-Replaced media query with isMobile state in workout plan and adjusted screen sizes as was causing erratic behavior within the chrome browser as was not switching between screen sizes about 75 percent of the time so adjusted the media queries to suit. The root cause was origianlly their was a tablet view that spanned the middle ground between mobile and desktop which after i had scaled back the app was no longer required as the desktop and tablet view were near identical but as the desktop was already styled i chose to keep that and delete the tablet view.
+
+
+
 
 [Back to top](#vitality-vault)
 
