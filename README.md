@@ -2,7 +2,7 @@
 
 ---
 
-[To view site]()
+[To view site](https://vitality-vault-omega.vercel.app/)
 
 ## Table of Contents
 
@@ -932,6 +932,8 @@ heroku config:set DEBUG=False
 | [webaim](https://webaim.org/resources/contrastchecker/) | contrast testing           |
 | [Logo.com](https://logo.com/)                           | Logo and title favicon     |
 | [whimsical](https://whimsical.com/)                     | wireframing                |
+| [Pentest tools](https://app.pentest-tools.com/)         | Security testing           |
+| [Python testing](https://pythonium.net/linter)          | Python validation          |
 
 #### Exercise data credits 
 
