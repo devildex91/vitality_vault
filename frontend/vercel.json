@@ -13,11 +13,15 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' https://*.cloudinary.com data:; connect-src 'self' https://vitality-vault-backend-c2878a5636af.herokuapp.com;"
+          "value": "default-src 'self'; img-src 'self' https://*.cloudinary.com data:; connect-src 'self' https://vitality-vault-backend-c2878a5636af.herokuapp.com; object-src 'none'; base-uri 'self';"
         },
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         }
       ]
     }

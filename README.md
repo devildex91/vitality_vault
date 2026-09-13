@@ -512,6 +512,9 @@ Please find screenshots of all API routes tested to confirm working(Most of the 
 
 Following the first security test we found that although a low risk we were getting an error relating to a missing security header. To fix this we have updated our vercel.json to include the new security header.
 
+![second test](/frontend/src/assets/images/security-test-second.png)
+
+Following on from the second Security test we fixed the missing security header but still had issues with referrer policy not being included as well as the inclusion of a robots.txt file which in itself is not a security risk but still flags up as has the potential to be misuesed. Another issue found was that they found details of the server software and tefchnology which can be used to tailor make programs to target specific attacks on our app. The final security issue found was that the Content-Security-Policy (CSP) header configured for the web application includes unsafe directives. To fix these we added an object source=none to the CSP string to prevent the exploitation of legacy plugins like Flash or Silverlight. . We also added a base-uri self to the CSP string to prevent malicous actors from injecting custom HTML. We also added a Referrer-Policy of strict-origin to protect user privacy. 
 </details>
 
 
