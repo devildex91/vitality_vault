@@ -515,6 +515,10 @@ Following the first security test we found that although a low risk we were gett
 ![second test](/frontend/src/assets/images/security-test-second.png)
 
 Following on from the second Security test we fixed the missing security header but still had issues with referrer policy not being included as well as the inclusion of a robots.txt file which in itself is not a security risk but still flags up as has the potential to be misuesed. Another issue found was that they found details of the server software and tefchnology which can be used to tailor make programs to target specific attacks on our app. The final security issue found was that the Content-Security-Policy (CSP) header configured for the web application includes unsafe directives. To fix these we added an object source=none to the CSP string to prevent the exploitation of legacy plugins like Flash or Silverlight. . We also added a base-uri self to the CSP string to prevent malicous actors from injecting custom HTML. We also added a Referrer-Policy of strict-origin to protect user privacy. 
+
+![last security](/frontend/src/assets/images/security-test-last.png)
+
+Although three low risk erros occured in the final test these are informational rather than warnings. The robots.txt warning is because when it is used teams can put secrets in here accidently opening it up to hackers which this one does not have. The second warning is because vercel automatically injects minimal headers on the plan I am using but is low risk because it empties out the directory on build. As all of these are informational we have checked that we have done everything we can to prevent these but already carried out all the steps required to solve these as bet as possible within the frameworks and plans we are using.  
 </details>
 
 
