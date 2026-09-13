@@ -442,7 +442,7 @@ export default function EditPlan() {
         </select>
         <div id="buttonDiv" className="flex flex-wrap justify-evenly">
           <button
-            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3"
+            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3 m-1"
             aria-label="update workout"
             type="button"
             onClick={updateWorkout}
@@ -450,7 +450,7 @@ export default function EditPlan() {
             Update Workout
           </button>
           <button
-            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3"
+            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3 mr-1"
             aria-label="delete exercise"
             type="button"
             onClick={deleteExercise}
@@ -458,7 +458,7 @@ export default function EditPlan() {
             Delete Exercise
           </button>
           <button
-            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3"
+            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3 "
             aria-label="delete day"
             type="button"
             onClick={deleteDay}
@@ -466,7 +466,7 @@ export default function EditPlan() {
             Delete day
           </button>
           <button
-            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3"
+            className="btn btn-soft bg-primary text-base-300 active:border-3 active:border-base-300  w-1/2 mt-3 mr-1"
             aria-label="delete workout"
             type="button"
             onClick={deleteWorkout}

@@ -816,11 +816,16 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 
 <details>
 <summary>User testing notes</summary>
+
+
 </details>
+
 #### Issues
-
+1. On user testing it was noted how in full plan the tables were slightly too close together and monday was being cut off fully on smaller screens and partially on larger screens 
+2. Another issue was that the buttons in editplan were slightly too close together down the centre.
 #### Solutions
-
+1. removed justify centre from the container div and added mb-6 to all apart from last table to fixcc the issue
+2. To fix the buttons issue a margin was added pushing all of the buttons to stack. THis worked well and recieved positive user feedback.
 [Back to top](#vitality-vault)
 
 </details>

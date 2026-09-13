@@ -49,7 +49,7 @@ export default function CurrentPlan() {
           className="tab bg-base-200 text-primary  focus:bg-primary focus:text-base-300"
           aria-label="Full plan"
         />
-        <div className="tab-content bg-base-300 border-base-300 p-6">
+        <div className="tab-content bg-base-300 border-base-300 overflow-y-visible p-6">
           <FullPlan workoutPlan={selectedWorkout} />
         </div>
       </div>
