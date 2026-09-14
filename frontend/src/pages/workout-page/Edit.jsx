@@ -352,9 +352,9 @@ export default function EditPlan() {
           onChange={(e) => findExercise(e.target.value)}
         >
           <option value="">--Select Exercise to edit or add new below--</option>
-          {selectedDay?.exercises?.map((exercise) => {
+          {selectedDay?.exercises?.length === 0 ?<option key = "no-exercises" value = ""> No exercises exist on this day add an exercise to continue</option>:selectedDay?.exercises?.map((exercise) => {
             return (
-              <option key={exercise?.id} value={exercise?.exercise}>
+              <option key={exercise?.exercise} value={exercise?.exercise}>
                 {exercise?.exercise}
               </option>
             );

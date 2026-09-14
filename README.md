@@ -823,9 +823,13 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 #### Issues
 1. On user testing it was noted how in full plan the tables were slightly too close together and monday was being cut off fully on smaller screens and partially on larger screens 
 2. Another issue was that the buttons in editplan were slightly too close together down the centre.
+3. Another issue raised in user testing was trhat the select workout box was not clear enough before creating a workout as it is at the top of the page.
+4. This led to the same issue in edit plan where you select an exercise to edit but if none exist nothing was appearing.
 #### Solutions
 1. removed justify centre from the container div and added mb-6 to all apart from last table to fixcc the issue
 2. To fix the buttons issue a margin was added pushing all of the buttons to stack. THis worked well and recieved positive user feedback.
+3. To fix this issue we added a conditional statement that when no workouts have been selected a message telling you you do not have any workouts created will appear instead.
+4. Another message was added if exercises.length = 0 to say you needed to add an exercise first.
 [Back to top](#vitality-vault)
 
 </details>
