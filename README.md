@@ -8,46 +8,47 @@
 
 ## [UX](#ux-1)
 
-[Primary Goals](#primary-goals)  
-[Business Goals](#business-goals)  
-[User Goals](#user-goals)  
-[User Stories](#user-stories)  
-[Design Choices](#design-choices)  
-[ERD Diagram](#erd-diagram)
-[Wireframes](#wireframes)
+- [Primary Goals](#primary-goals) 
+- [Business Goals](#business-goals)          
+- [User Goals](#user-goals)        
+- [User Stories](#user-stories)        
+- [Design Choices](#design-choices)       
+- [ERD Diagram](#erd-diagram)  
+- [Wireframes](#wireframes)  
+
 
 ## [Features](#features-1)
 
-[Existing features](#existing-features)  
-[User Goals mapping](#user-goals-mapping)  
-[Features left to implement](#features-left-to-implement)  
-[User Goals still to implement](#user-goals-still-to-implement)
+- [Existing features](#existing-features)    
+- [User Goals mapping](#user-goals-mapping)    
+- [Features left to implement](#features-left-to-implement)    
+- [User Goals still to implement](#user-goals-still-to-implement)  
 
 ## [Technologies used](#technologies-used-1)
 
 ## [Testing](#testing-1)
 
-[Lighthouse tests](#lighthouse-tests)  
-[HTML tests](#html-tests)  
-[CSS tests](#css-tests)  
-[Python code validation](#python-code-validation)
-[API Testing](#api-testing)
-[Security](#security)
-[Automated Testing](#automated-testing)
-[Contrast tests](#contrast-tests)  
-[Keyboard Accessibility tests](#keyboard-accessibility-tests)  
-[Development bugs and fixes](#development-bugs-and-fixes)  
-[Cross browser testing](#cross-browser-testing)  
-[User Testing](#user-testing)
+- [Lighthouse tests](#lighthouse-tests)    
+- [HTML tests](#html-tests)    
+- [CSS tests](#css-tests)    
+- [Python code validation](#python-code-validation)  
+- [API Testing](#api-testing)  
+- [Security](#security)  
+- [Automated Testing](#automated-testing)  
+- [Contrast tests](#contrast-tests)    
+- [Keyboard Accessibility tests](#keyboard-accessibility-tests)    
+- [Development bugs and fixes](#development-bugs-and-fixes)    
+- [Cross browser testing](#cross-browser-testing)    
+- [User Testing](#user-testing)  
 
-## [Deployment](#deployment-1)
+## [Deployment](#deployment-1)  
 
-[How to run this project](#how-to-run-project)
+- [How to run this project](#how-to-run-project)  
 
-## [Credits](#credits-1)
+## [Credits](#credits-1)  
 
-[Content/Media/Code/Acknowledgements](#contentmediacodeacknowledgements)  
-[dependencies](#dependencies-for-reactvite)
+- [Content/Media/Code/Acknowledgements](#contentmediacodeacknowledgements)    
+- [dependencies](#dependencies-for-reactvite)  
 
 ### UX
 
@@ -127,7 +128,7 @@ The brand identity and colour themes have been chosen to project strength and tr
  <summary>logo</summary>
 
 ![logo dark theme](/frontend/src/assets/images/VV-logo-large.png)
-[logo light theme](/frontend/src/assets/images/VV-logo-blue-large.png)
+![logo light theme](/frontend/src/assets/images/VV-logo-blue-large.png)
 
 The logo and name have been chosen because firstly the name suggests it is energetic and secure, which are both important aspects to convey to the user. The Logo then helps to back up this claim with a vault within a shield presenting a secure environment to create your workout.
 
@@ -144,20 +145,22 @@ The typography uses the DaisyUI default font. This increases legibility, which i
 
 ##### Colours
 
+---
+
 The colours chosen are the Nord theme for the light theme and Halloween for the dark theme. The default colours for these themes are
 Nord
----
-primary #5E81AC frost blue(updated to #25364B to pass contrast ratios)
-base- 100 #ECEFF4 light background
-base-200 #E5E9F0 middle light background
-base-300 #D8DEE9 darker light background
+
+primary #5E81AC frost blue(updated to #25364B to pass contrast ratios)\
+base- 100 #ECEFF4 light background\
+base-200 #E5E9F0 middle light background\
+base-300 #D8DEE9 darker light background\
 
 Halloween
 ---
-primary #F28C18 jack-o-lantern orange
-base- 100 #212121 charcoal black background
-base-200 #1a1a1a darker surface panel background
-base-300 #121212 deepest background tint
+primary #F28C18 jack-o-lantern orange\
+base- 100 #212121 charcoal black background\
+base-200 #1a1a1a darker surface panel background\
+base-300 #121212 deepest background tint\
 
 More colours are available for each theme but these are the ones used for the app.
 
@@ -195,6 +198,7 @@ Please see below diagram of the flow of data through this app.  
 
 ![ERD diagram](/frontend/src/assets/images/ERD-diagram.png)
 
+[Back to top](#vitality-vault)
 ##### Wireframes
 
 ---
@@ -279,14 +283,14 @@ The tablet and desktop views render slightly different the start of the page is 
 <details>
 <summary>User goals mapping</summary>
 
-- To support the existing features that have been implemented, please see the table below that outlines implemented User Stories and their supporting evidence screenshots.
+- To support the existing features that have been implemented, please see the table below that outlines the implemented user stories and their supporting evidence screenshots.
 
-| User Story                                                                                                                                                                                                  | Supporting screenshot                                                     |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |-------------------------------------------------------------------------  |
-| As a user tracking my strength I can view the specific <br>details of a previous days workout I completed so that <br>I know exactly what Ive been doing to make sure I am <br>not doing the wrong workout  | [previous plan](/frontend/src/assets/images/previous-plan-evidence.png)   |
-| As a registered fitness user, I can create and save a <br>custom workout routine with a name and a list of exercises<br> so that I can quickly select it whenever I go to the gym.                          | [create plan](/frontend/src/assets/images/create-plan-evidence.png)       |
-| As a flexible trainee, I can edit the sets and reps of a previously <br>created workout so that I can keep my workouts up to date.                                                                          | [edit plan](/frontend/src/assets/images/edit-plan-evidence.png)           |
-| As a user cleaning up my profile, I can delete an old workout routine<br>that I no longer perform so that my list of active routines stays <br> organised and clutter free                                 | [edit plan](/frontend/src/assets/images/edit-plan-evidence.png)           |
+| User goal | Supporting evidence |
+| --- | --- |
+| View previous workout details | [previous plan](/frontend/src/assets/images/previous-plan-evidence.png) |
+| Create and save a workout routine | [create plan](/frontend/src/assets/images/create-plan-evidence.png) |
+| Edit workout sets and reps | [edit plan](/frontend/src/assets/images/edit-plan-evidence.png) |
+| Delete an old workout routine | [edit plan](/frontend/src/assets/images/edit-plan-evidence.png) |
 
 [Back to top](#vitality-vault)
 
@@ -442,7 +446,6 @@ As all other scores were in the 90s, and only the best‑practice score was lowe
 
 ---
 
-[html test](/frontend/src/assets/images/html-test.png)
 
  <details>
  <summary> HTML tests</summary>
@@ -641,32 +644,32 @@ For the homepage tests we tested:
 
  ---
 
- ✓ src/pages/workout-page/Today.test.jsx (2 tests) 280ms
- ✓ src/pages/workout-page/Full.test.jsx (2 tests) 309ms
-   ✓ FullPlan Component (2)
-     ✓ renders days chronologically and displays exercise details or rest days correctly 302ms
- ✓ src/pages/workout-page/Edit.test.jsx (4 tests) 622ms
-   ✓ EditPlan Component (4)
-     ✓ renders form elements and maps initial selection options correctly 320ms
-Not implemented: Window's alert() method
- ✓ src/pages/workout-page/Create.test.jsx (2 tests) 1418ms
-   ✓ CreatePlan (2)
-     ✓ adds an exercise to Monday's workout 810ms
-     ✓ submits a workout plan 605ms
- ✓ src/pages/workout-page/WorkoutPlan.test.jsx (1 test) 232ms
- ✓ src/pages/workout-page/Previous.test.jsx (1 test) 276ms
- ✓ src/pages/workout-page/Tomorrow.test.jsx (2 tests) 310ms
-   ✓ TomorrowsPlan Component (2)
-     ✓ calculates tomorrow's weekday accurately and renders those exercises 302ms
- ✓ src/pages/workout-page/MobileView.test.jsx (4 tests) 84ms
- ✓ src/pages/HomePage.test.jsx (4 tests) 64ms
- ✓ src/pages/workout-page/DesktopVIew.test.jsx (2 tests) 71ms
- ✓ src/pages/workout-page/Current.test.jsx (2 tests) 49ms
+ ✓ src/pages/workout-page/Today.test.jsx (2 tests) 280ms \
+ ✓ src/pages/workout-page/Full.test.jsx (2 tests) 309ms \
+   ✓ FullPlan Component (2) \
+     ✓ renders days chronologically and displays exercise details or rest days correctly 302ms\
+ ✓ src/pages/workout-page/Edit.test.jsx (4 tests) 622ms\
+   ✓ EditPlan Component (4)\
+     ✓ renders form elements and maps initial selection options correctly 320ms\
+Not implemented: Window's alert() method\
+ ✓ src/pages/workout-page/Create.test.jsx (2 tests) 1418ms\
+   ✓ CreatePlan (2)\
+     ✓ adds an exercise to Monday's workout 810ms\
+     ✓ submits a workout plan 605ms\
+ ✓ src/pages/workout-page/WorkoutPlan.test.jsx (1 test) 232ms\
+ ✓ src/pages/workout-page/Previous.test.jsx (1 test) 276ms\
+ ✓ src/pages/workout-page/Tomorrow.test.jsx (2 tests) 310ms\
+   ✓ TomorrowsPlan Component (2)\
+     ✓ calculates tomorrow's weekday accurately and renders those exercises 302ms\
+ ✓ src/pages/workout-page/MobileView.test.jsx (4 tests) 84ms\
+ ✓ src/pages/HomePage.test.jsx (4 tests) 64ms\
+ ✓ src/pages/workout-page/DesktopVIew.test.jsx (2 tests) 71ms\
+ ✓ src/pages/workout-page/Current.test.jsx (2 tests) 49ms 
 
- Test Files  11 passed (11)
-      Tests  26 passed (26)
-   Start at  14:22:27
-   Duration  9.19s (environment 64%, import 22%, tests 12%, transform 2%)
+ Test Files  11 passed (11)\
+      Tests  26 passed (26)\
+   Start at  14:22:27\
+   Duration  9.19s (environment 64%, import 22%, tests 12%, transform 2%) 
 
 [Back to top](#vitality-vault)
 #### Django testing 
@@ -713,14 +716,14 @@ To test the workouts models, serialisers and view we ran the following tests:
 
 ---
 
-Found 6 test(s).
-Creating test database for alias 'default'...
-System check identified no issues (0 silenced).
-......
-----------------------------------------------------------------------
-Ran 6 tests in 1.036s
+Found 6 test(s).\
+Creating test database for alias 'default'...\
+System check identified no issues (0 silenced).\
+...... 
 
-OK
+Ran 6 tests in 1.036s 
+
+OK 
 
 [Back to top](#vitality-vault)
 
@@ -824,7 +827,7 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 <details>
 <summary>User testing notes</summary>
 
-</details>
+
 
 #### Issues
 1. On user testing it was noted how in full plan the tables were slightly too close together and Monday was being cut off fully on smaller screens and partially on larger screens 
@@ -836,7 +839,7 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 2. To fix the buttons issue a margin was added pushing all of the buttons to stack. This worked well and received positive user feedback.
 3. To fix this issue we added a conditional statement that when no workouts have been selected a message telling you you do not have any workouts created will appear instead.
 4. Another message was added if exercises.length = 0 to say you needed to add an exercise first.
-[Back to top](#vitality-vault)
+
 
 </details>
 
@@ -974,28 +977,28 @@ For more information, please refer to https://unlicense.org
 #### dependencies for React/Vite
 ---
 
-"dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.0.5",
-    "axios": "^1.18.1",
-    "daisyui": "^5.7.4",
-    "jwt-decode": "^4.0.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "react-router": "^8.3.0",
-    "tailwind-animations": "^1.0.2",
-    "tailwindcss": "^4.3.3",
-    "vite": "^8.1.1"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/react": "^16.3.3",
-    "@testing-library/user-event": "^14.6.7",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "jsdom": "^29.1.1",
-    "oxlint": "^1.71.0",
-    "vitest": "^5.0.0"
+"dependencies": {\
+    "@tailwindcss/vite": "^4.3.3",\
+    "@vitejs/plugin-react": "^6.0.5",\
+    "axios": "^1.18.1",\
+    "daisyui": "^5.7.4",\
+    "jwt-decode": "^4.0.0",\
+    "react": "^19.2.7",\
+    "react-dom": "^19.2.7",\
+    "react-router": "^8.3.0",\
+    "tailwind-animations": "^1.0.2",\
+    "tailwindcss": "^4.3.3",\
+    "vite": "^8.1.1"\
+  },\
+  "devDependencies": {\
+    "@testing-library/jest-dom": "^7.0.1",\
+    "@testing-library/react": "^16.3.3",\
+    "@testing-library/user-event": "^14.6.7",\
+    "@types/react": "^19.2.17",\
+    "@types/react-dom": "^19.2.3",\
+    "jsdom": "^29.1.1",\
+    "oxlint": "^1.71.0",\
+    "vitest": "^5.0.0"\
   }
 
 [Back to top](#vitality-vault)
@@ -1003,31 +1006,31 @@ For more information, please refer to https://unlicense.org
 #### dependencies for django 
 ---
 
-asgiref==3.12.1
-certifi==2026.7.22
-cffi==2.1.0
-charset-normalizer==3.4.9
-cloudinary==1.45.0
-cryptography==49.0.0
-dj-database-url==3.1.2
-Django==6.0.7
-django-allauth==65.18.0
-django-cors-headers==4.9.0
-djangorestframework==3.17.1
-djangorestframework_simplejwt==5.5.1
-gunicorn==26.0.0
-idna==3.18
-oauthlib==3.3.1
-packaging==26.2
-psycopg2-binary==2.9.12
-pycparser==3.0
-PyJWT==2.13.0
-python-decouple==3.8
-requests==2.34.2
-six==1.17.0
-sqlparse==0.5.5
-tzdata==2026.3
-urllib3==2.7.0
+asgiref==3.12.1\
+certifi==2026.7.22\
+cffi==2.1.0\
+charset-normalizer==3.4.9\
+cloudinary==1.45.0\
+cryptography==49.0.0\
+dj-database-url==3.1.2\
+Django==6.0.7\
+django-allauth==65.18.0\
+django-cors-headers==4.9.0\
+djangorestframework==3.17.1\
+djangorestframework_simplejwt==5.5.1\
+gunicorn==26.0.0\
+idna==3.18\
+oauthlib==3.3.1\
+packaging==26.2\
+psycopg2-binary==2.9.12\
+pycparser==3.0\
+PyJWT==2.13.0\
+python-decouple==3.8\
+requests==2.34.2\
+six==1.17.0\
+sqlparse==0.5.5\
+tzdata==2026.3\
+urllib3==2.7.0\
 whitenoise==6.12.0
 
 [Back to top](#vitality-vault)
