@@ -61,9 +61,9 @@ The primary goals of Vitality Vault are:
 
 - To help simplify working out.
 - To provide an extensive list of exercises to choose from and a simple form with which to build workouts.
--To show that a gym membership is not required and that, whatever your fitness level, you can work out.
--To get people working out.
--To get users trying new exercises they may not have heard of before.
+- To show that a gym membership is not required and that, whatever your fitness level, you can work out.
+- To get people working out.
+- To get users trying new exercises they may not have heard of before.
 
 [Back to top](#vitality-vault)
 
@@ -74,8 +74,8 @@ The primary goals of Vitality Vault are:
 The business goals of Vitality Vault are:
 
 - To simplify planning a workout
--To optimise peoples workouts.
-- To Maximise users experience by making the whole process as streamlined and simple as possible.
+- To optimise people's workouts.
+- To maximise users experience by making the whole process as streamlined and simple as possible.
 - Long term business goals include providing an all-in-one experience where users can track progress and upload weights used, and get back body composition information as well as calorie tracking.
 
 [Back to top](#vitality-vault)
@@ -145,7 +145,7 @@ The typography uses the DaisyUI default font. This increases legibility, which i
 ##### Colours
 
 The colours chosen are the Nord theme for the light theme and Halloween for the dark theme. The default colours for these themes are
-Nora
+Nord
 ---
 primary #5E81AC frost blue(updated to #25364B to pass contrast ratios)
 base- 100 #ECEFF4 light background
@@ -159,7 +159,7 @@ base- 100 #212121 charcoal black background
 base-200 #1a1a1a darker surface panel background
 base-300 #121212 deepest background tint
 
-More colour are available for each theme but these are the ones used for the app.
+More colours are available for each theme but these are the ones used for the app.
 
 I chose these themes because I felt the contrast reflected suitable dark/light themes, whilst changing the psychological vibe of the app to reflect the users mood. Nords blues and whites provide a crisp, calm clean and clinical environment to lower the heart rate and make the workout feel more manageable. Halloween in contrast gives a High intensity and aggressive vibe. The stark contrast between the charcoal and neon oranges, greens and purples help to create an energy boosting high adrenaline atmosphere.
 
@@ -186,6 +186,7 @@ The background colours have been chosen to give the app soft layers, drawing you
 ---
 
 All images for the project were sourced from the same database as the exercise data, and there are two images for every exercise. They are all stored in Cloudinary to improve load times while keeping quality high.
+
 [Back to top](#vitality-vault)
 
 ##### ERD diagram 
@@ -249,7 +250,7 @@ As the page is identical on all screen sizes please see description in Mobile wi
 
 <summary>Workout plan page</summary>
 
-![workout plan](/frontend//src/assets/images/Desktop-view-workoutplan-wireframe.png)
+![workout plan](/frontend/src/assets/images/Desktop-view-workoutplan-wireframe.png)
 
 The tablet and desktop views render slightly different the start of the page is the same with the same drop-down to select your current workout. Following on from this the right hand side of the page renders the same Today’s, Full, Previous and Tomorrows plans. The left hand side of the page has two tabs for the Create and Edit plan forms. Below this is where the view changes from the mobile view and depending on what today’s workout is an Exercise Carousel will render displaying pictures of the exercises in your current workout or a default image of the company logo if the day is a rest day.  
 </details>
@@ -265,9 +266,9 @@ The tablet and desktop views render slightly different the start of the page is 
 - Dynamic Homepage explaining the site and how it can help you.
 - Create workout form with extensive list of exercises to choose from.
 - Edit workout form with ability to change/update or even delete the workout. 
-- Ability to single out yesterdays, tomorrows or even the full workout plan foe viewing. 
+- Ability to single out yesterdays, tomorrows or even the full workout plan for viewing. 
 - On larger screens a carousel of images displaying pictures of the workout you have planned for the day.
-- Ability to change the theme of the website to suit your own personnel preferences which saves so can continue where you left off the next time you log in. 
+- Ability to change the theme of the website to suit your own personal preferences which saves so can continue where you left off the next time you log in. 
 
 [Back to top](#vitality-vault)
 
@@ -780,13 +781,13 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 <details>
 <summary>Development bugs and fixes</summary>
 
-| Development Bugs/Issues                                                                           | Fix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|-------------------------------------------------------------------------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
-| Registration not working when tested                                                              | Ran through all separate Auth files and backend and found a missing trailing / on the register API which was causing the failure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| 400 error when accessing deployed site <br>followed by 500 errors.                                | Had to update my middleware for cors headers and update both allowed hosts and run migrations to my heroku backend to fix the database link                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| prop drilling for workout page section                                                            | Was becoming quite complicated to have the selected workout available in all components of workout page so moved it into useContext because <br>the changing design and way the pages are rendered meant state could not be accessed easily from the other page layouts.                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| all API calls were working but state was not updating<br>and no values were showing in frontend   | Added in a fetchworkout plan function to fix this but still had issue that although  the workout was being saved to backend it was <br>still not being registered to the user creating the workout so had to update the serialiser to include user.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| dynamic sizes behaving erratically and not always changing <br>with screen size in chrome.        | Replaced media query with isMobile state in workout plan and adjusted screen sizes. Discovered the root cause was originally their was a tablet view separating mobile and desktop. <br>With the design change this was deleted because the desktop design became the same as the tablet design after the redesign. As I had already got the desktop design working I <br>deleted the tablet design meaning the sizing did not work properly for the adjustments. This is also why you will find that the design for  the tablet and desktop view could <br>also work with less columns in the grid design but was left alone as was already working and not effecting any scores.      |
+| Development Bugs/Issues                             	| Cause                                                              	| Fix                                                                                       	|
+|-----------------------------------------------------	|--------------------------------------------------------------------	|-------------------------------------------------------------------------------------------	|
+| User Registration fails to complete                 	| Missing trailing slash(/) on endpoint string                       	| Corrected the registration API string                                                     	|
+| Production site returns 400/500 errors              	| Misconfigured CORS origins and missing Heroku database migrations  	| Adjusted middleware settings and updated ALLOWED_HOSTS and ran database updates           	|
+| Complicated data passing across workout sections    	| High component hierarchy nesting led to unstable data pipelines    	| Refactored form state into shared useContext layer                                        	|
+| API calls complete successfully but state is empty  	| Workouts were saved anonymously without user relationships binding 	| Updated backend serialization classes to require user profiles                            	|
+| Layout transformations behave erratically on Chrome 	| Media queries collided with outdated tablet vieweport              	| Migrated to an isMobile state controller and streamlined responsive design break points.  	|
 
 
 
@@ -862,13 +863,13 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 3. Navigate to the root of your repository and create your Heroku app by typing:  heroku create your-app-name
 4. By default, Heroku looks for manage.py in the root folder. Because your backend sits inside a subfolder, you must add the Heroku Subdirectory Buildpack. This isolates the deployment to the backend directory by typing:
 heroku buildpacks:set https://github.com
-5. So the builpack knows exactly where to look for your django backend add:  heroku config:set PROJECT_PATH=backend(replace backend with your name of your django backend folder)
+5. So the builpack knows exactly where to look for your django backend add:  heroku config:set PROJECT_PATH=backend (replace backend with your name of your django backend folder)
 6. Set your production settings variables on Heroku by typing:
 heroku config:set SECRET_KEY="your-production-secret-key"
 heroku config:set DEBUG=False
 7. Add a production database(Heroku no longer offer a free tier so you will need to find one that suits your needs. I chose neon to host my postgresql database.)
 8. Ensure you have the following files created in your backend folder :
- - requirements.txt containing gunicrorn, dj-database-url, psycopg2-binary(may have to change version to psycopg[binary]>=3.1.0 if using latest version of python) and whitenoise.
+ - requirements.txt containing gunicorn, dj-database-url, psycopg2-binary(may have to change version to psycopg[binary]>=3.1.0 if using latest version of python) and whitenoise.
  - Procfile containing web: gunicorn my_project.wsgi --log-file - 
  9. Deploy to Heroku by navigating into your backend folder and typing:
  git push heroku main and then once its finished building type: heroku run python manage.py migrate
@@ -879,7 +880,7 @@ heroku config:set DEBUG=False
 <details>
 <summary>To deploy the frontend to vercel</summary>
 
-1. Create a vercel.json in your frontend repository and add: 
+1. Create a vercel.json in your frontend directory and add: 
 {
   "rewrites": [
     {
@@ -894,7 +895,7 @@ heroku config:set DEBUG=False
 5. On the Configure Project screen you must tell vercel to look inside the frontend subfolder by looking inside the root directory setting. 
 6. Once inside the root directory settings click the edit button next to it and select the frontend folder and click continue. 
 7. Ensure the framework preset drop-down says Vite or Create React App and leave the build command and output directory off.
-8. If using and Environment variables like your production backend URL expand the Environment Variables and add them in here making sure to add in your KEY and production value.
+8. If using any Environment variables like your production backend URL expand the Environment Variables and add them in here making sure to add in your KEY and production value.
 9. Click the deploy button at the bottom of the page and your frontend should now be live. 
 
 [Back to top](#vitality-vault)
@@ -953,7 +954,7 @@ heroku config:set DEBUG=False
 ---
 [free exercise database](https://yuhonas.github.io/free-exercise-db/)
 
-The exercise data is sourced from the repository linked to the website above. The models, serializers, and views were created by myself to ensure the data structure was organised in the best way possible to bring the exercises across correctly. ChatGPT was then used to help me create the management folder and import all the exercises. This was done because building the full command structure was outside the scope of this project. I also felt that, as I was only using it to assist with importing the data rather than generating any production code, this was an acceptable use of AI to help populate the exercises section with the required data. 
+The exercise data is sourced from the repository linked to the website above. The models, serializers, and views were created by me to ensure the data structure was organised in the best way possible to bring the exercises across correctly. ChatGPT was then used to help me create the management folder and import all the exercises. This was done because building the full command structure was outside the scope of this project. I also felt that, as I was only using it to assist with importing the data rather than generating any production code, this was an acceptable use of AI to help populate the exercises section with the required data. 
 
 ##### Please find below a copy of the licence for the free exercise db
 
