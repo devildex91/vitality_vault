@@ -3,7 +3,8 @@
 ---
 
 [To view site](https://vitality-vault-omega.vercel.app/)
-
+[To view backend](https://vitality-vault-backend-c2878a5636af.herokuapp.com/admin)
+ 
 ## Table of Contents
 
 ## [UX](#ux-1)
@@ -340,6 +341,7 @@ For full list of User Stories still to implement  please follow [this link](htt
 | Django rest    |API linking react and Django/authentication|
 | Daisy UI       |React UI                                   |
 | Tailwind CSS   | CSS styling                               |
+| Neon           | Database hosting                          | 
 
 [Back to top](#vitality-vault)
 
