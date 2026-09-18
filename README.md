@@ -15,6 +15,7 @@
 - [User Stories](#user-stories)        
 - [Design Choices](#design-choices)       
 - [ERD Diagram](#erd-diagram)  
+- [Database Architecture](#database-architecture)
 - [Wireframes](#wireframes)  
 
 
@@ -37,7 +38,8 @@
 - [Security](#security)  
 - [Automated Testing](#automated-testing)  
 - [Contrast tests](#contrast-tests)    
-- [Keyboard Accessibility tests](#keyboard-accessibility-tests)    
+- [Keyboard Accessibility tests](#keyboard-accessibility-tests) 
+-[Manual Features and USuability Testing Log](#manual-features-and-usability-testing-log)   
 - [Development bugs and fixes](#development-bugs-and-fixes)    
 - [Cross browser testing](#cross-browser-testing)    
 - [User Testing](#user-testing)  
@@ -115,7 +117,10 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
 
 ---
 
-The original design for this project included a workout page, a body tracker page, and a calorie log page along with graphs. The scope of the project meant it was simplified down to a simple app where you can Create, Read, Update, and Delete a workout.
+The original design for this project included a workout page, a body tracker page, and a calorie log page along with graphs. The scope of the project meant it was intentionally scaled down from the original blueprint to a hyper focuses workout app. This was so that:
+- Cognitive fatigue could be minimised.(Once we had analysed the original blueprint wqe discovered that an overly complex layout and dashboard distracted the users from the real focus which was to maximise their workouts.)
+- Data consistency(We felt that without any validation of the data that the user was inputting we could not guarantee the quality of the results)
+- Optimised Isolation(Narrowing the scope meant that we could bulletproof the design ensuring users can only view and mutate their own data resulting in a publishable product)
 [click here for original design](/frontend/src/assets/images/original-tablet-design.png).
 This original design is reflected in the user stories.
 
@@ -198,6 +203,80 @@ All images for the project were sourced from the same database as the exercise d
 Please see below diagram of the flow of data through this app.  
 
 ![ERD diagram](/frontend/src/assets/images/ERD-diagram.png)
+
+[Back to top](#vitality-vault)
+
+##### Database Architecture
+The backend application utilizes a relational database structure using Django and deployed using PostgreSQL on Neon. Below is the description of the database entities shown in the ERD diagram above although not all of the data was used withing the revised bluerprint of the project the data was left in for scope for future enhancements : 
+
+###### Muscle Model.
+
+- name: A CharField that stores the unique name of the muscle group with a maximum length of 50 characters, ensuring no duplicate muscles exist.
+- Meta: A configuration class that ensures muscle instances are systematically ordered alphabetically by name.
+
+
+###### Equipment Model
+
+- name: A CharField tracking tool identifiers with a maximum length of 50 characters, structurally locked to remain unique across entries.
+- Meta: A configuration class ensuring that all equipment entries are organized alphabetically by name.
+
+
+###### Category Model
+
+- name: A unique CharField defining the movement category title up to a maximum length of 50 characters.
+- Meta: A database configuration setting that forces alphabetical sorting arrangements using the name field properties.
+
+
+###### Exercise Model
+
+- id: A custom CharField defining a text-based primary key for explicit identification mapping with an upper limit of 150 characters.
+- name: A standard CharField registering the descriptive exercise title up to a maximum of 200 elements.
+- level: A CharField forcing inputs into a TextChoices class structure consisting of strict experience splits ('beginner', 'intermediate', or 'expert') with a 20-character limit.
+- force: An optional CharField utilizing a TextChoices constraint to classify movement forces ('push', 'pull', or 'static'), allowing blank and null entries up to 20 characters.
+- mechanic: An optional CharField storing structural movement mechanics ('compound' or 'isolation') via a TextChoices wrapper, enabling blank and null properties.
+- category: A ForeignKey relationship mapping directly to the Category entity, configured with models.PROTECT rules to block category deletion if associated exercises exist.
+- equipment: An optional ForeignKey linking to the Equipment model, applying models.SET_NULL behaviors to safely clear the relational value if the source equipment record is wiped out.
+- primary_muscles: A ManyToManyField connecting the exercise record to multiple entries within the Muscle model to declare main targeted regions.
+- secondary_muscles: An optional ManyToManyField connecting to the Muscle table to isolate assisting muscle involvements, allowing blank array assignments.
+- Meta: A database configuration class maintaining runtime data sorting rules alphabetically based on the exercise name property.
+
+
+###### Instruction Model
+- exercise: A ForeignKey binding the specific step context to a parent Exercise model record, executing `models.CASCADE` wipes if the master exercise is deleted.
+- step: A PositiveSmallIntegerField registering the absolute sequential location index of the instruction line item.
+- text: A large TextField accommodating thorough step descriptions and procedural execution context.
+- Meta: A configuration class maintaining strict ascending array sorting parameters by mapping entries via the step variable.
+- constraints: An integrity framework layer declaring a `UniqueConstraint` on the combination of the `exercise` and `step` properties to systematically block duplicate step configurations inside a single exercise list.
+
+
+###### ExerciseImage Model
+
+- exercise: A ForeignKey defining standard structural ownership under an Exercise record container, enforcing cascading deletions.
+- public_id: A CharField storing unique asset repository locator tokens up to a maximum limit of 255 characters.
+- order: A PositiveSmallIntegerField that sets the index position sequence for display sliders, defaulting to a zero placement index.
+- Meta: A tracking layout rule sorting output assets chronologically from lowest to highest numerical values using the order index field.
+
+
+###### WorkoutPlan Model
+
+- user: A ForeignKey tracking ownership by tying plan splits back to unique AUTH_USER_MODEL records, handling cascading clear-outs and allowing null states.
+- title: A standard descriptive CharField tracking user-defined plan headers up to a maximum space allotment of 255 elements.
+
+###### WorkoutDay Model
+
+- workout: A ForeignKey establishing container dependency fields under a master WorkoutPlan profile, configured with cascade delete mappings.
+- day: A CharField restricting inputs to strict choices arrays mapping target calendar steps from Monday through Sunday with a 20-character maximum cap.
+- constraints: An optimization layer enforcing a composite UniqueConstraint over both the workout and day fields to block duplicate day creations inside the same plan container.
+
+###### WorkoutExercise Model
+
+- workout_day: A ForeignKey linking the performance elements directly under a unique parent WorkoutDay calendar instance using cascade rules.
+- exercise: A ForeignKey drawing base information properties down from a master target Exercise record using standard cascade routines.
+- sets: An IntegerField capturing user-defined performance sets targets.
+- reps: An IntegerField capturing user-defined performance repetitions metrics.
+- Meta: A database setup maintaining layout sorting patterns alphabetically by targeting the underlying exercise name key properties.
+- constraints: An operational safety mapping enforcing a UniqueConstraint across both workout_day and exercise columns to stop duplicate exercise additions on the same day.
+
 
 [Back to top](#vitality-vault)
 ##### Wireframes
@@ -779,6 +858,19 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 
  </details>
 
+### Manual Features and Usability Testing Log
+
+<details>
+
+<summary>Manual Testing Log</summary>
+
+
+
+[Back to top](#vitality-vault)
+
+</details>
+
+
 ### development bugs and fixes
 
 ---
@@ -793,6 +885,8 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 | Complicated data passing across workout sections    	| High component hierarchy nesting led to unstable data pipelines    	| Refactored form state into shared useContext layer                                        	|
 | API calls complete successfully but state is empty  	| Workouts were saved anonymously without user relationships binding 	| Updated backend serialization classes to require user profiles                            	|
 | Layout transformations behave erratically on Chrome 	| Media queries collided with outdated tablet vieweport              	| Migrated to an isMobile state controller and streamlined responsive design break points.  	|
+| Registration failing with wrong message     |  vague error handling | update error handling to be more specific on reason for failure| 
+| Registration failing to work   | automatically adding stored access token to every request so recieving wrong token | Public authentication no longer recieves bearer token.| 
 
 
 
@@ -973,7 +1067,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For more information, please refer to https://unlicense.org
 
-###### All code was written by myself apart from the credits for the exercise data which is explained above.
+###### Vitality Vault is a wholly original web application designed, architected, and implemented from scratch with the exception of the data for the Exercise model as stated in the credits above. 
 [Back to top](#vitality-vault)
 
 #### dependencies for React/Vite
