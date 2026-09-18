@@ -864,7 +864,50 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 
 <summary>Manual Testing Log</summary>
 
+ALL tests were carried out on both mobile and desktop views but as some tabs were rendered the same the mobile tests applied to desktop screens as well. 
 
+
+| Feature                     	| Test Case                                         	| Expected Result                                         	| Actual Result                                                                	| PASS/FAIL 	|
+|-----------------------------	|---------------------------------------------------	|---------------------------------------------------------	|------------------------------------------------------------------------------	|-----------	|
+| ALL PAGES                   	|                                                   	|                                                         	|                                                                              	|           	|
+| theme controller            	| CLick theme control button to swap theme          	| theme changes                                           	| theme changes                                                                	| PASS      	|
+|  Menu dropdown              	| Click the hamburger menu icon                     	| Dropdown menu opens/closes                              	| dropdown menu opens/closes                                                   	| PASS      	|
+| Navigation                  	| click on login, register, home,logout             	| redirects to relevant page                              	| redirects to relevant page                                                   	| PASS      	|
+| Social media links          	| click icons                                       	| open in new page                                        	| open in new page                                                             	| PASS      	|
+| HOMEPAGE                    	|                                                   	|                                                         	|                                                                              	|           	|
+| Call to action button       	| CLick login button                                	| redirects to login                                      	| redirects to login                                                           	| PASS      	|
+| Titleimage/text fade/appear 	| Reload page to confirm works                      	| image fade out text fade in                             	| image fade out text fade in                                                  	| PASS      	|
+| LOGINPAGE/REGISTERPAGE      	|                                                   	|                                                         	|                                                                              	|           	|
+| Login/register form         	| empty username field when try to login            	| asks you to fill out field                              	| asks to fill out field                                                       	| PASS      	|
+| Login/register Form         	| empty password filled out username                	| asks to enter password                                  	| asks to enter password                                                       	| PASS      	|
+| Login/regsiter form         	| click register/login button(change form button)   	| changes to register form                                	| changes to register form                                                     	| PASS      	|
+| Login form                  	| click login  submit button(right details)         	| Logs in                                                 	| Logs in                                                                      	| PASS      	|
+| Login form                  	| click login submit button(wrong details)          	| displays error message                                  	|  displays error message                                                      	| PASS      	|
+| Register form               	| click register submit button(right details)       	| displays registration successful please login           	| displays registration successful Please login                                	| PASS      	|
+| WORKOUTPAGE(MOBILE VIEW)    	|                                                   	|                                                         	|                                                                              	|           	|
+| current workout dropdown    	| select dropdown                                   	| Workouts are available or default message               	| Workouts available/Message telling you to create workout if none available   	| PASS      	|
+| Current plan tabs           	|                                                   	|                                                         	|                                                                              	|           	|
+| Todays                      	| CLick todays tab                                  	| Todays workout displayed                                	| Todays workout displayed                                                     	| PASS      	|
+| Previous                    	| CLick previous tab                                	| Yesterdays workout displayed                            	| Yesterdays workout displayed                                                 	| PASS      	|
+| Tomorrows                   	| Click Tomorrows tab                               	| Tomorrows workout displayed                             	| Yesterdays workout displayed                                                 	|           	|
+| Full plan                   	| Click full plan tab                               	| Full plan displayed                                     	| Full plan displayed                                                          	|           	|
+| Create Plan                 	|                                                   	|                                                         	|                                                                              	|           	|
+| Create form                 	| Submit with empty fields                          	| Error message from topmost empty fieldset               	| Error message from topmost fieldet                                           	| PASS      	|
+| Create form                 	| Submit filled out form                            	| Message confiming form sent                             	| Alert message confirming form has been created                               	| PASS      	|
+| Create form                 	| Submit exercise without sets or reps              	| default to 0                                            	| defaulted to 0                                                               	| PASS      	|
+| Edit plan                   	|                                                   	|                                                         	|                                                                              	|           	|
+| select boxes                	| try to select out of order                        	| select elements to be disabled until one above selected 	| select boxes disabled unless one above selected                              	| PASS      	|
+| Current exercise select box 	| try to select an exercise on an empty day         	| Message stating no exercises exist                      	| message stating no exercises exist                                           	| PASS      	|
+| Update workout button       	| click button                                      	| Any changes to be displayed instantly in table below    	| changes instantly displayed                                                  	| PASS      	|
+| Delete Exercise Button      	| click button                                      	| exercise to be deleted from day                         	| day of exercises deleted                                                     	| PASS      	|
+| Delete day button           	| click button                                      	| all exercises from day deleted                          	| whole days exercises deleted                                                 	| PASS      	|
+| Delete workout button       	| cliuck button                                     	| whole workout deleted                                   	| full workout deleted from database                                           	| PASS      	|
+| Save workout button         	| click button                                      	| workout to be saved to database                         	| workout saved to database with changes                                       	| PASS      	|
+| DESKTOP VIEWS               	| ALL COMPONENTS RENDER ON DESKTOP SCREEN THE SAME  	| SO TESTS ABOVE APPLY ALL DIFFERENCES TESTED BELOW       	|                                                                              	|           	|
+| EXERCISE CAROUSEL           	|                                                   	|                                                         	|                                                                              	|           	|
+| navigation arrows           	| click buttons                                     	| image changes if images available                       	| images changed when button clicked                                           	|           	|
+| change current workout      	| renavigate to exercise carousel                   	| Images to change to suit new workout                    	| Images changed                                                               	|           	|
+| Select empty workout        	| check for images                                  	| default image to be displayed                           	| Default image displayed and arrows dissapeared.                              	|           	|
 
 [Back to top](#vitality-vault)
 
