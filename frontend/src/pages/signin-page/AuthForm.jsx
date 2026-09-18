@@ -37,12 +37,21 @@ export default function AuthForm({ route, method }) {
       console.error(error);
 
       if (error.response) {
-        if (error.response.status === 401) {
+        const responseData = error.response.data;
+        const serverMessage =
+          responseData?.detail ||
+          Object.values(responseData || {})
+            .flat()
+            .find((message) => typeof message === 'string');
+
+        if (method === 'login' && error.response.status === 401) {
           setError('Invalid credentials');
         } else if (error.response.status === 400) {
-          setError('Username already exists');
+          setError(serverMessage || 'Registration details are invalid.');
+        } else if (method === 'register' && error.response.status === 401) {
+          setError(serverMessage || 'Registration was rejected by the server.');
         } else {
-          setError('Something went wrong. Please try again.');
+          setError(serverMessage || 'Something went wrong. Please try again.');
         }
       } else if (error.request) {
         setError('Network error. Please check your internet connection and try again.');

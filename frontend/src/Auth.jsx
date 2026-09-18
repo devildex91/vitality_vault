@@ -54,6 +54,8 @@ export default function useAuthentication() {
       }
     } catch (error) {
       console.error('Error refreshing token', error);
+      localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(REFRESH_TOKEN);
       setIsAuthorized(false);
     }
   };

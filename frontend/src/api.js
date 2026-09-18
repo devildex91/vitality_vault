@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ACCESS_TOKEN } from './token';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from './token';
 
 // Shared API client for authenticated requests to the Django backend.
 const api = axios.create({
@@ -9,15 +9,30 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    // Attach the JWT bearer token when the user is logged in.
+    const publicRoutes = ['/api/token/', '/api/token/refresh/', '/api/user/register/'];
+    const requestUrl = config.url || '';
+
+    // Public auth endpoints must not receive a stale bearer token.
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
-    if (accessToken) {
+    if (accessToken && !publicRoutes.includes(requestUrl)) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(REFRESH_TOKEN);
+    }
+
     return Promise.reject(error);
   }
 );
