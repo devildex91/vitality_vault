@@ -39,7 +39,7 @@
 - [Automated Testing](#automated-testing)  
 - [Contrast tests](#contrast-tests)    
 - [Keyboard Accessibility tests](#keyboard-accessibility-tests) 
--[Manual Features and USuability Testing Log](#manual-features-and-usability-testing-log)   
+-[Manual Features and Usuability Testing Log](#manual-features-and-usability-testing-log)   
 - [Development bugs and fixes](#development-bugs-and-fixes)    
 - [Cross browser testing](#cross-browser-testing)    
 - [User Testing](#user-testing)  
@@ -864,7 +864,7 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 
 <summary>Manual Testing Log</summary>
 
-ALL tests were carried out on both mobile and desktop views but as some tabs were rendered the same the mobile tests applied to desktop screens as well. 
+All tests were carried out on both mobile and desktop views. Since some tabs render identically across device viewports, mobile tests apply to desktop screens unless explicitly noted below.
 
 
 | Feature                     	| Test Case                                         	| Expected Result                                         	| Actual Result                                                                	| PASS/FAIL 	|
@@ -886,16 +886,16 @@ ALL tests were carried out on both mobile and desktop views but as some tabs wer
 | Register form               	| click register submit button(right details)       	| displays registration successful please login           	| displays registration successful Please login                                	| PASS      	|
 | WORKOUTPAGE(MOBILE VIEW)    	|                                                   	|                                                         	|                                                                              	|           	|
 | current workout dropdown    	| select dropdown                                   	| Workouts are available or default message               	| Workouts available/Message telling you to create workout if none available   	| PASS      	|
-| Current plan tabs           	|                                                   	|                                                         	|                                                                              	|           	|
+| CURRENT PLAN TABS           	|                                                   	|                                                         	|                                                                              	|           	|
 | Todays                      	| CLick todays tab                                  	| Todays workout displayed                                	| Todays workout displayed                                                     	| PASS      	|
 | Previous                    	| CLick previous tab                                	| Yesterdays workout displayed                            	| Yesterdays workout displayed                                                 	| PASS      	|
-| Tomorrows                   	| Click Tomorrows tab                               	| Tomorrows workout displayed                             	| Yesterdays workout displayed                                                 	|           	|
-| Full plan                   	| Click full plan tab                               	| Full plan displayed                                     	| Full plan displayed                                                          	|           	|
-| Create Plan                 	|                                                   	|                                                         	|                                                                              	|           	|
+| Tomorrows                   	| Click Tomorrows tab                               	| Tomorrows workout displayed                             	| Tomorrows workout displayed                                                  	| PASS      	|
+| Full plan                   	| Click full plan tab                               	| Full plan displayed                                     	| Full plan displayed                                                          	| PASS      	|
+| CREATE PLAN                 	|                                                   	|                                                         	|                                                                              	|           	|
 | Create form                 	| Submit with empty fields                          	| Error message from topmost empty fieldset               	| Error message from topmost fieldet                                           	| PASS      	|
 | Create form                 	| Submit filled out form                            	| Message confiming form sent                             	| Alert message confirming form has been created                               	| PASS      	|
 | Create form                 	| Submit exercise without sets or reps              	| default to 0                                            	| defaulted to 0                                                               	| PASS      	|
-| Edit plan                   	|                                                   	|                                                         	|                                                                              	|           	|
+| EDIT PLAN                   	|                                                   	|                                                         	|                                                                              	|           	|
 | select boxes                	| try to select out of order                        	| select elements to be disabled until one above selected 	| select boxes disabled unless one above selected                              	| PASS      	|
 | Current exercise select box 	| try to select an exercise on an empty day         	| Message stating no exercises exist                      	| message stating no exercises exist                                           	| PASS      	|
 | Update workout button       	| click button                                      	| Any changes to be displayed instantly in table below    	| changes instantly displayed                                                  	| PASS      	|
@@ -905,9 +905,9 @@ ALL tests were carried out on both mobile and desktop views but as some tabs wer
 | Save workout button         	| click button                                      	| workout to be saved to database                         	| workout saved to database with changes                                       	| PASS      	|
 | DESKTOP VIEWS               	| ALL COMPONENTS RENDER ON DESKTOP SCREEN THE SAME  	| SO TESTS ABOVE APPLY ALL DIFFERENCES TESTED BELOW       	|                                                                              	|           	|
 | EXERCISE CAROUSEL           	|                                                   	|                                                         	|                                                                              	|           	|
-| navigation arrows           	| click buttons                                     	| image changes if images available                       	| images changed when button clicked                                           	|           	|
-| change current workout      	| renavigate to exercise carousel                   	| Images to change to suit new workout                    	| Images changed                                                               	|           	|
-| Select empty workout        	| check for images                                  	| default image to be displayed                           	| Default image displayed and arrows dissapeared.                              	|           	|
+| navigation arrows           	| click buttons                                     	| image changes if images available                       	| images changed when button clicked                                           	| PASS      	|
+| change current workout      	| renavigate to exercise carousel                   	| Images to change to suit new workout                    	| Images changed                                                               	| PASS      	|
+| Select empty workout        	| check for images                                  	| default image to be displayed                           	| Default image displayed and arrows dissapeared.                              	| PASS      	|
 
 [Back to top](#vitality-vault)
 
