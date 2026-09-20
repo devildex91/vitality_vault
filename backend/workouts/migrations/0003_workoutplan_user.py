@@ -8,14 +8,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('workouts', '0002_workoutplan_workoutday_workoutexercise_and_more'),
+        ("workouts", "0002_workoutplan_workoutday_workoutexercise_and_more"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='workoutplan',
-            name='user',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='workout_plans', to=settings.AUTH_USER_MODEL),
+            model_name="workoutplan",
+            name="user",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="workout_plans",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

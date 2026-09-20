@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('user', '0003_initial'),
+        ("user", "0003_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='userprofile',
-            name='preferred_theme',
-            field=models.CharField(choices=[('nord', 'Nord'), ('halloween', 'Halloween')], default='nord', max_length=20),
+            model_name="userprofile",
+            name="preferred_theme",
+            field=models.CharField(
+                choices=[("nord", "Nord"), ("halloween", "Halloween")],
+                default="nord",
+                max_length=20,
+            ),
         ),
     ]

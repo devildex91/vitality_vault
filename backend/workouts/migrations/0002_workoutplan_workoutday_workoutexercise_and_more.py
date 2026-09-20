@@ -7,41 +7,106 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('workouts', '0001_initial'),
+        ("workouts", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='WorkoutPlan',
+            name="WorkoutPlan",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='WorkoutDay',
+            name="WorkoutDay",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('day', models.CharField(choices=[('monday', 'Monday'), ('tuesday', 'Tuesday'), ('wednesday', 'Wednesday'), ('thursday', 'Thursday'), ('friday', 'Friday'), ('saturday', 'Saturday'), ('sunday', 'Sunday')], max_length=20)),
-                ('workout', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='days', to='workouts.workoutplan')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "day",
+                    models.CharField(
+                        choices=[
+                            ("monday", "Monday"),
+                            ("tuesday", "Tuesday"),
+                            ("wednesday", "Wednesday"),
+                            ("thursday", "Thursday"),
+                            ("friday", "Friday"),
+                            ("saturday", "Saturday"),
+                            ("sunday", "Sunday"),
+                        ],
+                        max_length=20,
+                    ),
+                ),
+                (
+                    "workout",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="days",
+                        to="workouts.workoutplan",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='WorkoutExercise',
+            name="WorkoutExercise",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sets', models.IntegerField()),
-                ('reps', models.IntegerField()),
-                ('exercise', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='workout_entries', to='workouts.exercise')),
-                ('workout_day', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exercises', to='workouts.workoutday')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("sets", models.IntegerField()),
+                ("reps", models.IntegerField()),
+                (
+                    "exercise",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="workout_entries",
+                        to="workouts.exercise",
+                    ),
+                ),
+                (
+                    "workout_day",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="exercises",
+                        to="workouts.workoutday",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['exercise'],
-                'constraints': [models.UniqueConstraint(fields=('workout_day', 'exercise'), name='unique_day_exercise')],
+                "ordering": ["exercise"],
+                "constraints": [
+                    models.UniqueConstraint(
+                        fields=("workout_day", "exercise"), name="unique_day_exercise"
+                    )
+                ],
             },
         ),
         migrations.AddConstraint(
-            model_name='workoutday',
-            constraint=models.UniqueConstraint(fields=('workout', 'day'), name='unique_workout_day'),
+            model_name="workoutday",
+            constraint=models.UniqueConstraint(
+                fields=("workout", "day"), name="unique_workout_day"
+            ),
         ),
     ]

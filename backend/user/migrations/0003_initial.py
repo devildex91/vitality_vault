@@ -10,19 +10,50 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('user', '0002_delete_user'),
-        ('workouts', '0003_workoutplan_user'),
+        ("user", "0002_delete_user"),
+        ("workouts", "0003_workoutplan_user"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserProfile',
+            name="UserProfile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('preferred_theme', models.CharField(choices=[('nord', 'Nord'), ('synthwave', 'Synthwave')], default='nord', max_length=20)),
-                ('current_workout', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='selected_by_profiles', to='workouts.workoutplan')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "preferred_theme",
+                    models.CharField(
+                        choices=[("nord", "Nord"), ("synthwave", "Synthwave")],
+                        default="nord",
+                        max_length=20,
+                    ),
+                ),
+                (
+                    "current_workout",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="selected_by_profiles",
+                        to="workouts.workoutplan",
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="profile",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

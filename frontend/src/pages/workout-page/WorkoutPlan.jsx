@@ -160,7 +160,7 @@ export default function WorkoutPlan() {
           }}
         >
           <option value="">Select your workout</option>
-          { workoutPlans.length === 0 ? (<option key = "no-workout" value = "">Sorry no workouts have been created please go to "Create"  and come back</option>): workoutPlans?.map((workout) => {
+          { workoutPlans.length === 0 ? (<option key = "no-workout" value = "">Sorry no workouts have been created please go to &quot;Create&quot; and come back</option>): workoutPlans?.map((workout) => {
             return (
               <option key={workout.id} value={workout.title}>
                 {workout.title}

@@ -10,48 +10,48 @@
 ## [UX](#ux-1)
 
 - [Primary Goals](#primary-goals) 
-- [Business Goals](#business-goals)          
-- [User Goals](#user-goals)        
-- [User Stories](#user-stories)        
-- [Design Choices](#design-choices)       
-- [ERD Diagram](#erd-diagram)  
+- [Business Goals](#business-goals)  
+- [User Goals](#user-goals)  
+- [User Stories](#user-stories)  
+- [Design Choices](#design-choices)  
+- [ERD Diagram](#erd-diagram) 
 - [Database Architecture](#database-architecture)
-- [Wireframes](#wireframes)  
+- [Wireframes](#wireframes) 
 
 
 ## [Features](#features-1)
 
-- [Existing features](#existing-features)    
-- [User Goals mapping](#user-goals-mapping)    
-- [Features left to implement](#features-left-to-implement)    
-- [User Goals still to implement](#user-goals-still-to-implement)  
+- [Existing features](#existing-features)  
+- [User Goals mapping](#user-goals-mapping)  
+- [Features left to implement](#features-left-to-implement)  
+- [User Goals still to implement](#user-goals-still-to-implement) 
 
 ## [Technologies used](#technologies-used-1)
 
 ## [Testing](#testing-1)
 
-- [Lighthouse tests](#lighthouse-tests)    
-- [HTML tests](#html-tests)    
-- [CSS tests](#css-tests)    
-- [Python code validation](#python-code-validation)  
-- [API Testing](#api-testing)  
-- [Security](#security)  
-- [Automated Testing](#automated-testing)  
-- [Contrast tests](#contrast-tests)    
+- [Lighthouse tests](#lighthouse-tests)  
+- [HTML tests](#html-tests)  
+- [CSS tests](#css-tests)  
+- [Python code validation](#python-code-validation) 
+- [API Testing](#api-testing) 
+- [Security](#security) 
+- [Automated Testing](#automated-testing) 
+- [Contrast tests](#contrast-tests)  
 - [Keyboard Accessibility tests](#keyboard-accessibility-tests) 
--[Manual Features and Usuability Testing Log](#manual-features-and-usability-testing-log)   
-- [Development bugs and fixes](#development-bugs-and-fixes)    
-- [Cross browser testing](#cross-browser-testing)    
-- [User Testing](#user-testing)  
+-[Manual Features and Usability Testing Log](#manual-features-and-usability-testing-log)  
+- [Development bugs and fixes](#development-bugs-and-fixes)  
+- [Cross browser testing](#cross-browser-testing)  
+- [User Testing](#user-testing) 
 
-## [Deployment](#deployment-1)  
+## [Deployment](#deployment-1) 
 
-- [How to run this project](#how-to-run-project)  
+- [How to run this project](#how-to-run-project) 
 
-## [Credits](#credits-1)  
+## [Credits](#credits-1) 
 
-- [Content/Media/Code/Acknowledgements](#contentmediacodeacknowledgements)    
-- [dependencies](#dependencies-for-reactvite)  
+- [Content/Media/Code/Acknowledgements](#contentmediacodeacknowledgements)  
+- [dependencies](#dependencies-for-reactvite) 
 
 ### UX
 
@@ -79,7 +79,7 @@ The business goals of Vitality Vault are:
 
 - To simplify planning a workout
 - To optimise people's workouts.
-- To maximise users experience by making the whole process as streamlined and simple as possible.
+- To maximise user experience by making the whole process as streamlined and simple as possible.
 - Long term business goals include providing an all-in-one experience where users can track progress and upload weights used, and get back body composition information as well as calorie tracking.
 
 [Back to top](#vitality-vault)
@@ -103,7 +103,7 @@ The goals for users would be:
 
 For full Acceptance Criteria and tasks please follow [this link](https://github.com/users/devildex91/projects/9) to the project board for Vitality Vault.
 
-- As a *user tracking my strength, *I can *view the specific details of a previous days workout I completed *so that I know exactly what Ive been doing to make sure I’m not doing the wrong workout.
+- As a *user tracking my strength, *I can *view the specific details of a previous day's workout I completed *so that I know exactly what I've been doing to make sure I’m not doing the wrong workout.
 
 - As a registered fitness user, I can create and save a custom workout routine with a name and a list of exercises  so that  I can quickly select it whenever I go to the gym.
 
@@ -118,7 +118,7 @@ For full Acceptance Criteria and tasks please follow [this link](https://github.
 ---
 
 The original design for this project included a workout page, a body tracker page, and a calorie log page along with graphs. The scope of the project meant it was intentionally scaled down from the original blueprint to a hyper focuses workout app. This was so that:
-- Cognitive fatigue could be minimised.(Once we had analysed the original blueprint wqe discovered that an overly complex layout and dashboard distracted the users from the real focus which was to maximise their workouts.)
+- Cognitive fatigue could be minimised.(Once we had analysed the original blueprint we discovered that an overly complex layout and dashboard distracted users from the real focus which was to maximise their workouts.)
 - Data consistency(We felt that without any validation of the data that the user was inputting we could not guarantee the quality of the results)
 - Optimised Isolation(Narrowing the scope meant that we could bulletproof the design ensuring users can only view and mutate their own data resulting in a publishable product)
 [click here for original design](/frontend/src/assets/images/original-tablet-design.png).
@@ -170,7 +170,7 @@ base-300 #121212 deepest background tint\
 
 More colours are available for each theme but these are the ones used for the app.
 
-I chose these themes because I felt the contrast reflected suitable dark/light themes, whilst changing the psychological vibe of the app to reflect the users mood. Nords blues and whites provide a crisp, calm clean and clinical environment to lower the heart rate and make the workout feel more manageable. Halloween in contrast gives a High intensity and aggressive vibe. The stark contrast between the charcoal and neon oranges, greens and purples help to create an energy boosting high adrenaline atmosphere.
+I chose these themes because I felt the contrast reflected suitable dark/light themes, whilst changing the psychological vibe of the app to reflect users mood. Nords blues and whites provide a crisp, calm clean and clinical environment to lower the heart rate and make the workout feel more manageable. Halloween in contrast gives a High intensity and aggressive vibe. The stark contrast between the charcoal and neon oranges, greens and purples help to create an energy boosting high adrenaline atmosphere.
 
 [Back to top](#vitality-vault)
 
@@ -207,7 +207,7 @@ Please see below diagram of the flow of data through this app.  
 [Back to top](#vitality-vault)
 
 ##### Database Architecture
-The backend application utilizes a relational database structure using Django and deployed using PostgreSQL on Neon. Below is the description of the database entities shown in the ERD diagram above although not all of the data was used withing the revised bluerprint of the project the data was left in for scope for future enhancements : 
+The backend application utilizes a relational database structure using Django and deployed using PostgreSQL on Neon. Below is the description of the database entities shown in the ERD diagram above although not all of the data was used within the revised blueprint of the project the data was left in for scope for future enhancements : 
 
 ###### Muscle Model.
 
@@ -306,7 +306,7 @@ These pages are designed to be near identical for ease of use. They both contain
 
 ![workout plan page](/frontend/src/assets/images/mobile-workoutplan-wireframe.png)
 
-The workout page is designed to have all the information at hand without drawing the user's focus. The first thing available to the user is a drop-down to select the current workout this will then be logged to the user profile. This is done so that when you click on the other tabs available on the page the information will already have been fetched so that it is readily available to the user. Below this you will have tabs for create, current and edit plan tabs. The default selection create plan renders a form to create your workout before submitting it to the backend. The next tab along edit plan will render a form which means you can select any workout that you have created to make changes to individual days or delete days exercises and even delete them entirely. The final tab current plan renders four separate tabs below it which are Today, Previous, Tomorrow or Full Plan which gives you the options to separate the content of your workout however you want. Full plan renders your workout in full with Today's tab separating your workout to just display the workout you have planned for today. previous brings you yesterday's workout so you can check what you have been doing. Tomorrow's workout brings you tomorrows workout plan so you can prepare or set up in advance for tomorrows workout.
+The workout page is designed to have all the information at hand without drawing the user's focus. The first thing available to the user is a drop-down to select the current workout this will then be logged to the user's profile. This is done so that when you click on the other tabs available on the page the information will already have been fetched so that it is readily available to the user. Below this you will have tabs for create, current and edit plan tabs. The default selection create plan renders a form to create your workout before submitting it to the backend. The next tab along edit plan will render a form which means you can select any workout that you have created to make changes to individual days or delete days exercises and even delete them entirely. The final tab current plan renders four separate tabs below it which are Today, Previous, Tomorrow or Full Plan which gives you the options to separate the content of your workout however you want. Full plan renders your workout in full with Today's tab separating your workout to just display the workout you have planned for today. previous brings you yesterday's workout so you can check what you have been doing. Tomorrow's workout brings you tomorrows workout plan so you can prepare or set up in advance for tomorrows workout.
     
 </details>
 
@@ -405,22 +405,22 @@ For full list of User Stories still to implement  please follow [this link](htt
 
 | Technology     | Use                                       |
 | -------------- | ----------------------------------------- |
-| Visual Studios | Primary IDE                               |
+| Visual Studio | Primary IDE                               |
 | Vite           | Development Server                        |
-| React          | Javascript library/component architecture |
+| React          | JavaScript library/component architecture |
 | GITHUB         | Hosting and managing repositories         |
 | GEMINI         | Supported learning and best practices     |
 | CHAT-GPT       | Supported adding exercises to database    |
 | GITHUB copilot | Supported learning and best practices     |
 | HTML           | Language used                             |
 | CSS            | Language used                             |
-| Javascript     | Language used                             |
+| JavaScript     | Language used                             |
 | Python         | Language used                             |
 | Django         | Backend Environment                       |
 | Django rest    |API linking react and Django/authentication|
 | Daisy UI       |React UI                                   |
 | Tailwind CSS   | CSS styling                               |
-| Neon           | Database hosting                          | 
+| Neon | Database hosting | 
 
 [Back to top](#vitality-vault)
 
@@ -531,7 +531,7 @@ As all other scores were in the 90s, and only the best‑practice score was lowe
  <details>
  <summary> HTML tests</summary>
 
-- As the frontend is created using React and JSX, the HTML test to code is limited as JSX does not pass through any automated test. The index.html has been tested and passed with no errors(see screenshot below). Please see automated testing below for extensive testing to make sure all JSX is behaving as intended 
+- As the frontend is created using React and JSX, the HTML test to code is limited as JSX does not pass through any automated test. The index.html has been tested and passed with no errors(see screenshot below). In order to ensure all of the JSX is behaving as intended we have carried out both automated testing and ES lint testing which is evidenced in the corresponding sections.
 
 ![html test](/frontend/src/assets/images/html-test.png)
 
@@ -548,7 +548,7 @@ As all other scores were in the 90s, and only the best‑practice score was lowe
 
 #### index CSS test
 
-All CSS is inline using tailwind CSS so the only code to check within the index.css file is plug-ins to use tailwind and Daisy UI styles which are not recognised by CSS checkers. This was used to add the ability to style components inline making their reusability easier following best practices for react. 
+All CSS is inline using tailwind CSS. This means that it cannot be tested with standard CSS linters online so could not be tested directly but all designs are behaving as expected. Tailwind has been used to add the ability to style components inline making their reusability easier following best practices for react. 
 
 [Back to top](#vitality-vault)
 
@@ -558,18 +558,40 @@ All CSS is inline using tailwind CSS so the only code to check within the index.
 <details>
 <summary>Python validation </summary>
 
-All models.py, serializer.py and views have been tested and passed with no syntax errors
+All python files have been tested using black first using python -m black backend to reformat all of the python code and then verified with python -m black --check amd python manage.py check which showed 
+- 35 files were left unchanged 
+- System check identified no issues 
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
+
+All code has been rechecked inline with the vs code extension RUFF and each page has returned with 0 problems. You will also find screenshots below showing all python has been ran through an external checker for any syntax errors and come back with zero errors.
+
+![settings](/frontend/src/assets/images/settings-py-validation.png)
+![users-admin](/frontend/src/assets/images/users-admin-py-validation.png)
+![users-apps](/frontend/src/assets/images/user-apps-py-validation.png)
 ![user-models](/frontend/src/assets/images/user-models.py-validation.png)
 ![user-serializer](/frontend//src/assets/images/user-serializers.py-validation.png)
+![users-urls](/frontend/src/assets/images/users-urls-py-validation.png)
 ![user-views](/frontend/src/assets/images/user-views.py-validation.png)
+![workouts-admin](/frontend/src/assets/images/workouts-admin-py-validation.png)
+![workouts-apps](/frontend/src/assets/images/workouts-apps-py-validation.png)
 ![workouts-models](/frontend/src/assets/images/workouts-models.py-validation.png)
 ![workouts-serializer](/frontend/src/assets/images/workouts-serializer.py-validation.png)
+![workouts-urls](/frontend/src/assets/images/workouts-urls-py-validation.png)
 ![workouts-views](/frontend/src/assets/images/workouts-views.py-validation.png)
 
 </details>
 
 [Back to top](#vitality-vault)
 
+
+#### JSX Testing
+<details>
+<summary> JSX Testing </summary>
+Initially all JSX was to be carried out through online validators but because of the was JSX works these onlien validators will not work for JSX. In order to remedy this ES lint was installed both as a VS code plug in but also directly into the app. Once this was done All jsx code was validated internally throguh the command line running npm run lint which returned no errors or problems ensuring that all JSX code was inkeeping with the right syntax and standard coding practices.
+ 
+
+</details>
 ### API Testing 
 
 <details>
@@ -774,9 +796,9 @@ To test the user models, serialisers and views we ran the following tests:
 ---
 
 Found 4 test(s).
-Creating test database for alias 'default'...
+Creating test database for alias 'default'..
 System check identified no issues (0 silenced).
-....
+..
 ----------------------------------------------------------------------
 Ran 4 tests in 2.063s
 
@@ -798,9 +820,9 @@ To test the workouts models, serialisers and view we ran the following tests:
 ---
 
 Found 6 test(s).\
-Creating test database for alias 'default'...\
+Creating test database for alias 'default'..\
 System check identified no issues (0 silenced).\
-...... 
+... 
 
 Ran 6 tests in 1.036s 
 
@@ -867,47 +889,47 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 All tests were carried out on both mobile and desktop views. Since some tabs render identically across device viewports, mobile tests apply to desktop screens unless explicitly noted below.
 
 
-| Feature                     	| Test Case                                         	| Expected Result                                         	| Actual Result                                                                	| PASS/FAIL 	|
+| Feature | Test Case | Expected Result | Actual Result | PASS/FAIL |
 |-----------------------------	|---------------------------------------------------	|---------------------------------------------------------	|------------------------------------------------------------------------------	|-----------	|
-| ALL PAGES                   	|                                                   	|                                                         	|                                                                              	|           	|
-| theme controller            	| CLick theme control button to swap theme          	| theme changes                                           	| theme changes                                                                	| PASS      	|
-|  Menu dropdown              	| Click the hamburger menu icon                     	| Dropdown menu opens/closes                              	| dropdown menu opens/closes                                                   	| PASS      	|
-| Navigation                  	| click on login, register, home,logout             	| redirects to relevant page                              	| redirects to relevant page                                                   	| PASS      	|
-| Social media links          	| click icons                                       	| open in new page                                        	| open in new page                                                             	| PASS      	|
-| HOMEPAGE                    	|                                                   	|                                                         	|                                                                              	|           	|
-| Call to action button       	| CLick login button                                	| redirects to login                                      	| redirects to login                                                           	| PASS      	|
-| Titleimage/text fade/appear 	| Reload page to confirm works                      	| image fade out text fade in                             	| image fade out text fade in                                                  	| PASS      	|
-| LOGINPAGE/REGISTERPAGE      	|                                                   	|                                                         	|                                                                              	|           	|
-| Login/register form         	| empty username field when try to login            	| asks you to fill out field                              	| asks to fill out field                                                       	| PASS      	|
-| Login/register Form         	| empty password filled out username                	| asks to enter password                                  	| asks to enter password                                                       	| PASS      	|
-| Login/regsiter form         	| click register/login button(change form button)   	| changes to register form                                	| changes to register form                                                     	| PASS      	|
-| Login form                  	| click login  submit button(right details)         	| Logs in                                                 	| Logs in                                                                      	| PASS      	|
-| Login form                  	| click login submit button(wrong details)          	| displays error message                                  	|  displays error message                                                      	| PASS      	|
-| Register form               	| click register submit button(right details)       	| displays registration successful please login           	| displays registration successful Please login                                	| PASS      	|
-| WORKOUTPAGE(MOBILE VIEW)    	|                                                   	|                                                         	|                                                                              	|           	|
-| current workout dropdown    	| select dropdown                                   	| Workouts are available or default message               	| Workouts available/Message telling you to create workout if none available   	| PASS      	|
-| CURRENT PLAN TABS           	|                                                   	|                                                         	|                                                                              	|           	|
-| Todays                      	| CLick todays tab                                  	| Todays workout displayed                                	| Todays workout displayed                                                     	| PASS      	|
-| Previous                    	| CLick previous tab                                	| Yesterdays workout displayed                            	| Yesterdays workout displayed                                                 	| PASS      	|
-| Tomorrows                   	| Click Tomorrows tab                               	| Tomorrows workout displayed                             	| Tomorrows workout displayed                                                  	| PASS      	|
-| Full plan                   	| Click full plan tab                               	| Full plan displayed                                     	| Full plan displayed                                                          	| PASS      	|
-| CREATE PLAN                 	|                                                   	|                                                         	|                                                                              	|           	|
-| Create form                 	| Submit with empty fields                          	| Error message from topmost empty fieldset               	| Error message from topmost fieldet                                           	| PASS      	|
-| Create form                 	| Submit filled out form                            	| Message confiming form sent                             	| Alert message confirming form has been created                               	| PASS      	|
-| Create form                 	| Submit exercise without sets or reps              	| default to 0                                            	| defaulted to 0                                                               	| PASS      	|
-| EDIT PLAN                   	|                                                   	|                                                         	|                                                                              	|           	|
-| select boxes                	| try to select out of order                        	| select elements to be disabled until one above selected 	| select boxes disabled unless one above selected                              	| PASS      	|
-| Current exercise select box 	| try to select an exercise on an empty day         	| Message stating no exercises exist                      	| message stating no exercises exist                                           	| PASS      	|
-| Update workout button       	| click button                                      	| Any changes to be displayed instantly in table below    	| changes instantly displayed                                                  	| PASS      	|
-| Delete Exercise Button      	| click button                                      	| exercise to be deleted from day                         	| day of exercises deleted                                                     	| PASS      	|
-| Delete day button           	| click button                                      	| all exercises from day deleted                          	| whole days exercises deleted                                                 	| PASS      	|
-| Delete workout button       	| cliuck button                                     	| whole workout deleted                                   	| full workout deleted from database                                           	| PASS      	|
-| Save workout button         	| click button                                      	| workout to be saved to database                         	| workout saved to database with changes                                       	| PASS      	|
-| DESKTOP VIEWS               	| ALL COMPONENTS RENDER ON DESKTOP SCREEN THE SAME  	| SO TESTS ABOVE APPLY ALL DIFFERENCES TESTED BELOW       	|                                                                              	|           	|
-| EXERCISE CAROUSEL           	|                                                   	|                                                         	|                                                                              	|           	|
-| navigation arrows           	| click buttons                                     	| image changes if images available                       	| images changed when button clicked                                           	| PASS      	|
-| change current workout      	| renavigate to exercise carousel                   	| Images to change to suit new workout                    	| Images changed                                                               	| PASS      	|
-| Select empty workout        	| check for images                                  	| default image to be displayed                           	| Default image displayed and arrows dissapeared.                              	| PASS      	|
+| ALL PAGES | | | | |
+| theme controller | CLick theme control button to swap theme | theme changes | theme changes | PASS |
+| Menu dropdown | Click the hamburger menu icon | Dropdown menu opens/closes | dropdown menu opens/closes | PASS |
+| Navigation | click on login, register, home, logout | redirects to relevant page | redirects to relevant page | PASS |
+| Social media links | click icons | open in new page | open in new page | PASS |
+| HOMEPAGE | | | | |
+| Call to action button | CLick login button | redirects to login | redirects to login | PASS |
+| Titleimage/text fade/appear | Reload page to confirm works | image fade out text fade in | image fade out text fade in | PASS |
+| LOGINPAGE/REGISTERPAGE | | | | |
+| Login/register form | empty username field when try to login | asks you to fill out field | asks to fill out field | PASS |
+| Login/register Form | empty password filled out username | asks to enter password | asks to enter password | PASS |
+| Login/regsiter form | click register/login button(change form button) | changes to register form | changes to register form | PASS |
+| Login form | click login submit button(right details) | Logs in | Logs in | PASS |
+| Login form | click login submit button(wrong details) | displays error message | displays error message | PASS |
+| Register form | click register submit button(right details) | displays registration successful please login | displays registration successful Please login | PASS |
+| WORKOUTPAGE(MOBILE VIEW) | | | | |
+| current workout dropdown | select dropdown | Workouts are available or default message | Workouts available/Message telling you to create workout if none available | PASS |
+| CURRENT PLAN TABS | | | | |
+| Todays | CLick todays tab | Todays workout displayed | Todays workout displayed | PASS |
+| Previous | CLick previous tab | Yesterdays workout displayed | Yesterdays workout displayed | PASS |
+| Tomorrows | Click Tomorrows tab | Tomorrows workout displayed | Tomorrows workout displayed | PASS |
+| Full plan | Click full plan tab | Full plan displayed | Full plan displayed | PASS |
+| CREATE PLAN | | | | |
+| Create form | Submit with empty fields | Error message from topmost empty fieldset | Error message from topmost fieldet | PASS |
+| Create form | Submit filled out form | Message confiming form sent | Alert message confirming form has been created | PASS |
+| Create form | Submit exercise without sets or reps | default to 0 | defaulted to 0 | PASS |
+| EDIT PLAN | | | | |
+| select boxes | try to select out of order | select elements to be disabled until one above selected | select boxes disabled unless one above selected | PASS |
+| Current exercise select box | try to select an exercise on an empty day | Message stating no exercises exist | message stating no exercises exist | PASS |
+| Update workout button | click button | Any changes to be displayed instantly in table below | changes instantly displayed | PASS |
+| Delete Exercise Button | click button | exercise to be deleted from day | day of exercises deleted | PASS |
+| Delete day button | click button | all exercises from day deleted | whole days exercises deleted | PASS |
+| Delete workout button | cliuck button | whole workout deleted | full workout deleted from database | PASS |
+| Save workout button | click button | workout to be saved to database | workout saved to database with changes | PASS |
+| DESKTOP VIEWS | ALL COMPONENTS RENDER ON DESKTOP SCREEN THE SAME | SO TESTS ABOVE APPLY ALL DIFFERENCES TESTED BELOW | | |
+| EXERCISE CAROUSEL | | | | |
+| navigation arrows | click buttons | image changes if images available | images changed when button clicked | PASS |
+| change current workout | renavigate to exercise carousel | Images to change to suit new workout | Images changed | PASS |
+| Select empty workout | check for images | default image to be displayed | Default image displayed and arrows disappeared. | PASS |
 
 [Back to top](#vitality-vault)
 
@@ -921,15 +943,16 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 <details>
 <summary>Development bugs and fixes</summary>
 
-| Development Bugs/Issues                             	| Cause                                                              	| Fix                                                                                       	|
+| Development Bugs/Issues | Cause | Fix |
 |-----------------------------------------------------	|--------------------------------------------------------------------	|-------------------------------------------------------------------------------------------	|
-| User Registration fails to complete                 	| Missing trailing slash(/) on endpoint string                       	| Corrected the registration API string                                                     	|
-| Production site returns 400/500 errors              	| Misconfigured CORS origins and missing Heroku database migrations  	| Adjusted middleware settings and updated ALLOWED_HOSTS and ran database updates           	|
-| Complicated data passing across workout sections    	| High component hierarchy nesting led to unstable data pipelines    	| Refactored form state into shared useContext layer                                        	|
-| API calls complete successfully but state is empty  	| Workouts were saved anonymously without user relationships binding 	| Updated backend serialization classes to require user profiles                            	|
-| Layout transformations behave erratically on Chrome 	| Media queries collided with outdated tablet vieweport              	| Migrated to an isMobile state controller and streamlined responsive design break points.  	|
-| Registration failing with wrong message     |  vague error handling | update error handling to be more specific on reason for failure| 
-| Registration failing to work   | automatically adding stored access token to every request so recieving wrong token | Public authentication no longer recieves bearer token.| 
+| User Registration fails to complete | Missing trailing slash(/) on endpoint string | Corrected the registration API string |
+| Production site returns 400/500 errors | Misconfigured CORS origins and missing Heroku database migrations | Adjusted middleware settings and updated ALLOWED_HOSTS and ran database updates |
+| Complicated data passing across workout sections | High component hierarchy nesting led to unstable data pipelines | Refactored form state into shared useContext layer |
+| API calls complete successfully but state is empty | Workouts were saved anonymously without user relationships binding | Updated backend serialization classes to require user profiles |
+| Layout transformations behave erratically on Chrome | Media queries collided with outdated tablet vieweport | Migrated to an isMobile state controller and streamlined responsive design break points. |
+| Registration failing with wrong message | vague error handling | update error handling to be more specific on reason for failure| 
+| Registration failing to work | automatically adding stored access token to every request so receiving wrong token | Public authentication no longer recieves bearer token.|
+| PEP8 testing failures | No python linter installed | Installed black and RUFF and followed problems to add fixes amd added docstrings | 
 
 
 
@@ -1007,7 +1030,7 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 heroku buildpacks:set https://github.com
 5. So the builpack knows exactly where to look for your django backend add:  heroku config:set PROJECT_PATH=backend (replace backend with your name of your django backend folder)
 6. Set your production settings variables on Heroku by typing:
-heroku config:set SECRET_KEY="your-production-secret-key"
+heroku config:set DJANGO_SECRET_KEY="your-production-secret-key"
 heroku config:set DEBUG=False
 7. Add a production database(Heroku no longer offer a free tier so you will need to find one that suits your needs. I chose neon to host my postgresql database.)
 8. Ensure you have the following files created in your backend folder :
@@ -1052,18 +1075,71 @@ heroku config:set DEBUG=False
 1.  Navigate to [devildex91/vitality-vault](https://github.com/devildex91/vitality-vault)
 2.  Click on the green code button
 3.  Select download zip
-4.  Once downloaded, unpack the zipped file to a location of your choosing, and you can work on and run the code in an IDE of your choosing.
-5.  Before running this code, set up your React environment, open a terminal and type npm install. This should download all dependencies needed. For reference see dependencies section at end of README to confirm all have been downloaded.
+4.  Once downloaded, unpack the zipped file to a directory of your choosing
+5. Open your preferred IDE and open the unzipped project folder.
+6. Follow the steps after 
 
   </details>
 
   <details>  
- <summary> To fork a repository.</summary>
+ <summary> To clone a repository.</summary>
 
 ---
 
-- please see [github docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) for more detailed and an easier to follow guide than I can produce but remember to navigate to [devildex91/vitality-vault](https://github.com/devildex91/vitality-vault) to fork this repository.
+1. Open the terminal in your preferred IDE.
 
+2. type: git clone https://github.com
+ then: cd vitality-vault 
+ into the terminal 
+
+3. type: cd backend 
+ then: touch .env 
+to create a .env to safely store local configurations. 
+
+4. Populate your .env with all of these local development variables
+ SECRET_KEY=your-local-development-secret-key-change-me
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3
+
+ 5. In your terminal type: 
+ python -m venv venv
+ to create your virtual environment then:
+ on mac type: source venv/bin/activate
+ on windows command prompt: venv\Scripts\activate
+ on windows powershell: .\venv\Scripts\Activate.ps1
+ to activate your virtual environment.
+
+6. Upgrade pip and install your requirment with: 
+ pip install --upgrade pip
+ pip install -r requirements.txt
+
+7. Initialise your local SQ lite database by typing:
+ python manage.py makemigrations
+ python manage.py migrate 
+
+8. Create an Administrative user by typing:
+ python manage.py createsuperuser
+ and following the instructions.
+
+9. Run the backend with: 
+ python manage.py runserver
+ Your backend will now be running at http://127.0.0 
+
+10. For the frontend navigate into the frontend folder using:
+ cd frontend
+
+11. Create a local env with:
+touch .env.local
+
+12. Add your API endpoint to your new .env.local
+ VITE_API_URL=http://127.0.0.1:8000
+
+13. Install all of your dependencies with:
+npm install
+
+14. Start your frontend with 
+ npm run dev
+ 
  </details>
 
 [Back to top](#vitality-vault)
