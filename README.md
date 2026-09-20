@@ -1077,7 +1077,7 @@ heroku config:set DEBUG=False
 3.  Select download zip
 4.  Once downloaded, unpack the zipped file to a directory of your choosing
 5. Open your preferred IDE and open the unzipped project folder.
-6. Follow the steps after 
+6. Follow the steps from step 3 in clone repository section below. 
 
   </details>
 
