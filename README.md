@@ -39,7 +39,7 @@
 - [Automated Testing](#automated-testing) 
 - [Contrast tests](#contrast-tests)  
 - [Keyboard Accessibility tests](#keyboard-accessibility-tests) 
--[Manual Features and Usability Testing Log](#manual-features-and-usability-testing-log)  
+- [Manual Features and Usability Testing Log](#manual-features-and-usability-testing-log)  
 - [Development bugs and fixes](#development-bugs-and-fixes)  
 - [Cross browser testing](#cross-browser-testing)  
 - [User Testing](#user-testing) 
@@ -153,6 +153,8 @@ The typography uses the DaisyUI default font. This increases legibility, which i
 
 ---
 
+<details>
+<summary> Colours </summary>
 The colours chosen are the Nord theme for the light theme and Halloween for the dark theme. The default colours for these themes are
 Nord
 
@@ -172,13 +174,20 @@ More colours are available for each theme but these are the ones used for the ap
 
 I chose these themes because I felt the contrast reflected suitable dark/light themes, whilst changing the psychological vibe of the app to reflect users mood. Nords blues and whites provide a crisp, calm clean and clinical environment to lower the heart rate and make the workout feel more manageable. Halloween in contrast gives a High intensity and aggressive vibe. The stark contrast between the charcoal and neon oranges, greens and purples help to create an energy boosting high adrenaline atmosphere.
 
+</details>
+
 [Back to top](#vitality-vault)
 
 ##### Styling
 
 ---
 
+<details>
+<summary> Styling </summary>
+
 The styling has been chosen with efficiency of movement in mind. This is shown in the use of select elements across the app, which give the user streamlined interactions with less room for error, helping both the user and the admin. This reduces interaction cost and effort needed to create a workout and improves data flow. The styling also softens the app and makes it feel more like a trainer than a machine, improving user interactivity.
+
+</details>
 
 [back to top](#vitality-vault)
 
@@ -186,7 +195,12 @@ The styling has been chosen with efficiency of movement in mind. This is shown i
 
 ---
 
+<details>
+<summary> Background </summary>
+
 The background colours have been chosen to give the app soft layers, drawing you to the content at the centre. Base‑100 is used for the background up to Base‑300 for the cards containing user information. Base‑200 acts as a bridge between Base‑100 and Base‑300 across both themes, adding a uniform yet softer feel for the user.
+
+</details>
 
 [Back to top](#vitality-vault)
 
@@ -194,19 +208,36 @@ The background colours have been chosen to give the app soft layers, drawing you
 
 ---
 
+<details>
+<summary> Images </summary>
+
 All images for the project were sourced from the same database as the exercise data, and there are two images for every exercise. They are all stored in Cloudinary to improve load times while keeping quality high.
+
+</details>
 
 [Back to top](#vitality-vault)
 
 ##### ERD diagram 
 ---
+
+<details>
+<summary> ERD Diagram </summary>
+
 Please see below diagram of the flow of data through this app.  
 
 ![ERD diagram](/frontend/src/assets/images/ERD-diagram.png)
 
+</details>
+
 [Back to top](#vitality-vault)
 
 ##### Database Architecture
+
+---
+
+<details>
+<summary> Database Architecture </summary>
+
 The backend application utilises a relational database structure using Django and deployed using PostgreSQL on Neon. Below is the description of the database entities shown in the ERD diagram above although not all of the data was used within the revised blueprint of the project the data was left in for scope for future enhancements : 
 
 ###### Muscle Model.
@@ -270,6 +301,8 @@ The backend application utilises a relational database structure using Django an
 - reps: An IntegerField capturing user-defined performance repetitions metrics.
 - Meta: A database setup maintaining layout sorting patterns alphabetically by targeting the underlying exercise name key properties.
 - constraints: An operational safety mapping enforcing a UniqueConstraint across both workout_day and exercise columns to stop duplicate exercise additions on the same day.
+
+</details>
 
 [Back to top](#vitality-vault)
 ##### Wireframes
@@ -340,12 +373,18 @@ The tablet and desktop views render slightly different the start of the page is 
 
 #### Existing Features
 ---
+
+<details>
+<summary> Existing Features </summary>
+
 - Dynamic Homepage explaining the site and how it can help you.
 - Create workout form with extensive list of exercises to choose from.
 - Edit workout form with ability to change/update or even delete the workout. 
 - Ability to single out yesterdays, tomorrows or even the full workout plan for viewing. 
 - On larger screens a carousel of images displaying pictures of the workout you have planned for the day.
 - Ability to change the theme of the website to suit your own personal preferences which saves so can continue where you left off the next time you log in. 
+
+</details>
 
 [Back to top](#vitality-vault)
 
@@ -372,11 +411,18 @@ The tablet and desktop views render slightly different the start of the page is 
 #### Features left to implement
 
 ---
+
+<details>
+<summary> Features left to implement </summary>
+
 - Body tracker page.
 - Calorie Log page.
 - Ability to log calories.
 - Graphs to show your progress.
 - Ability to add weights you used to a workout.
+
+</details>
+
 
 [Back to top](#vitality-vault)
 
@@ -396,6 +442,9 @@ For full list of User Stories still to implement  please follow [this link](htt
 
 ---
 
+<details>
+<summary> Styling </summary>
+
 | Technology     | Use                                       |
 | -------------- | ----------------------------------------- |
 | Visual Studio | Primary IDE                               |
@@ -414,6 +463,8 @@ For full list of User Stories still to implement  please follow [this link](htt
 | Daisy UI       |React UI                                   |
 | Tailwind CSS   | CSS styling                               |
 | Neon | Database hosting | 
+
+</details>
 
 [Back to top](#vitality-vault)
 
@@ -539,13 +590,15 @@ As all other scores were in the 90s, and only the best‑practice score was lowe
 
 #### index CSS test
 
+
 All CSS is inline using tailwind CSS. This means that it cannot be tested with standard CSS linters online so could not be tested directly but all designs are behaving as expected. Tailwind has been used to add the ability to style components inline making their reusability easier following best practices for react. 
 
 [Back to top](#vitality-vault)
 
  </details>
 
-#### Python code validation
+### Python code validation
+---
 <details>
 <summary>Python validation </summary>
 
@@ -575,7 +628,8 @@ All code has been rechecked inline with the vs code extension RUFF and each page
 
 [Back to top](#vitality-vault)
 
-#### JSX Testing
+### JSX Testing
+---
 <details>
 <summary> JSX Testing </summary>
 Initially, all JSX was going to be checked through online validators, but because of how JSX works, these online validators don’t work for it. To remedy this, ESLint was installed both as a VS Code plugin and directly into the app. Once this was done, all the JSX code was validated internally through the command line by running npm run lint. This returned no errors or problems, ensuring that all the JSX code is in keeping with the right syntax and standard coding practices.
@@ -586,6 +640,7 @@ Initially, all JSX was going to be checked through online validators, but becaus
 [Back to top](#vitality-vault)
 
 ### API Testing 
+---
 
 <details>
  <summary> API Testing</summary>
@@ -644,6 +699,9 @@ This project relies on a comprehensive, dual-stack automated testing architectur
 #### Vitest testing
 
 ---
+
+<details>
+<summary> Vitest testing  </summary>
 
 The frontend was tested using a mixture of Vitest, React Testing Library, and User Event. All tests were modularised across UI views and components to thoroughly cover form‑state validation, conditional workflow logic, contextual data bindings, asynchronous API response tracking, and responsive layout adaptations. Below is a brief description of all tests carried out, followed by the corresponding results. For in‑depth detail, please refer to the relevant .test.jsx files within the frontend directory.
 
@@ -767,10 +825,15 @@ Not implemented: Window's alert() method\
    Start at  14:22:27\
    Duration  9.19s (environment 64%, import 22%, tests 12%, transform 2%) 
 
+</details>
+
 [Back to top](#vitality-vault)
 #### Django testing 
 
 ---
+
+<details>
+<summary> Django Testing </summary>
 
 The backend was tested using a mixture of Django’s Unit Testing framework and Django REST Framework’s testing utilities. All tests were modularised across applications and covered database constraints, data formatting, serialisation, security policies, and endpoint traffic handling. Below is a brief description of all tests carried out, followed by the corresponding results. For in‑depth detail, please refer to the relevant tests.py file within each app.
 
@@ -820,6 +883,8 @@ System check identified no issues (0 silenced).\
 Ran 6 tests in 1.036s 
 
 OK 
+
+</details>
 
 [Back to top](#vitality-vault)
 
@@ -881,8 +946,9 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 
 All tests were carried out on both mobile and desktop views. Since some tabs render identically across device viewports, mobile tests apply to desktop screens unless explicitly noted below.
 
+
 | Feature | Test Case | Expected Result | Actual Result | PASS/FAIL |
-|-----------------------------  |---------------------------------------------------    |---------------------------------------------------------  |------------------------------------------------------------------------------ |-----------    |
+| --- | --- | --- | --- | --- |
 | ALL PAGES | | | | |
 | theme controller | CLick theme control button to swap theme | theme changes | theme changes | PASS |
 | Menu dropdown | Click the hamburger menu icon | Dropdown menu opens/closes | dropdown menu opens/closes | PASS |
@@ -935,15 +1001,15 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 <summary>Development bugs and fixes</summary>
 
 | Development Bugs/Issues | Cause | Fix |
-|-----------------------------------------------------  |--------------------------------------------------------------------   |-------------------------------------------------------------------------------------------    |
+| --- | --- | --- |
 | User Registration fails to complete | Missing trailing slash(/) on endpoint string | Corrected the registration API string |
 | Production site returns 400/500 errors | Misconfigured CORS origins and missing Heroku database migrations | Adjusted middleware settings and updated ALLOWED_HOSTS and ran database updates |
 | Complicated data passing across workout sections | High component hierarchy nesting led to unstable data pipelines | Refactored form state into shared useContext layer |
 | API calls complete successfully but state is empty | Workouts were saved anonymously without user relationships binding | Updated backend serialization classes to require user profiles |
-| Layout transformations behave erratically on Chrome | Media queries collided with outdated tablet vieweport | Migrated to an isMobile state controller and streamlined responsive design break points. |
-| Registration failing with wrong message | vague error handling | update error handling to be more specific on reason for failure| 
-| Registration failing to work | automatically adding stored access token to every request so receiving wrong token | Public authentication no longer recieves bearer token.|
-| PEP8 testing failures | No python linter installed | Installed black and RUFF and followed problems to add fixes amd added docstrings | 
+| Layout transformations behave erratically on Chrome | Media queries collided with outdated tablet viewport | Migrated to an isMobile state controller and streamlined responsive design break points. |
+| Registration failing with wrong message | Vague error handling | Updated error handling to provide a more specific reason for failure |
+| Registration failing to work | Automatically adding the stored access token to every request caused the wrong token to be sent | Public authentication no longer receives a bearer token. |
+| PEP 8 testing failures | No Python linter installed | Installed Black and Ruff, fixed the reported issues, and added docstrings |
 
 
 
@@ -995,15 +1061,19 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 
 [Back to top](#vitality-vault)
 
-### Deployment
+## Deployment
 
 ---
+
+<details>
+<summary> Deployment </summary>
+
 
 - ##### This app has been hosted as a mono-repo with both the backend and frontend within the same repository but hosted differently.
 
 [To view site](https://vitality-vault-omega.vercel.app/)
 
-#### How to run project
+### How to run project
 
  <details>
  <summary>The backend has been deployed through Heroku by:</summary>
@@ -1129,16 +1199,20 @@ npm install
  npm run dev
  
  </details>
+</details>
 
 [Back to top](#vitality-vault)
 
-### Credits
+## Credits
 
 ---
 
-#### Content/Media/Code/Acknowledgements
+### Content/Media/Code/Acknowledgements
 
 ---
+
+<details>
+<summary> Content/Media//Code/Acknowledgements </summary>
 
 | Credits                                                 | Use                        |
 | ------------------------------------------------------- | -------------------------- |
@@ -1154,10 +1228,16 @@ npm install
 | [Pentest tools](https://app.pentest-tools.com/)         | Security testing           |
 | [Python testing](https://pythonium.net/linter)          | Python validation          |
 
+</details>
+
 [Back to top](#vitality-vault)
 #### Exercise data credits 
 
 ---
+
+<details>
+<summary> Exercise Data Credits </summary>
+
 [free exercise database](https://yuhonas.github.io/free-exercise-db/)
 
 The exercise data is sourced from the repository linked to the website above. The models, serializers, and views were created by me to ensure the data structure was organised in the best way possible to bring the exercises across correctly. ChatGPT was then used to help me create the management folder and import all the exercises. This was done because building the full command structure was outside the scope of this project. I also felt that, as I was only using it to assist with importing the data rather than generating any production code, this was an acceptable use of AI to help populate the exercises section with the required data. 
@@ -1174,77 +1254,90 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For more information, please refer to https://unlicense.org
 
+</details>
+
 ###### Vitality Vault is a wholly original web application designed, architected, and implemented from scratch with the exception of the data for the Exercise model as stated in the credits above. 
 [Back to top](#vitality-vault)
 
-#### dependencies for React/Vite
+### dependencies for React/Vite
 ---
 
- "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.0.5",
-    "axios": "^1.18.1",
-    "daisyui": "^5.7.4",
-    "jwt-decode": "^4.0.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "react-router": "^8.3.0",
-    "tailwind-animations": "^1.0.2",
-    "tailwindcss": "^4.3.3",
-    "vite": "^8.1.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.5",
-    "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/react": "^16.3.3",
-    "@testing-library/user-event": "^14.6.7",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.5",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^17.12.0",
-    "jsdom": "^29.1.1",
-    "oxlint": "^1.71.0",
-    "vitest": "^5.0.0"
-  }
+<details>
+<summary> React dependencies </summary>
+
+
+- "dependencies" 
+- "@tailwindcss/vite": "^4.3.3",   
+- "@vitejs/plugin-react": "^6.0.5",   
+- "axios": "^1.18.1",   
+- "daisyui": "^5.7.4",   
+- "jwt-decode": "^4.0.0",   
+- "react": "^19.2.7",   
+- "react-dom": "^19.2.7",   
+- "react-router": "^8.3.0",   
+- "tailwind-animations": "^1.0.2",   
+- "tailwindcss": "^4.3.3",   
+- "vite": "^8.1.1"   
+   
+- "devDependencies"  
+- "@eslint/js": "^9.39.5",   
+- "@testing-library/jest-dom": "^7.0.1",   
+- "@testing-library/react": "^16.3.3",   
+- "@testing-library/user-event": "^14.6.7",   
+- "@types/react": "^19.2.17",   
+- "@types/react-dom": "^19.2.3",   
+- "eslint": "^9.39.5",   
+- "eslint-plugin-react": "^7.37.5",   
+- "globals": "^17.12.0",   
+- "jsdom": "^29.1.1",   
+- "oxlint": "^1.71.0",   
+- "vitest": "^5.0.0"   
+   
+
+</details>
 
 [Back to top](#vitality-vault)
 
 #### dependencies for django 
 ---
 
-asgiref==3.12.1
-black==26.5.1
-certifi==2026.7.22
-cffi==2.1.0
-charset-normalizer==3.4.9
-click==8.5.0
-cloudinary==1.45.0
-cryptography==49.0.0
-dj-database-url==3.1.2
-Django==6.0.7
-django-allauth==65.18.0
-django-cors-headers==4.9.0
-djangorestframework==3.17.1
-djangorestframework_simplejwt==5.5.1
-gunicorn==26.0.0
-idna==3.18
-mypy_extensions==1.1.0
-oauthlib==3.3.1
-packaging==26.2
-pathspec==1.1.1
-platformdirs==4.11.11
-psycopg2-binary==2.9.12
-pycparser==3.0
-PyJWT==2.13.0
-python-decouple==3.8
-pytokens==0.4.1
-requests==2.34.2
-six==1.17.0
-sqlparse==0.5.5
-tzdata==2026.3
-urllib3==2.7.0
-whitenoise==6.12.0
+<details>
+<summary> Django Dependencies  </summary>
+
+- asgiref==3.12.1
+- black==26.5.1
+- certifi==2026.7.22
+- cffi==2.1.0
+- charset-normalizer==3.4.9
+- click==8.5.0
+- cloudinary==1.45.0
+- cryptography==49.0.0
+- dj-database-url==3.1.2
+- Django==6.0.7
+- django-allauth==65.18.0
+- django-cors-headers==4.9.0
+- djangorestframework==3.17.1
+- djangorestframework_simplejwt==5.5.1
+- gunicorn==26.0.0
+- idna==3.18
+- mypy_extensions==1.1.0
+- oauthlib==3.3.1
+- packaging==26.2
+- pathspec==1.1.1
+- platformdirs==4.11.11
+- psycopg2-binary==2.9.12
+- pycparser==3.0
+- PyJWT==2.13.0
+- python-decouple==3.8
+- pytokens==0.4.1
+- requests==2.34.2
+- six==1.17.0
+- sqlparse==0.5.5
+- tzdata==2026.3
+- urllib3==2.7.0
+- whitenoise==6.12.0
+
+</details>
 
 [Back to top](#vitality-vault)
 
