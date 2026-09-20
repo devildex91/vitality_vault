@@ -156,8 +156,9 @@ The typography uses the DaisyUI default font. This increases legibility, which i
 <details>
 <summary> Colours </summary>
 The colours chosen are the Nord theme for the light theme and Halloween for the dark theme. The default colours for these themes are
-Nord
 
+Nord
+---
 primary #5E81AC frost blue(updated to #25364B to pass contrast ratios)\
 base- 100 #ECEFF4 light background\
 base-200 #E5E9F0 middle light background\
