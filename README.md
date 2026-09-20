@@ -4,7 +4,7 @@
 
 [To view site](https://vitality-vault-omega.vercel.app/)
 [To view backend](https://vitality-vault-backend-c2878a5636af.herokuapp.com/admin)
- 
+ 
 ## Table of Contents
 
 ## [UX](#ux-1)
@@ -17,7 +17,6 @@
 - [ERD Diagram](#erd-diagram) 
 - [Database Architecture](#database-architecture)
 - [Wireframes](#wireframes) 
-
 
 ## [Features](#features-1)
 
@@ -208,39 +207,35 @@ Please see below diagram of the flow of data through this app.  
 [Back to top](#vitality-vault)
 
 ##### Database Architecture
-The backend application utilizes a relational database structure using Django and deployed using PostgreSQL on Neon. Below is the description of the database entities shown in the ERD diagram above although not all of the data was used within the revised blueprint of the project the data was left in for scope for future enhancements : 
+The backend application utilises a relational database structure using Django and deployed using PostgreSQL on Neon. Below is the description of the database entities shown in the ERD diagram above although not all of the data was used within the revised blueprint of the project the data was left in for scope for future enhancements : 
 
 ###### Muscle Model.
 
 - name: A CharField that stores the unique name of the muscle group with a maximum length of 50 characters, ensuring no duplicate muscles exist.
 - Meta: A configuration class that ensures muscle instances are systematically ordered alphabetically by name.
 
-
 ###### Equipment Model
 
 - name: A CharField tracking tool identifiers with a maximum length of 50 characters, structurally locked to remain unique across entries.
-- Meta: A configuration class ensuring that all equipment entries are organized alphabetically by name.
-
+- Meta: A configuration class ensuring that all equipment entries are organised alphabetically by name.
 
 ###### Category Model
 
 - name: A unique CharField defining the movement category title up to a maximum length of 50 characters.
 - Meta: A database configuration setting that forces alphabetical sorting arrangements using the name field properties.
 
-
 ###### Exercise Model
 
 - id: A custom CharField defining a text-based primary key for explicit identification mapping with an upper limit of 150 characters.
 - name: A standard CharField registering the descriptive exercise title up to a maximum of 200 elements.
 - level: A CharField forcing inputs into a TextChoices class structure consisting of strict experience splits ('beginner', 'intermediate', or 'expert') with a 20-character limit.
-- force: An optional CharField utilizing a TextChoices constraint to classify movement forces ('push', 'pull', or 'static'), allowing blank and null entries up to 20 characters.
+- force: An optional CharField utilising a TextChoices constraint to classify movement forces ('push', 'pull', or 'static'), allowing blank and null entries up to 20 characters.
 - mechanic: An optional CharField storing structural movement mechanics ('compound' or 'isolation') via a TextChoices wrapper, enabling blank and null properties.
 - category: A ForeignKey relationship mapping directly to the Category entity, configured with models.PROTECT rules to block category deletion if associated exercises exist.
-- equipment: An optional ForeignKey linking to the Equipment model, applying models.SET_NULL behaviors to safely clear the relational value if the source equipment record is wiped out.
-- primary_muscles: A ManyToManyField connecting the exercise record to multiple entries within the Muscle model to declare main targeted regions.
+- equipment: An optional ForeignKey linking to the Equipment model, applying models.SET_NULL behaviours to safely clear the relational value if the source equipment record is wiped out.
+- primulaceous: A ManyToManyField connecting the exercise record to multiple entries within the Muscle model to declare main targeted regions.
 - secondary_muscles: An optional ManyToManyField connecting to the Muscle table to isolate assisting muscle involvements, allowing blank array assignments.
 - Meta: A database configuration class maintaining runtime data sorting rules alphabetically based on the exercise name property.
-
 
 ###### Instruction Model
 - exercise: A ForeignKey binding the specific step context to a parent Exercise model record, executing `models.CASCADE` wipes if the master exercise is deleted.
@@ -249,14 +244,12 @@ The backend application utilizes a relational database structure using Django an
 - Meta: A configuration class maintaining strict ascending array sorting parameters by mapping entries via the step variable.
 - constraints: An integrity framework layer declaring a `UniqueConstraint` on the combination of the `exercise` and `step` properties to systematically block duplicate step configurations inside a single exercise list.
 
-
 ###### ExerciseImage Model
 
 - exercise: A ForeignKey defining standard structural ownership under an Exercise record container, enforcing cascading deletions.
 - public_id: A CharField storing unique asset repository locator tokens up to a maximum limit of 255 characters.
 - order: A PositiveSmallIntegerField that sets the index position sequence for display sliders, defaulting to a zero placement index.
 - Meta: A tracking layout rule sorting output assets chronologically from lowest to highest numerical values using the order index field.
-
 
 ###### WorkoutPlan Model
 
@@ -267,7 +260,7 @@ The backend application utilizes a relational database structure using Django an
 
 - workout: A ForeignKey establishing container dependency fields under a master WorkoutPlan profile, configured with cascade delete mappings.
 - day: A CharField restricting inputs to strict choices arrays mapping target calendar steps from Monday through Sunday with a 20-character maximum cap.
-- constraints: An optimization layer enforcing a composite UniqueConstraint over both the workout and day fields to block duplicate day creations inside the same plan container.
+- constraints: An optimisation layer enforcing a composite UniqueConstraint over both the workout and day fields to block duplicate day creations inside the same plan container.
 
 ###### WorkoutExercise Model
 
@@ -277,7 +270,6 @@ The backend application utilizes a relational database structure using Django an
 - reps: An IntegerField capturing user-defined performance repetitions metrics.
 - Meta: A database setup maintaining layout sorting patterns alphabetically by targeting the underlying exercise name key properties.
 - constraints: An operational safety mapping enforcing a UniqueConstraint across both workout_day and exercise columns to stop duplicate exercise additions on the same day.
-
 
 [Back to top](#vitality-vault)
 ##### Wireframes
@@ -482,7 +474,6 @@ The 404 page Lighthouse testing showed a drop in the accessibility score. This w
 - ![register second](/frontend/src/assets/images/mobile-register-lighthouse.png)
 - ![login](/frontend/src/assets/images/login-mobile-lighthouse.png)
 
-
 #### desktop lighthouse scores
 
 ---
@@ -527,7 +518,6 @@ As all other scores were in the 90s, and only the best‑practice score was lowe
 ### HTML tests
 
 ---
-
 
  <details>
  <summary> HTML tests</summary>
@@ -585,12 +575,11 @@ All code has been rechecked inline with the vs code extension RUFF and each page
 
 [Back to top](#vitality-vault)
 
-
 #### JSX Testing
 <details>
 <summary> JSX Testing </summary>
-Initially all JSX was to be carried out through online validators but because of the was JSX works these onlien validators will not work for JSX. In order to remedy this ES lint was installed both as a VS code plug in but also directly into the app. Once this was done All jsx code was validated internally throguh the command line running npm run lint which returned no errors or problems ensuring that all JSX code was inkeeping with the right syntax and standard coding practices.
- 
+Initially, all JSX was going to be checked through online validators, but because of how JSX works, these online validators don’t work for it. To remedy this, ESLint was installed both as a VS Code plugin and directly into the app. Once this was done, all the JSX code was validated internally through the command line by running npm run lint. This returned no errors or problems, ensuring that all the JSX code is in keeping with the right syntax and standard coding practices.
+ 
 
 </details>
 
@@ -892,9 +881,8 @@ All keyboard accessibility has been tested with screenshots above of navigation 
 
 All tests were carried out on both mobile and desktop views. Since some tabs render identically across device viewports, mobile tests apply to desktop screens unless explicitly noted below.
 
-
 | Feature | Test Case | Expected Result | Actual Result | PASS/FAIL |
-|-----------------------------	|---------------------------------------------------	|---------------------------------------------------------	|------------------------------------------------------------------------------	|-----------	|
+|-----------------------------  |---------------------------------------------------    |---------------------------------------------------------  |------------------------------------------------------------------------------ |-----------    |
 | ALL PAGES | | | | |
 | theme controller | CLick theme control button to swap theme | theme changes | theme changes | PASS |
 | Menu dropdown | Click the hamburger menu icon | Dropdown menu opens/closes | dropdown menu opens/closes | PASS |
@@ -939,7 +927,6 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 
 </details>
 
-
 ### development bugs and fixes
 
 ---
@@ -948,7 +935,7 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 <summary>Development bugs and fixes</summary>
 
 | Development Bugs/Issues | Cause | Fix |
-|-----------------------------------------------------	|--------------------------------------------------------------------	|-------------------------------------------------------------------------------------------	|
+|-----------------------------------------------------  |--------------------------------------------------------------------   |-------------------------------------------------------------------------------------------    |
 | User Registration fails to complete | Missing trailing slash(/) on endpoint string | Corrected the registration API string |
 | Production site returns 400/500 errors | Misconfigured CORS origins and missing Heroku database migrations | Adjusted middleware settings and updated ALLOWED_HOSTS and ran database updates |
 | Complicated data passing across workout sections | High component hierarchy nesting led to unstable data pipelines | Refactored form state into shared useContext layer |
@@ -957,7 +944,6 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 | Registration failing with wrong message | vague error handling | update error handling to be more specific on reason for failure| 
 | Registration failing to work | automatically adding stored access token to every request so receiving wrong token | Public authentication no longer recieves bearer token.|
 | PEP8 testing failures | No python linter installed | Installed black and RUFF and followed problems to add fixes amd added docstrings | 
-
 
 
 
@@ -994,7 +980,6 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 <summary>User testing notes</summary>
 
 
-
 #### Issues
 1. On user testing it was noted how in full plan the tables were slightly too close together and Monday was being cut off fully on smaller screens and partially on larger screens 
 2. Another issue was that the buttons in editplan were slightly too close together down the centre.
@@ -1005,7 +990,6 @@ All tests were carried out on both mobile and desktop views. Since some tabs ren
 2. To fix the buttons issue a margin was added pushing all of the buttons to stack. This worked well and received positive user feedback.
 3. To fix this issue we added a conditional statement that when no workouts have been selected a message telling you you do not have any workouts created will appear instead.
 4. Another message was added if exercises.length = 0 to say you needed to add an exercise first.
-
 
 </details>
 
@@ -1093,57 +1077,57 @@ heroku config:set DEBUG=False
 1. Open the terminal in your preferred IDE.
 
 2. type: git clone https://github.com
- then: cd vitality-vault 
- into the terminal 
+ then: cd vitality-vault 
+ into the terminal 
 
 3. type: cd backend 
- then: touch .env 
+ then: touch .env 
 to create a .env to safely store local configurations. 
 
 4. Populate your .env with all of these local development variables
- SECRET_KEY=your-local-development-secret-key-change-me
+ SECRET_KEY=your-local-development-secret-key-change-me
 ALLOWED_HOSTS=localhost,127.0.0.1
 DATABASE_URL=sqlite:///db.sqlite3
 
- 5. In your terminal type: 
- python -m venv venv
- to create your virtual environment then:
- on mac type: source venv/bin/activate
- on windows command prompt: venv\Scripts\activate
- on windows powershell: .\venv\Scripts\Activate.ps1
- to activate your virtual environment.
+ 5. In your terminal type: 
+ python -m venv venv
+ to create your virtual environment then:
+ on mac type: source venv/bin/activate
+ on windows command prompt: venv\Scripts\activate
+ on windows powershell: .\venv\Scripts\Activate.ps1
+ to activate your virtual environment.
 
 6. Upgrade pip and install your requirment with: 
- pip install --upgrade pip
- pip install -r requirements.txt
+ pip install --upgrade pip
+ pip install -r requirements.txt
 
 7. Initialise your local SQ lite database by typing:
- python manage.py makemigrations
- python manage.py migrate 
+ python manage.py makemigrations
+ python manage.py migrate 
 
 8. Create an Administrative user by typing:
- python manage.py createsuperuser
- and following the instructions.
+ python manage.py createsuperuser
+ and following the instructions.
 
 9. Run the backend with: 
- python manage.py runserver
- Your backend will now be running at http://127.0.0 
+ python manage.py runserver
+ Your backend will now be running at http://127.0.0 
 
 10. For the frontend navigate into the frontend folder using:
- cd frontend
+ cd frontend
 
 11. Create a local env with:
 touch .env.local
 
 12. Add your API endpoint to your new .env.local
- VITE_API_URL=http://127.0.0.1:8000
+ VITE_API_URL=http://127.0.0.1:8000
 
 13. Install all of your dependencies with:
 npm install
 
 14. Start your frontend with 
- npm run dev
- 
+ npm run dev
+ 
  </details>
 
 [Back to top](#vitality-vault)
@@ -1196,28 +1180,32 @@ For more information, please refer to https://unlicense.org
 #### dependencies for React/Vite
 ---
 
-"dependencies": {\
-    "@tailwindcss/vite": "^4.3.3",\
-    "@vitejs/plugin-react": "^6.0.5",\
-    "axios": "^1.18.1",\
-    "daisyui": "^5.7.4",\
-    "jwt-decode": "^4.0.0",\
-    "react": "^19.2.7",\
-    "react-dom": "^19.2.7",\
-    "react-router": "^8.3.0",\
-    "tailwind-animations": "^1.0.2",\
-    "tailwindcss": "^4.3.3",\
-    "vite": "^8.1.1"\
-  },\
-  "devDependencies": {\
-    "@testing-library/jest-dom": "^7.0.1",\
-    "@testing-library/react": "^16.3.3",\
-    "@testing-library/user-event": "^14.6.7",\
-    "@types/react": "^19.2.17",\
-    "@types/react-dom": "^19.2.3",\
-    "jsdom": "^29.1.1",\
-    "oxlint": "^1.71.0",\
-    "vitest": "^5.0.0"\
+ "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.0.5",
+    "axios": "^1.18.1",
+    "daisyui": "^5.7.4",
+    "jwt-decode": "^4.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router": "^8.3.0",
+    "tailwind-animations": "^1.0.2",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.12.0",
+    "jsdom": "^29.1.1",
+    "oxlint": "^1.71.0",
+    "vitest": "^5.0.0"
   }
 
 [Back to top](#vitality-vault)
@@ -1225,31 +1213,37 @@ For more information, please refer to https://unlicense.org
 #### dependencies for django 
 ---
 
-asgiref==3.12.1\
-certifi==2026.7.22\
-cffi==2.1.0\
-charset-normalizer==3.4.9\
-cloudinary==1.45.0\
-cryptography==49.0.0\
-dj-database-url==3.1.2\
-Django==6.0.7\
-django-allauth==65.18.0\
-django-cors-headers==4.9.0\
-djangorestframework==3.17.1\
-djangorestframework_simplejwt==5.5.1\
-gunicorn==26.0.0\
-idna==3.18\
-oauthlib==3.3.1\
-packaging==26.2\
-psycopg2-binary==2.9.12\
-pycparser==3.0\
-PyJWT==2.13.0\
-python-decouple==3.8\
-requests==2.34.2\
-six==1.17.0\
-sqlparse==0.5.5\
-tzdata==2026.3\
-urllib3==2.7.0\
+asgiref==3.12.1
+black==26.5.1
+certifi==2026.7.22
+cffi==2.1.0
+charset-normalizer==3.4.9
+click==8.5.0
+cloudinary==1.45.0
+cryptography==49.0.0
+dj-database-url==3.1.2
+Django==6.0.7
+django-allauth==65.18.0
+django-cors-headers==4.9.0
+djangorestframework==3.17.1
+djangorestframework_simplejwt==5.5.1
+gunicorn==26.0.0
+idna==3.18
+mypy_extensions==1.1.0
+oauthlib==3.3.1
+packaging==26.2
+pathspec==1.1.1
+platformdirs==4.11.11
+psycopg2-binary==2.9.12
+pycparser==3.0
+PyJWT==2.13.0
+python-decouple==3.8
+pytokens==0.4.1
+requests==2.34.2
+six==1.17.0
+sqlparse==0.5.5
+tzdata==2026.3
+urllib3==2.7.0
 whitenoise==6.12.0
 
 [Back to top](#vitality-vault)
