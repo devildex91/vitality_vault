@@ -33,7 +33,8 @@
 - [Lighthouse tests](#lighthouse-tests)  
 - [HTML tests](#html-tests)  
 - [CSS tests](#css-tests)  
-- [Python code validation](#python-code-validation) 
+- [Python code validation](#python-code-validation)
+- [JSX Testing](#jsx-testing)
 - [API Testing](#api-testing) 
 - [Security](#security) 
 - [Automated Testing](#automated-testing) 
@@ -592,6 +593,9 @@ Initially all JSX was to be carried out through online validators but because of
  
 
 </details>
+
+[Back to top](#vitality-vault)
+
 ### API Testing 
 
 <details>
