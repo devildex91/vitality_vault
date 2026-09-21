@@ -169,7 +169,7 @@ Halloween
 primary #F28C18 jack-o-lantern orange\
 base- 100 #212121 charcoal black background\
 base-200 #1a1a1a darker surface panel background\
-base-300 #121212 deepest background tint\
+base-300 #121212 deepest background tint
 
 More colours are available for each theme but these are the ones used for the app.
 
@@ -603,26 +603,51 @@ All CSS is inline using tailwind CSS. This means that it cannot be tested with s
 <details>
 <summary>Python validation </summary>
 
-All python files have been tested using black first using python -m black backend to reformat all of the python code and then verified with python -m black --check amd python manage.py check which showed 
+All python files have been tested using black first using python -m black backend to reformat all of the python code and then verified with python -m black --check and python manage.py check which showed 
 - 35 files were left unchanged 
 - System check identified no issues 
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
 All code has been rechecked inline with the vs code extension RUFF and each page has returned with 0 problems. You will also find screenshots below showing all python has been ran through an external checker for any syntax errors and come back with zero errors.
-
+- settings.py
+---
 ![settings](/frontend/src/assets/images/settings-py-validation.png)
+- users-admin.py
+---
 ![users-admin](/frontend/src/assets/images/users-admin-py-validation.png)
+- users-apps.py
+---
 ![users-apps](/frontend/src/assets/images/user-apps-py-validation.png)
+users-models.py
+--- 
 ![user-models](/frontend/src/assets/images/user-models.py-validation.png)
+- users-srializers.py
+--- 
 ![user-serializer](/frontend//src/assets/images/user-serializers.py-validation.png)
+- users-urls.py
+---
 ![users-urls](/frontend/src/assets/images/users-urls-py-validation.png)
+users-views.py
+--- 
 ![user-views](/frontend/src/assets/images/user-views.py-validation.png)
+- workouts-admin.py
+---
 ![workouts-admin](/frontend/src/assets/images/workouts-admin-py-validation.png)
+- workouts-apps.py
+--- 
 ![workouts-apps](/frontend/src/assets/images/workouts-apps-py-validation.png)
+- workouts-models.py
+---
 ![workouts-models](/frontend/src/assets/images/workouts-models.py-validation.png)
+- workouts-serializers.py
+--- 
 ![workouts-serializer](/frontend/src/assets/images/workouts-serializer.py-validation.png)
+- workouts-urls.py
+--- 
 ![workouts-urls](/frontend/src/assets/images/workouts-urls-py-validation.png)
+workouts-views.py
+--- 
 ![workouts-views](/frontend/src/assets/images/workouts-views.py-validation.png)
 
 </details>
@@ -856,7 +881,7 @@ Found 4 test(s).
 Creating test database for alias 'default'..
 System check identified no issues (0 silenced).
 ..
-----------------------------------------------------------------------
+
 Ran 4 tests in 2.063s
 
 OK
@@ -1147,9 +1172,9 @@ heroku config:set DEBUG=False
 
 1. Open the terminal in your preferred IDE.
 
-2. type: git clone https://github.com
+2. type: git clone https://github.com/devildex91/vitality_vault.git(this creates a local folder and sets up tracking for remote branches.) 
  then: cd vitality-vault 
- into the terminal 
+ into the terminal
 
 3. type: cd backend 
  then: touch .env 
